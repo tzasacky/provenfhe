@@ -1,0 +1,102 @@
+# file (relative to harness/frontend)	exit code	verdict	text that must appear in the human report
+examples/heir_mult_dep_8.worstcase.fhecheck.json	0	CERTIFIED AT PHASE LEVEL	noise <= 2^29.57, Q/2 = 2^31.00, margin 1.43 bits
+examples/heir_mult_dep_8.default.fhecheck.json	1	NOT CERTIFIED	overflow: 2*B >= Q by 51.05 bits
+tests/negative/ok_add_mulconst.json	0	CERTIFIED	margin 95.12 bits
+tests/negative/composite_modulus.json	1	NOT CERTIFIED	prime: limbs[1] = 105432318443523
+tests/negative/special_not_coprime.json	1	NOT CERTIFIED	Spec.Budget.specialOK? = false: special[0] = 35156991246337 is not coprime
+tests/negative/duplicate_prime.json	1	NOT CERTIFIED	distinct: a prime occurs twice
+tests/negative/t_not_coprime.json	1	NOT CERTIFIED	plaintext: t = 35156991246337 is not coprime
+tests/negative/input_noise_below_t_half.json	1	NOT CERTIFIED	msgRange: inputNoise = 1000 < t/2 = 32768
+tests/negative/n_not_pow2.json	1	NOT CERTIFIED	N_pow2: N = 12288
+tests/negative/bad_level.json	1	NOT CERTIFIED	input ct_1 is ill-formed (Source.Decl.ok): parts 2, level 4
+tests/negative/undefined_operand.json	1	NOT CERTIFIED	operand nope is not defined
+tests/negative/undefined_output.json	1	NOT CERTIFIED	output(s) never defined: [ghost]
+tests/negative/relin_two_parts.json	1	NOT CERTIFIED	relin needs a 3-part ciphertext
+tests/negative/noise_overflow.json	1	NOT CERTIFIED	overflow: 2*B >= Q by 53.15 bits
+tests/negative/expect_mismatch.json	1	NOT CERTIFIED	the frontend says level 2, parts 2; Source.step gives level 3
+tests/negative/modswitch_three_parts.json	0	CERTIFIED	E.modSwitchAt 3 = Spec.Budget.msBudgetAt P 3 = ceil(t*sum_(i<3) (N*secretBound)^i / 2) = 8796764151809 (2^43.00)
+tests/negative/unsupported_rescale.json	2	UNSUPPORTED	operation rescale (body[6]): rescale is not an operation
+tests/negative/ok_plain_ops.json	0	CERTIFIED	y: level 2, noise <= 2^66.29, Q/2 = 2^89.00, margin 22.71 bits
+tests/negative/plain_two_parts.json	1	NOT CERTIFIED	plaintext operand pt has 2 parts
+tests/negative/droplimbs_all.json	1	NOT CERTIFIED	dropLimbs 3 must leave at least one limb
+tests/negative/unsupported_unknown_op.json	2	UNSUPPORTED	operation bootstrap (body[6]): unknown operation
+tests/negative/unsupported_scheme_ckks.json	2	UNSUPPORTED	scheme CKKS
+tests/negative/unsupported_modswitch_method.json	2	UNSUPPORTED	modulus-switching method t-corrected-canonical
+tests/negative/unsupported_ks_variant.json	2	UNSUPPORTED	key-switching variant lattigo-exact
+# refusals of Challenge.Certify.certify? that do not depend on the program: a non-centred modulus-switching method on a
+# program without any modulus switch; an explicit digit table that does not restrict from the top level (and one that
+# does: same answer as the consecutive layout it equals); an even special modulus on a program without key switching
+tests/negative/unsupported_modswitch_method_no_switch.json	2	UNSUPPORTED	modulus-switching method t-corrected-canonical: only the centred t-corrected modulus switch ("t-corrected-centred") has a proved budget
+tests/negative/unsupported_digits_not_restricting.json	2	UNSUPPORTED	the key-switching digit layout does not restrict from the top level
+tests/negative/unsupported_digits_not_restricting.json	2	UNSUPPORTED	Spec.Certify.layoutOK? = false
+tests/negative/explicit_digits_restrict.json	1	NOT CERTIFIED	overflow: 2*B >= Q by 8.15 bits
+tests/negative/explicit_digits_restrict.json	1	NOT CERTIFIED	E.keySwitch = Spec.Budget.ksBudget = 2147647567 (2^31.00)
+tests/negative/special_even.json	1	NOT CERTIFIED	Spec.Budget.specialOK? (special primes): FAILED
+# key noise against Spec.Certify.keysRestrict? (2*floor(keyNoise/t)*t < q0*P): the smallest keyNoise that fails it, and that minus one
+tests/negative/key_noise_not_restricting.json	1	NOT CERTIFIED	2*floor(keyNoise/t)*t = 46731653421556537755415833195683345818899062390786 is not below q0*P = 46731653421556537755415833195683345818899062259713 (Spec.Certify.keysRestrict? = false
+tests/negative/ok_key_noise_restricting_boundary.json	0	CERTIFIED	Challenge.Certify.worst_certified
+# freshEncryption.mean with a zero denominator: a decode error in every mode
+tests/negative/fresh_mean_den_zero.json	3	INVALID INPUT	$.freshEncryption.mean.den: must be positive
+tests/negative/bad_digits.json	3	INVALID INPUT	are not consecutive runs partitioning limbs 0..2
+tests/negative/malformed_json.json	3	INVALID INPUT	malformed JSON
+tests/negative/malformed_bigint.json	3	INVALID INPUT	"12e5" is not a decimal natural number
+tests/negative/malformed_missing_field.json	3	INVALID INPUT	missing field "keyNoise"
+tests/negative/format_v0.json	3	INVALID INPUT	superseded draft
+tests/negative/extraction_error.json	3	INVALID INPUT	extraction failure
+examples/exampleBGV31_one_limb_digits.fhecheck.json	0	CERTIFIED AT PHASE LEVEL	E.keySwitch = Spec.Budget.ksBudget = 34787976413
+examples/exampleBGV31_two_limb_digit.fhecheck.json	1	NOT CERTIFIED	overflows at body[1]
+examples/heir_dot_product_8.worstcase.fhecheck.json	0	CERTIFIED AT PHASE LEVEL	%ct_10: level 1, noise <= 2^28.34, Q/2 = 2^31.00, margin 2.66 bits
+# OpenFHE, all scaling techniques (openfhe/make_examples.sh); decryption declared as switch-to-one-limb (Spec.Decrypt)
+examples/openfhe_default_chain_depth1.fhecheck.json	1	NOT CERTIFIED	overflow: 2*B >= Q by 4.00 bits
+examples/openfhe_depth2_fixedmanual.fhecheck.json	1	NOT CERTIFIED	overflow: 2*B >= Q by 8.15 bits
+examples/openfhe_depth8_q55_fixedmanual.fhecheck.json	0	CERTIFIED	ct_27: level 1, noise <= 2^30.00, Q/2 = 2^54.00, margin 24.00 bits
+examples/openfhe_dot_depth2.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^15.00, q0/2 = 2^44.00, margin 29.00 bits
+examples/openfhe_fixedauto_chain.fhecheck.json	1	NOT CERTIFIED	overflow: 2*B >= Q by 25.32 bits
+examples/openfhe_fixedauto_lr.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^15.00, q0/2 = 2^32.81, margin 17.81 bits
+examples/openfhe_fixedauto_plain.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^29.56, q0/2 = 2^32.81, margin 3.25 bits
+examples/openfhe_fixedauto_plainlvl.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^29.56, q0/2 = 2^32.81, margin 3.25 bits
+examples/openfhe_fixedauto_rotsum.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^15.00, q0/2 = 2^32.81, margin 17.81 bits
+examples/openfhe_fixedmanual_lr.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^15.00, q0/2 = 2^44.00, margin 29.00 bits
+examples/openfhe_fixedmanual_plain.fhecheck.json	0	CERTIFIED	ct_16: level 1, noise <= 2^29.25, Q/2 = 2^44.00, margin 14.75 bits
+examples/openfhe_fixedmanual_plainlvl.fhecheck.json	0	CERTIFIED	ct_10: level 1, noise <= 2^29.25, Q/2 = 2^44.00, margin 14.75 bits
+examples/openfhe_fixedmanual_rotsum.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^15.00, q0/2 = 2^44.00, margin 29.00 bits
+examples/openfhe_flexibleauto_chain.fhecheck.json	1	NOT CERTIFIED	overflow: 2*B >= Q by 26.14 bits
+examples/openfhe_flexibleautoext_chain.fhecheck.json	1	NOT CERTIFIED	overflow: 2*B >= Q by 17.05 bits
+examples/openfhe_flexibleautoext_dot.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^15.00, q0/2 = 2^30.00, margin 15.00 bits
+examples/openfhe_flexibleautoext_lr.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^15.00, q0/2 = 2^30.00, margin 15.00 bits
+examples/openfhe_flexibleautoext_plain.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^27.03, q0/2 = 2^30.00, margin 2.98 bits
+examples/openfhe_flexibleautoext_plainlvl.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^27.03, q0/2 = 2^30.00, margin 2.98 bits
+examples/openfhe_flexibleautoext_rot.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^15.00, q0/2 = 2^30.00, margin 15.00 bits
+examples/openfhe_flexibleautoext_rotsum.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^15.00, q0/2 = 2^30.00, margin 15.00 bits
+examples/openfhe_flexibleauto_lr.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^15.00, q0/2 = 2^32.00, margin 17.00 bits
+examples/openfhe_flexibleauto_plain.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^29.57, q0/2 = 2^32.00, margin 2.43 bits
+examples/openfhe_flexibleauto_plainlvl.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^29.57, q0/2 = 2^32.00, margin 2.43 bits
+examples/openfhe_flexibleauto_rotsum.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^15.00, q0/2 = 2^32.00, margin 17.00 bits
+examples/openfhe_rot_depth2.fhecheck.json	0	CERTIFIED	Spec.Decrypt.decBound = 2^15.00, q0/2 = 2^44.00, margin 29.00 bits
+# 1-part modulus switch, decryption methods
+tests/negative/ok_plain_modswitch.json	0	CERTIFIED	E.modSwitchOne = Spec.Budget.msBudgetOne = ceil(t/2) = 32769
+tests/negative/unsupported_decryption_method.json	2	UNSUPPORTED	decryption method round-then-guess
+tests/negative/decrypt_switch_overflow.json	1	NOT CERTIFIED	not below q0/2
+tests/negative/decrypt_textbook_ok.json	1	NOT CERTIFIED	DECRYPTION COVERED: textbook decryption WITH THE SECRET KEY s modulo the output's own level
+# security note (never part of the verdict; HomomorphicEncryption.org table, an INPUT ASSUMPTION)
+examples/openfhe_depth8_q55_fixedmanual.fhecheck.json	0	CERTIFIED	NOTE: what is certified is correctness (exact decryption), not security
+examples/openfhe_depth8_q55_fixedmanual.fhecheck.json	0	CERTIFIED	these parameters: within the 128-bit cap; above the 192- and 256-bit caps
+tests/negative/security_above_cap.json	0	CERTIFIED	WARNING: SECURITY (not part of the verdict): log2(Q*P) = 254.99 EXCEEDS the 128-bit classical cap of 218 bits at N = 8192
+tests/negative/security_toy_n.json	0	CERTIFIED	no entry: N = 512 is below the standard's smallest ring dimension (1024); NOT secure per the standard
+tests/negative/security_fix_above_cap.json	1	NOT CERTIFIED	SECURITY: this fix exceeds the 128-bit cap at this N (log2 QP after the fix = 264.99 > cap 218
+tests/negative/security_fix_above_cap.json	1	NOT CERTIFIED	the analyzer accepts for k = 3 (the smallest found by bisection over 0..64): log2(Q*P) = 269.99 <= 438, the 128-bit cap at N = 16384
+tests/negative/security_openfhe_flexibleautoext_chain_depth6.json	1	NOT CERTIFIED	SECURITY: this fix exceeds the 128-bit cap at this N (log2 QP after the fix = 460.32 > cap 438
+examples/heir_mult_dep_8.default.fhecheck.json	1	NOT CERTIFIED	SECURITY: this fix exceeds the 128-bit cap at this N (log2 QP after the fix = 239.00 > cap 218
+examples/heir_mult_dep_8.default.fhecheck.json	1	NOT CERTIFIED	cannot be computed by this tool: the file has no freshEncryption section
+examples/openfhe_flexibleautoext_lr.fhecheck.json	0	CERTIFIED	user-level decryption covered (Challenge.Scaling.certify?_user)
+tests/negative/scaling_factor_mismatch.json	1	NOT CERTIFIED	user-level decryption not covered: Spec.Scaling.scaleOK? failed: the factors cannot be computed
+tests/negative/scaling_unmarked_adjustment.json	1	NOT CERTIFIED	user-level decryption not covered: Spec.Scaling.scaleOK? failed
+tests/negative/scaling_zero_factor.json	1	NOT CERTIFIED	user-level decryption not covered: Spec.Scaling.scaleOK? failed: output ct_10: the decode factor 0 is not invertible modulo t
+examples/heir_mult_dep_8.worstcase.fhecheck.json	0	CERTIFIED AT PHASE LEVEL	user-level decryption not covered: no scaling data in the input
+tests/negative/word_modulus_61bit.json	2	UNSUPPORTED	Challenge.Word.ksWordOK? = false: the modulus 2305843009211662337
+tests/negative/word_modulus_61bit_not_openfhe.json	0	CERTIFIED AT PHASE LEVEL	CERTIFIED AT PHASE LEVEL
+tests/negative/word_ks_accumulator.json	2	UNSUPPORTED	the unreduced 128-bit sums of the hybrid key switch
+tests/negative/word_t_above_q0_half.json	2	UNSUPPORTED	t - 1 <= floor(q0/2) fails
+tests/negative/ok_input_bound_at_input_noise.json	0	CERTIFIED	every output decrypts correctly
+tests/negative/input_bound_above_input_noise.json	2	UNSUPPORTED	input ct_1 declares the bound 83755761704
+tests/negative/plain_bound_above_input_noise.json	2	UNSUPPORTED	input pt declares the bound 167511523406

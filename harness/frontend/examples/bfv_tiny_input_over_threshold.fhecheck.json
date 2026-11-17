@@ -1,0 +1,44 @@
+{
+ "format": "fhe-check/v1",
+ "source": {
+  "tool": "hand-written (Challenge.BFV.tinyBFV)"
+ },
+ "params": {
+  "scheme": "BFV",
+  "N": 4,
+  "t": 17,
+  "limbs": [
+   "65537",
+   "786433"
+  ],
+  "special": [],
+  "secretBound": 1,
+  "inputNoise": "1515895860",
+  "keyNoise": 64
+ },
+ "keySwitching": {
+  "method": "hybrid",
+  "variant": "centred",
+  "digits": {
+   "kind": "consecutive",
+   "towersPerDigit": 1
+  },
+  "source": "no special primes, one limb per digit: RNS-digit (BV) key switching"
+ },
+ "modSwitch": {
+  "method": "round"
+ },
+ "program": {
+  "inputs": [
+   {
+    "name": "a",
+    "parts": 2,
+    "level": 2
+   }
+  ],
+  "body": [],
+  "outputs": [
+   "a"
+  ]
+ }
+}

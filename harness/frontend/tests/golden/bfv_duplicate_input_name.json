@@ -1,0 +1,6 @@
+{"verdict": "INVALID INPUT",
+ "tool": "fhe_check",
+ "summary": "$.program.inputs: the input \"ct_1\" is declared more than once",
+ "scheme": "BFV",
+ "input": "tests/negative-bfv/bfv_duplicate_input_name.json",
+ "format": "fhe-check-report/v1"}

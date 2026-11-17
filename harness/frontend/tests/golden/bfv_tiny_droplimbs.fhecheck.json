@@ -1,0 +1,7 @@
+{"verdict": "UNSUPPORTED",
+ "tool": "fhe_check",
+ "summary":
+ "operation dropLimbs (body[0]): not a BFV operation (Spec.TraceBFV: the BFV message is scaled by floor(Q/t), so dropping limbs without dividing changes it); a BFV level change is modSwitch",
+ "scheme": "BFV",
+ "input": "examples/bfv_tiny_droplimbs.fhecheck.json",
+ "format": "fhe-check-report/v1"}

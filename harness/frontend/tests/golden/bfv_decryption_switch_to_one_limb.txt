@@ -1,0 +1,2 @@
+fhe_check: tests/negative-bfv/bfv_decryption_switch_to_one_limb.json
+VERDICT: UNSUPPORTED: decryption method switch-to-one-limb: for BFV only decryption at the output's own level ("at-output-level", Spec.Scheme.bfvDecrypt) has a proved statement

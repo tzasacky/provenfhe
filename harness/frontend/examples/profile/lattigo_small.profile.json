@@ -1,0 +1,34 @@
+{
+ "format": "fhe-check-profile/v1",
+ "scheme": "BGV",
+ "source": {
+  "library": "Lattigo v6.2.0 (schemes/bgv), default distributions, RNS gadget decomposition",
+  "what": "Challenge.Instances.Lattigo.profile small = Spec.Budget.certified small (layout small): the hybrid key-switching bound on Lattigo's digits (one limb per digit, centred; proved for the MSB transcription, Challenge.Instances.Lattigo.relin_meets_lsb, keySwitch_meets_lsb) and the centred t-corrected modulus switch (Lattigo's Rescale under the t-reading). No OpenFHE table is involved.",
+  "guard": "Challenge/Instances/Lattigo.lean: #guard (profile small).keySwitch == 11452593"
+ },
+ "budget": {
+  "keySwitch": "11452593",
+  "modSwitch": "557065",
+  "modSwitchOne": "32769",
+  "modSwitchMany": {
+   "default": "8945801",
+   "at": [
+    {
+     "parts": 3,
+     "bound": "8945801"
+    }
+   ]
+  }
+ },
+ "coverage": {
+  "keySwitching": {
+   "method": "hybrid",
+   "variant": "centred",
+   "digits": {
+    "kind": "consecutive",
+    "towersPerDigit": 1
+   }
+  },
+  "modSwitchParts": 3
+ }
+}

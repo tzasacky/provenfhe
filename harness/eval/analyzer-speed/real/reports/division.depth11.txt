@@ -1,0 +1,15 @@
+fhe_check --no-suggest --max-instructions 0 division.depth11.fhecheck.json   (excerpt; full report sha256 cca2b6ef36c1a861717c4c2aeab12d4529a4f7ed19284fb6cb10bceb18065588)
+VERDICT: CERTIFIED: every output decrypts correctly, in the worst case, under the assumptions below
+WARNING: SECURITY (not part of the verdict): N = 2 is below the smallest ring dimension of the security standard (1024); NOT secure per the standard (HomomorphicEncryption.org Security Standard (Albrecht et al., November 2018), ternary secret, classical security; as transcribed in OpenFHE stdlatticeparms.cpp). The verdict is about correctness only.
+NOTE: what is certified is correctness (exact decryption), not security; see "Security note" below.
+user-level decryption covered (Challenge.Scaling.certify?_user)
+Parameters (BGV, from openfhe): N = 2, t = 257, 12 ciphertext primes (log2 Q = 261.15), 2 special primes (log2 P = 120.00)
+  limb bits: [19.01, 22.00, 22.00, 22.01, 22.01, 22.01, 22.01, 22.01, 22.02, 22.02, 22.02, 22.02]
+  Spec.schemeParamsOK? (chain): passed
+  Spec.Budget.specialOK? (special primes): passed
+  log2(Q*P) = 381.15 (12 ciphertext limbs, all of them, including any extra limb, and 2 special primes)
+Outputs (bound = Challenge.Headline.refAnalyze on the program with this output alone):
+  ct_5506: level 3, noise <= 2^18.19, Q/2 = 2^62.02, margin 43.83 bits
+    decryption (phase switched to one limb): Spec.Decrypt.decBound = 2^7.00, q0/2 = 2^18.01, margin 11.01 bits
+  ct_1573904: level 2, noise <= 2^26.19, Q/2 = 2^40.02, margin 13.82 bits
+    decryption (phase switched to one limb): Spec.Decrypt.decBound = 2^7.19, q0/2 = 2^18.01, margin 10.82 bits

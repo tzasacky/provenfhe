@@ -1,0 +1,6 @@
+{"verdictLabel": "INVALID INPUT",
+ "verdict": "INVALID INPUT",
+ "tool": "fhe_check",
+ "summary": "malformed JSON: offset 38: unexpected end of input",
+ "input": "tests/negative/malformed_json.json",
+ "format": "fhe-check-report/v1"}

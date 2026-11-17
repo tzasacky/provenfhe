@@ -1,0 +1,7 @@
+{"verdictLabel": "INVALID INPUT",
+ "verdict": "INVALID INPUT",
+ "tool": "fhe_check",
+ "summary":
+ "the frontend reported an extraction failure: \"line 7: unknown OpenFHE call\"",
+ "input": "tests/negative/extraction_error.json",
+ "format": "fhe-check-report/v1"}

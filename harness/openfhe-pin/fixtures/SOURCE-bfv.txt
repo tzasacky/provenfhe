@@ -1,0 +1,14 @@
+OpenFHE: upstream openfheorg/openfhe-development v1.6.1
+commit: b59e1f291965f14fbee5172cd83a20f5b856204f
+patch: harness/frontend/openfhe/openfhe-v1.6.1-tracer.patch (sha256 a1792781bd823a7a57eaaae2b924343b4808b9121140db211ab9d5d5aa79a461), observation-only ENABLE_TRACER hooks
+tracer: harness/frontend/openfhe/fhecheck-tracer.h (sha256 cbec99d82276c5834c8544d4d9922e4042edf54b4b390b0dea8a0a7daa5c2f2b)
+build: harness/frontend/openfhe/build_openfhe.sh (Release, ENABLE_TRACER=ON, WITH_OPENMP=OFF, WITH_REDUCED_NOISE=OFF, NATIVEINT 64)
+compiler: c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+cxx flags (libOPENFHEcore objects): -Wall -Werror -DOPENFHE_VERSION=1.6.1 -Wno-parentheses -O3 -DMATHBACKEND=4 -Wno-unknown-pragmas -O3 -DNDEBUG -std=gnu++17 -fPIC | -DBUILTIN_INFO_AVAILABLE
+cxx flags (libOPENFHEpke objects): -Wall -Werror -DOPENFHE_VERSION=1.6.1 -Wno-parentheses -O3 -DMATHBACKEND=4 -Wno-unknown-pragmas -O3 -DNDEBUG -std=gnu++17 -fPIC | -DBUILTIN_INFO_AVAILABLE
+float: FLT_EVAL_METHOD=0 fastMath=false (-ffast-math/-Ofast/-funsafe-math-optimizations in flags: false; __FAST_MATH__=0) -ffp-contract=fast march=x86-64 -march/-mfma in flags: false __FMA__=0 __SSE2_MATH__=1 LDBL_MANT_DIG=64 DBL_MANT_DIG=53
+float: fmaContraction=false; FMA instructions: libOPENFHEcore 0, libOPENFHEpke 0; SSE2 scalar double arithmetic: 1329, 1649; x87 arithmetic (long double): 9, 0
+float: how: flags: FLAGS/DEFINES of the coreobj and pkeobj objects in the CMake build.ninja (one flag set each); FLT_EVAL_METHOD, __FAST_MATH__, __FMA__: a probe compiled by the same compiler with exactly those flags; fmaContraction: -ffp-contract=fast is the compiler default but no -march/-mfma is given (target x86-64, __FMA__ = 0) and objdump -d of the installed libOPENFHEcore.so and libOPENFHEpke.so finds 0 and 0 vfmadd/vfnmadd/vfmsub/vfnmsub instructions (scalar SSE2 mulsd/addsd/subsd/divsd: 1329 and 1649; x87 fmul/fadd/fsub/fdiv, i.e. long double arithmetic: 9 and 0; functions with any x87 instruction: libOPENFHEcore: lbcrypto::DiscreteGaussianGeneratorGeneric::DiscreteGaussianGeneratorGeneric (36); lbcrypto::DiscreteGaussianGeneratorGeneric::GenerateInteger (19); libOPENFHEpke: none)
+exporter: harness/openfhe-pin/cpp/pin_export_bfv.cpp + pin_adv_bfv.h + pin_dump_bfv.h + pin_dump.h + pin_prng.cpp (export/build_cpp_bfv.sh), OMP_NUM_THREADS=1
+extractor: harness/frontend/openfhe/extract_bfv.py (sha256 cc68ae27c43d42210cce66957c20e19b7156f5eb33cf51bff9ddc60eb8480d95), which imports extract.py (sha256 4d9eb0d1d1f26e7f00b603ccb38f7150e225e9a60a09241a28eb8a30a4ed71a2)
+suite: export/gen_matrix_bfv.py --suite bfv-fixtures; archived: 241 cases; refused by the extractor: 52

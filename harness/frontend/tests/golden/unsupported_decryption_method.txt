@@ -1,0 +1,2 @@
+fhe_check: tests/negative/unsupported_decryption_method.json
+VERDICT: UNSUPPORTED: decryption method round-then-guess: no proved statement for this decryption (at-output-level | switch-to-one-limb)

@@ -1,0 +1,294 @@
+{
+ "checker": ".lake/build/bin/fhe_check",
+ "kmax": 160,
+ "rows": [
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedauto_d1.fhecheck.json",
+   "technique": "FIXEDAUTO",
+   "D": 1,
+   "t": 65537,
+   "kappaMaxCertified": 11,
+   "kappaMinCertified": 1,
+   "certifiedCount": 11
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedmanual_d1.fhecheck.json",
+   "technique": "FIXEDMANUAL",
+   "D": 1,
+   "t": 65537,
+   "kappaMaxCertified": 160,
+   "kappaMinCertified": 1,
+   "certifiedCount": 160
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleauto_d1.fhecheck.json",
+   "technique": "FLEXIBLEAUTO",
+   "D": 1,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleautoext_d1.fhecheck.json",
+   "technique": "FLEXIBLEAUTOEXT",
+   "D": 1,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedauto_d2.fhecheck.json",
+   "technique": "FIXEDAUTO",
+   "D": 2,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedmanual_d2.fhecheck.json",
+   "technique": "FIXEDMANUAL",
+   "D": 2,
+   "t": 65537,
+   "kappaMaxCertified": 160,
+   "kappaMinCertified": 1,
+   "certifiedCount": 160
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleauto_d2.fhecheck.json",
+   "technique": "FLEXIBLEAUTO",
+   "D": 2,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleautoext_d2.fhecheck.json",
+   "technique": "FLEXIBLEAUTOEXT",
+   "D": 2,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedauto_d3.fhecheck.json",
+   "technique": "FIXEDAUTO",
+   "D": 3,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedmanual_d3.fhecheck.json",
+   "technique": "FIXEDMANUAL",
+   "D": 3,
+   "t": 65537,
+   "kappaMaxCertified": 126,
+   "kappaMinCertified": 1,
+   "certifiedCount": 126
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleauto_d3.fhecheck.json",
+   "technique": "FLEXIBLEAUTO",
+   "D": 3,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleautoext_d3.fhecheck.json",
+   "technique": "FLEXIBLEAUTOEXT",
+   "D": 3,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedauto_d4.fhecheck.json",
+   "technique": "FIXEDAUTO",
+   "D": 4,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedmanual_d4.fhecheck.json",
+   "technique": "FIXEDMANUAL",
+   "D": 4,
+   "t": 65537,
+   "kappaMaxCertified": 26,
+   "kappaMinCertified": 1,
+   "certifiedCount": 26
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleauto_d4.fhecheck.json",
+   "technique": "FLEXIBLEAUTO",
+   "D": 4,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleautoext_d4.fhecheck.json",
+   "technique": "FLEXIBLEAUTOEXT",
+   "D": 4,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedauto_d5.fhecheck.json",
+   "technique": "FIXEDAUTO",
+   "D": 5,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedmanual_d5.fhecheck.json",
+   "technique": "FIXEDMANUAL",
+   "D": 5,
+   "t": 65537,
+   "kappaMaxCertified": 4,
+   "kappaMinCertified": 1,
+   "certifiedCount": 4
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleauto_d5.fhecheck.json",
+   "technique": "FLEXIBLEAUTO",
+   "D": 5,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleautoext_d5.fhecheck.json",
+   "technique": "FLEXIBLEAUTOEXT",
+   "D": 5,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedauto_d6.fhecheck.json",
+   "technique": "FIXEDAUTO",
+   "D": 6,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedmanual_d6.fhecheck.json",
+   "technique": "FIXEDMANUAL",
+   "D": 6,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleauto_d6.fhecheck.json",
+   "technique": "FLEXIBLEAUTO",
+   "D": 6,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleautoext_d6.fhecheck.json",
+   "technique": "FLEXIBLEAUTOEXT",
+   "D": 6,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedauto_d7.fhecheck.json",
+   "technique": "FIXEDAUTO",
+   "D": 7,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedmanual_d7.fhecheck.json",
+   "technique": "FIXEDMANUAL",
+   "D": 7,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleauto_d7.fhecheck.json",
+   "technique": "FLEXIBLEAUTO",
+   "D": 7,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleautoext_d7.fhecheck.json",
+   "technique": "FLEXIBLEAUTOEXT",
+   "D": 7,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedauto_d8.fhecheck.json",
+   "technique": "FIXEDAUTO",
+   "D": 8,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/fixedmanual_d8.fhecheck.json",
+   "technique": "FIXEDMANUAL",
+   "D": 8,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleauto_d8.fhecheck.json",
+   "technique": "FLEXIBLEAUTO",
+   "D": 8,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  },
+  {
+   "file": "harness/eval/openfhe-upstream/out/default_table/flexibleautoext_d8.fhecheck.json",
+   "technique": "FLEXIBLEAUTOEXT",
+   "D": 8,
+   "t": 65537,
+   "kappaMaxCertified": null,
+   "kappaMinCertified": null,
+   "certifiedCount": 0
+  }
+ ]
+}

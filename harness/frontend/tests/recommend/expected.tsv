@@ -1,0 +1,47 @@
+# fhe_check recommend: arguments ("-" for none), file (relative to harness/frontend), exit code, text that must appear
+--ring-dim 8192	examples/openfhe_depth8_q55_fixedmanual.fhecheck.json	1	no parameters at N = 8192 within the 128-bit cap (log2(Q*P) < 218) that the verified pipeline certifies; smallest feasible N is 32768
+--ring-dim 4096	examples/heir_mult_dep_8.worstcase.fhecheck.json	1	smallest feasible N is 8192
+-	examples/openfhe_flexibleautoext_chain.fhecheck.json	2	no recommendation for an OpenFHE FLEXIBLEAUTOEXT program
+-	examples/openfhe_fixedauto_chain.fhecheck.json	2	raise SetEvalAddCount, one of the inputs that size the primes
+-	examples/openfhe_default_chain_depth1.fhecheck.json	2	no recommendation for an OpenFHE FLEXIBLEAUTOEXT program
+--ring-dim 8192	examples/exampleBGV31_one_limb_digits.fhecheck.json	3	only N = 16384 is possible
+--digits 0	examples/openfhe_depth2_fixedmanual.fhecheck.json	3	--digits 0: must be between 1 and the number of limbs 3
+--digits 9	examples/heir_mult_dep_8.worstcase.fhecheck.json	3	must be between 1 and the number of limbs 4
+--bogus	examples/openfhe_depth2_fixedmanual.fhecheck.json	4	unknown option
+--security 100	examples/openfhe_depth2_fixedmanual.fhecheck.json	4	--security 100: expected 128, 192 or 256
+--ring-dim 12288	examples/openfhe_depth2_fixedmanual.fhecheck.json	4	--ring-dim 12288: expected auto or one of
+-	tests/negative/t_not_coprime.json	1	Likely reason, t = 35156991246337: one modulus switch leaves noise up to msBudget
+-	tests/negative/malformed_json.json	3	malformed JSON
+-	tests/negative/unsupported_rescale.json	2	operation rescale (body[6])
+--sizes 31,31 --special-size 31	tests/recommend/t_is_candidate.json	1	Q = [2146959361 (31 bits), 2146336769 (31 bits)]
+--sizes 45,45	examples/openfhe_depth2_fixedmanual.fhecheck.json	1	plain check NOT CERTIFIED (the worst-case noise bound overflows at body[3])
+--sizes 55,55 --ring-dim 32768	examples/openfhe_depth8_q55_fixedmanual.fhecheck.json	0	Sizes given by --sizes (no search)
+--kappa 128	examples/openfhe_depth2_fixedmanual.fhecheck.json	0	certificate theorem: Challenge.Certify.fresh_kappa_certified
+--security 256	examples/openfhe_depth2_fixedmanual.fhecheck.json	0	256-bit classical: log2(Q*P) must stay below
+# t = 65537: at 192 bits the depth-8 program needs N = 2^16, which packed encoding cannot use (t != 1 mod 2^17; OpenFHE
+# throws in RootOfUnity). Before the batching check this row expected a recommendation at N = 65536 that OpenFHE rejects.
+--security 192	examples/openfhe_depth8_q55_fixedmanual.fhecheck.json	1	no certified parameters within N <= 32768 for this plaintext modulus
+--security 192	examples/openfhe_depth2_fixedmanual.fhecheck.json	0	192-bit classical
+--digits any	examples/openfhe_depth8_q55_fixedmanual.fhecheck.json	0	certificate theorem: Challenge.Certify.worst_certified
+--margin 10	examples/openfhe_depth2_fixedmanual.fhecheck.json	0	RECOMMENDATION: CERTIFIED
+--ring-dim 16384	examples/heir_dot_product_8.worstcase.fhecheck.json	0	rotations: Galois elements moved from N = 8192 to N = 16384
+--target neutral	examples/openfhe_depth2_fixedmanual.fhecheck.json	0	neutral target: no library configuration
+--target heir	examples/openfhe_depth2_fixedmanual.fhecheck.json	2	--target heir needs a file from the HEIR extractor
+--max-instructions 5	examples/openfhe_depth2_fixedmanual.fhecheck.json	2	program too large: 6 instructions, above the limit of 5
+# OpenFHE v1.6.1's 4-bit special-prime margin: 58-bit digits need TWO 60-bit special primes (v1.3.1: one).
+# The fixture is a real bgv_demo run on v1.6.1 (--scal FIXEDMANUAL --prog chain --depth 1 --qbits 58
+# --firstbits 58 --dnum 2); its params.json lists exactly these two special primes.
+--sizes 58,58 --ring-dim 16384 --digits 2	tests/recommend/openfhe_fixedmanual_chain_q58_dnum2.fhecheck.json	0	p1 = 1152921422732787713  (60 bits)
+# Default OpenFHE v1.6.1 FIXEDMANUAL chain programs at t = 65537 (real runs of harness/eval/frontier/src/frontier_bgv.cpp,
+# `run DIR --scal FIXEDMANUAL --depth D --prog chain`, single-threaded traced build, extract.py; N = 2^15 for D = 6, 10, 12).
+# Packed encoding needs t = 1 mod 2N, so at t = 65537 no N above 2^15 may be proposed (OpenFHE throws in RootOfUnity):
+--digits keep	tests/recommend/openfhe_fixedmanual_chain_d12.fhecheck.json	1	no certified parameters within N <= 32768 for this plaintext modulus
+--ring-dim 65536	tests/recommend/openfhe_fixedmanual_chain_d12.fhecheck.json	1	--ring-dim 65536: not usable with this plaintext modulus
+--digits any	tests/recommend/openfhe_fixedmanual_chain_d12.fhecheck.json	0	Ring dimension N = 32768; plaintext modulus t = 65537
+# The time objective (default): depth 6 moves to N = 2^14 with one limb per digit (measured 0.62x the default's time);
+# depth 10 keeps the library's 3 digits at N = 2^15 (one limb per digit there measured 1.55x).
+--digits any	tests/recommend/openfhe_fixedmanual_chain_d6.fhecheck.json	0	Ring dimension N = 16384; plaintext modulus t = 65537
+--digits any	tests/recommend/openfhe_fixedmanual_chain_d10.fhecheck.json	0	Key switching: digits of 4 consecutive limbs (dnum = 3)
+--digits any	tests/recommend/openfhe_fixedmanual_chain_d10.fhecheck.json	0	evaluation time, MODELLED (not measured): ratio 1.00 (digits 3 vs the file's 3)
+--objective size --digits any	tests/recommend/openfhe_fixedmanual_chain_d10.fhecheck.json	0	(dnum = 11)
+--objective bogus	examples/openfhe_depth2_fixedmanual.fhecheck.json	4	--objective bogus: expected time or size

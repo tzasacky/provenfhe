@@ -1,0 +1,147 @@
+fhe_check: examples/openfhe_bfv_default_innerprod_d2.fhecheck.json
+VERDICT: CERTIFIED: every output decrypts correctly, in the worst case, under the assumptions below
+
+Parameters (BFV, from openfhe): N = 8192, t = 65537, 3 ciphertext primes (log2 Q = 180.00), 0 special primes (log2 P = 0.00)
+  limb bits: [60.00, 60.00, 60.00]
+  Spec.schemeParamsOK? (chain): passed
+  Spec.Budget.specialOK? (special primes): passed
+
+Mode: worst case (input noise 2^19.29, supplied by the frontend); there is no --kappa mode for BFV
+
+Multiplication technique (declared by the frontend): HPSPOVERQLEVELED [HPSPOVERQLEVELED: sizeQ auxiliary primes R = PreviousPrime chain below q_last, read from GetParamsRl (pke/lib/scheme/bfvrns/bfvrns-cryptoparameters.cpp:76-77,126-140); the base extensions and the scaling use double-precision estimates of the overflow/quotient (dcrtpoly-impl.h ExpandCRTBasis/SwitchCRTBasis/ScaleAndRound with the *Frac tables and m_qInv, bfvrns-cryptoparameters.cpp:263-289); a multiplication on k limbs uses P_k = the FIRST k primes of auxBasis (m_paramsRl[k-1], bfvrns-cryptoparameters.cpp:243-255): operand 1 is ExpandCRTBasis'd to Q_k u P_k, operand 2 is switched Q -> P_k (scaled by P_k/Q) and extended, tensor, ScaleAndRound by t/P_k into Q_k (bfvrns-leveledshe.cpp:250-275,398-409); LEVELED: on a ciphertext with all L limbs the library first drops d = FindLevelsToDrop(noiseScaleDeg - 1, params, MSB(q_0), keySwitch) limbs (bfvrns-leveledshe.cpp:102-202): EvalMult/EvalSquare scale operand 1 by Q_l/Q with rounding (ScaleAndRound), multiply on l = L - d limbs with P_l and expand the result by Q/Q_l (ExpandCRTBasisQlHat) (:276-315,410-425,509-549,706-721); RelinearizeCore scales c2 (or c1 for a rotation) by Q_l/Q, key-switches on l limbs and multiplies the result by Q/Q_l (:961-982); keySwitch = true only for the 2-part (rotation) case (:952,966). maxInternalDrop is the largest d over the traced multiplications, squarings and relinearizations of 3 components, maxInternalDropKS the largest over the traced 2-component key switches (rotations); the per-operation values are in provenance[].internalDrop. A ciphertext with fewer than L limbs (after Compress) is multiplied as HPSPOVERQ at its own level, with no drop (:250-251)]
+  auxiliary basis: 3 moduli, log2 of their product = 180.00; bits: [60.00, 60.00, 60.00]
+  floatTolerant = true, maxInternalDrop = 0, maxInternalDropKS = 0
+
+Budget E (computed by fhe_check, not read from the input) = Spec.BudgetBFV.budgetOf of these five numbers:
+  E.keySwitch = Spec.BudgetBFV.ksBudget = 552516878495703997304832 (2^78.87): max of ksBoundAt over levels 1..3, centred representatives, variant "centred"
+    level 3: ksBoundAt = 2^78.87; digits (limbs, log2 Q_j): [(1, 60.00), (1, 60.00), (1, 60.00)]  [used]
+  E.modSwitch = Spec.BudgetBFV.msBudget = ceil((1+N*secretBound)/2) = 4097 (2^12.00) (the program does not modulus-switch; unused)
+  E.mulLift = max over the slacks of Spec.BudgetBFV.mulLiftNormAt P l e = floor(((Q_l + e)*(1+N*secretBound) + Q_l)/(2*Q_l)) = 4097 (2^12.00); textbook (e = 0): 4097
+  E.mulRound = Spec.BudgetBFV.mulRoundApprox P rho = rho*(1+N*secretBound+(N*secretBound)^2) = 216202936598993666 (2^57.59), rho = 3221281538; textbook (rho = 1): 67117057
+    multiplications at level(s) [3]; slacks (lift excess e: 2*|A_i| <= Q + e; rounding slack rho):
+      level 3, P-over-Q (no internal drop): Spec.BudgetBFV.poverqSlack: e = 8166776806100550177434028801803623090181 (Q * 2^-47.42), rho = 3221281538 (2^31.58), Slack.ok holds, Challenge.BFVMul.poverqAuxOK? = true
+    slacks NOT proved for a limb-level algorithm (declared assumption; contract from slacks: Challenge.BFVMul.stepOK_mul_lifted, Challenge.BFVMul.stepOK_square_lifted)
+    - slacks from Spec.BudgetBFV.poverqSlack: derived on paper and validated numerically against a limb-level model of the library (harness/bfv-rns/validate.py), NOT proved for a limb-level algorithm; Challenge.BFVMul.stepOK_mul_lifted proves that any multiplication with these slacks meets the mul contract (Challenge.BFVMul.stepOK_square_lifted for square)
+    - floatTolerant = true: the binary64 tolerances Spec.BudgetBFV.doubleSw / doubleSr are a first-order error analysis validated numerically (harness/bfv-rns/), NOT proved
+    - the ciphertext and auxiliary moduli are odd, at least 3 and pairwise coprime: checked by fhe_check (untrusted glue)
+    - the pins cover the multiplication only; the key-switching budget after an internal drop (Spec.BudgetBFV.ksLeveled) has NO locked pin: a formula derived on paper
+    - one budget record covers the whole program (Challenge.BFV.refAnalyzeBFV_sound has a single budget), so the slack of the LARGEST declared internal drop is charged to every multiplication and key switch, including those where the library drops nothing; a per-instruction budget would be tighter and is not proved yet
+  E.plainAdd = 0: 0 (no plaintext-addition method declared) (the program does not add a plaintext; unused)
+
+Outputs (bound B = Challenge.BFV.refAnalyzeBFV on the program with this output alone; decryption needs
+2*(t*B + (Q mod t)*(t-1)) < Q, Challenge.BFV.decOK; margin = log2 of the largest B it accepts over B):
+  ct_14: level 3, noise <= 8287776627749398813762312 (2^82.78); largest accepted 2^163.00; margin 80.22 bits
+  informational: with the textbook multiplication budget (mulLift, mulRound, plain ksBudget) the largest output bound would be 2^82.78 instead of 2^82.78: the technique's budget costs 0.00 bits
+
+Steps (diagnostic replay with the locked Source.step, refBoundBFV, bndOK):
+  [0] ct_4 = mul ct_1 ct_2: level 3, parts 3, B = 2^61.35, margin 101.65 bits
+  [1] ct_5 = relin ct_4: level 3, parts 2, B = 2^78.87, margin 84.13 bits
+  [2] ct_5@5~0 = automorph ct_5 5: level 3, parts 2, B = 2^78.87, margin 84.13 bits
+  [3] ct_7 = keySwitch ct_5@5~0: level 3, parts 2, B = 2^79.87, margin 83.13 bits
+  [4] ct_8 = add ct_5 ct_7: level 3, parts 2, B = 2^80.46, margin 82.54 bits
+  [5] ct_8@25~0 = automorph ct_8 25: level 3, parts 2, B = 2^80.46, margin 82.54 bits
+  [6] ct_10 = keySwitch ct_8@25~0: level 3, parts 2, B = 2^80.87, margin 82.13 bits
+  [7] ct_11 = add ct_8 ct_10: level 3, parts 2, B = 2^81.68, margin 81.32 bits
+  [8] ct_11@625~0 = automorph ct_11 625: level 3, parts 2, B = 2^81.68, margin 81.32 bits
+  [9] ct_13 = keySwitch ct_11@625~0: level 3, parts 2, B = 2^81.87, margin 81.13 bits
+  [10] ct_14 = add ct_11 ct_13: level 3, parts 2, B = 2^82.78, margin 80.22 bits
+
+Noise derivation (from the frontend, printed, NOT checked): {"encryptionTechnique":"STANDARD","errorBound":39,"errorBoundSource":"OpenFHE DGG (Peikert inversion): sigma = 3.19f, |e| <= ceil(sigma*12.00610553538285) = 39, else OPENFHE_THROW (core/include/math/discretegaussiangenerator-impl.h:82-83,135-141)","inputNoiseFormula":"Be*(1 + 2*N*Bs) + max_l ceil(r_l*(t-1)/t), r_l = Q_l mod t, l over the numbers of limbs at which the trace encrypts: phase = v*e_pk + e0 + e1*s + ceil(Q*m/t) and ceil(Q*m/t) - floor(Q/t)*m = ceil(r*m/t) for m in [0,t)","inputNoiseSource":"PKEBFVRNS::Encrypt(DCRTPoly, PublicKey) (pke/lib/scheme/bfvrns/bfvrns-pke.cpp:157-213): EncryptZeroCore (pke/lib/schemerns/rns-pke.cpp:147-196: c0 = pk0*v + ns*e0, c1 = pk1*v + ns*e1, v from the ternary generator, ns = 1), pk = (ns*e - a*s, a) (bfvrns-pke.cpp:82-84); then c0 += TimesQovert(ptxt) (bfvrns-pke.cpp:194-196; core/include/lattice/hal/default/dcrtpoly-impl.h:890-907: every residue x -> [x * (-Q mod t)]_t * t^-1 mod q_i, i.e. the integer (Q*m + [-Q*m]_t)/t = ceil(Q*m/t)); EXTENDED: the same modulo Q*px with px = PreviousPrime(q_last) (bfvrns-cryptoparameters.cpp:76,95-120; bfvrns-pke.cpp:172-179,187-190), then ScaleAndRoundPOverQ on both components (bfvrns-pke.cpp:201-204; dcrtpoly-impl.h:1695-1710; the lift of the px-residue is centred: core/lib/math/hal/intnat/mubintvecnat.cpp:109-122)","inputNoiseTerms":{"Be*(1+2*N*Bs)":639015,"encryptionLevels":[3],"maxEncodingDeviation":1212},"keyNoiseFormula":"Be: key-switching keys b = -a*s' + e (+ the key material), noise scale 1 (pke/lib/keyswitch/keyswitch-hybrid.cpp:90,118,123; keyswitch-bv.cpp:61,113-114)","noiseDefinition":"BFV noise e = [c0 + c1*s - floor(Q/t)*m]_Q (centred), m = the stored plaintext polynomial, coefficients in [0, t)","openfheVersion":"AlexanderViand/openfhe-development 7e2eafc (v1.3.1, tracing fork), WITH_REDUCED_NOISE=OFF","plainAdd":{"deviationBound":"45058","method":"ceil","source":"LeveledSHEBFVRNS::EvalAddInPlace/EvalSubInPlace(Ciphertext, Plaintext) (pke/lib/scheme/bfvrns/bfvrns-leveledshe.cpp:54-100) add TimesQovert(p) to c0 (core/include/lattice/hal/default/dcrtpoly-impl.h:890-907): residue-wise [p*(-Q mod t)]_t * t^-1 mod q_i, which is the integer (Q*p + [-Q*p]_t)/t = CEIL(Q*p/t) for the stored p in [0,t) -- not floor(Q/t)*p ('delta') and not the rounding to nearest ('rounded'): ceil(Q*p/t) - floor(Q/t)*p = ceil((Q mod t)*p/t), which exceeds the 'rounded' deviation floor(((Q mod t)*p + t/2)/t) by one whenever the fractional part of (Q mod t)*p/t lies in (0, 1/2). deviationBound = max of ceil((Q_l mod t)*(t-1)/t) over the numbers of limbs l of the plaintext operands of this trace ([1, 2, 3]; every level if there is none)"},"plaintextBound":"t-1: packed encoding lifts every coefficient of the inverse-NTT'd slot vector to [0, t) and stores the same integer in every limb (pke/lib/encoding/packedencoding.cpp:65-78,108-125); EvalMult(ct, pt) multiplies every component by that polynomial (pke/lib/schemerns/rns-leveledshe.cpp:313-331, NORESCALE branch), and EvalAdd/EvalSub(ct, pt) add TimesQovert of it (bfvrns-leveledshe.cpp:54-100)"}
+
+Encryption (from the frontend, printed, NOT checked): {"e0":39,"e1":39,"encoding":"ceil(Q*m/t)","encodingDeviation":"1212","inputs":["ct_1","ct_2","ct_3"],"keyError":39,"source":"PKEBFVRNS::Encrypt(DCRTPoly, PublicKey) (pke/lib/scheme/bfvrns/bfvrns-pke.cpp:157-213): EncryptZeroCore (pke/lib/schemerns/rns-pke.cpp:147-196: c0 = pk0*v + ns*e0, c1 = pk1*v + ns*e1, v from the ternary generator, ns = 1), pk = (ns*e - a*s, a) (bfvrns-pke.cpp:82-84); then c0 += TimesQovert(ptxt) (bfvrns-pke.cpp:194-196; core/include/lattice/hal/default/dcrtpoly-impl.h:890-907: every residue x -> [x * (-Q mod t)]_t * t^-1 mod q_i, i.e. the integer (Q*m + [-Q*m]_t)/t = ceil(Q*m/t)); EXTENDED: the same modulo Q*px with px = PreviousPrime(q_last) (bfvrns-cryptoparameters.cpp:76,95-120; bfvrns-pke.cpp:172-179,187-190), then ScaleAndRoundPOverQ on both components (bfvrns-pke.cpp:201-204; dcrtpoly-impl.h:1695-1710; the lift of the px-residue is centred: core/lib/math/hal/intnat/mubintvecnat.cpp:109-122)","technique":"STANDARD","u":1}
+
+WHAT "CERTIFIED" MEANS
+fhe_check evaluated the Lean definition Challenge.BFV.refAnalyzeBFV (the locked reference worst-case
+BFV noise analysis, infinity norm of e = [phase - floor(Q/t)*m]_Q) on the program and parameters
+above, with the budget E printed above, and it returned the bound shown for each output; and
+Spec.Encrypt.outputsUnderS? (every output is under the secret key itself). The locked Lean
+statement Challenge.BFVMul.certified_decrypts (Challenge/BFVMul.lean; its proof is in
+Validation/BFVMul and is kernel-checked by the repository's gate; it is the headline
+Challenge.BFV.refAnalyzeBFV_sound followed by exact decryption, Challenge.BFV.encrypts_bfv_decrypts)
+then states: if the parameters satisfy Spec.SchemeParamsOK (established here by running
+Spec.schemeParamsOK?; Challenge.Params.schemeParamsOK?_sound) and the scheme is BFV, then for
+EVERY secret key s, ALL input messages, and ALL inputs within their bounds (Spec.TraceBFV.InputsOK:
+each ciphertext input encrypts its message with BFV noise at most its bound; each one-component
+input is a plaintext polynomial within its bound), in EVERY execution of the program in which
+each operation meets its BFV phase contract (Spec.TraceBFV.Run) within the budget E, each output
+is a ciphertext under s itself whose BFV decryption WITH s at its own level
+(Spec.Scheme.bfvDecrypt) is exactly the message the program computes on the input messages
+(Spec.Source.eval). Worst case: no probability is involved anywhere.
+
+Where the budget E comes from (Spec.BudgetBFV; locked pins in Challenge.BFV and Challenge.BFVMul):
+  key switching: E.keySwitch = ksBudget, the largest ksBoundAt over the levels of the chain (the BGV
+    hybrid key-switching bound at plaintext modulus 1; with no special primes, one limb per digit
+    and centred digits it is OpenFHE's BV key switching with digitSize 0; a technique that drops
+    limbs before key switching raises it to Spec.BudgetBFV.ksLeveled, a formula with no locked pin
+    of its own). Challenge.BFV.relin_realizable and
+    keySwitch_realizable: at every level, hybrid key switching with keys of noise at most keyNoise
+    meets the relin/keySwitch contract within ksBoundAt, given SpecialOK (checked here by
+    Spec.Budget.specialOK?) and a usable digit layout (checked here, Spec.Budget.KSLayout.okAt).
+  modulus switching: E.modSwitch = msBudget = ceil((1+N*secretBound)/2), for rounding every
+    component of a two-component ciphertext (Challenge.BFV.stepOK_modSwitch_textbook).
+  multiplication (HPSPOVERQLEVELED): Challenge.BFVMul.stepOK_mul_lifted (and stepOK_square_lifted) reduce the contract, for
+    two-component operands and every secret within secretBound, to two statements about integers:
+    the algorithm multiplies integer representatives A_i of the components with 2*|A_i| <= Q + e,
+    and every component of its result is within rho/2 of t*T/Q. E.mulLift is the largest
+    Spec.BudgetBFV.mulLiftNormAt P l e and E.mulRound = mulRoundApprox P (largest rho) over the
+    slacks (e, rho) printed above, one per level at which the program multiplies.
+    These slacks are NOT proved for a limb-level algorithm: they are derived on paper
+    (Spec.BudgetBFV.hpsSlack / poverqSlack / leveledSlack / behzSlack) and validated numerically
+    against a limb-level model of the library (harness/bfv-rns/validate.py). A DECLARED ASSUMPTION.
+    floatTolerant: the binary64 tolerances Spec.BudgetBFV.doubleSw / doubleSr in them are a
+    first-order error analysis validated numerically (harness/bfv-rns/), NOT proved.
+  plaintext addition: E.plainAdd = 0 for adding floor(Q/t)*p (Challenge.BFV.stepOK_addPlain_textbook,
+    Challenge.BFVMul.stepOK_subPlain_textbook); Spec.BudgetBFV.plainAddRounded P b for adding
+    round(Q*p/t) to a plaintext with |p| <= b (Challenge.BFVMul.stepOK_addPlain_rounded,
+    stepOK_subPlain_rounded, plainAddRoundedAt_le); Spec.BudgetBFV.plainAddScaled P b =
+    floor((Q mod t)*b/t) + 1 (max over levels) for adding any polynomial within one unit of Q*p/t,
+    i.e. ceil, floor or nearest (Challenge.BFVMul.stepOK_addPlain_scaled, stepOK_subPlain_scaled,
+    plainAddScaledAt_le).
+
+DECRYPTION COVERED: textbook BFV decryption WITH THE SECRET KEY s modulo the output's own level,
+  round(t*[<ct, s>]_Q / Q) mod t (Spec.Scheme.bfvDecrypt). fhe_check evaluated
+  Spec.Encrypt.outputsUnderS?: every output is under s itself (Galois element 1; an output left
+  under a rotated key is refused). The decryption condition 2*(t*B + (Q mod t)*(t-1)) < Q
+  (Challenge.BFV.decOK) is part of refAnalyzeBFV at every step. NOT covered: a decryption that
+  first switches the ciphertext to another modulus, or any RNS shortcut of the rounding.
+
+ASSUMPTIONS (inputs to the theorem, not proved by it):
+  (a) The library's operations meet the per-operation phase contracts of Spec.TraceBFV within the
+      budget E printed above, and its key switching uses the declared digit layout and
+      representatives. That the contracts are achievable within E is the content of locked
+      statements of this repository (proofs in Validation/, kernel-checked by its gate), about
+      IDEALISED algorithms: componentwise add/sub, plaintext operations, constants and
+      automorphisms (Challenge.BFV.stepOK_*, Challenge.BFVMul.stepOK_*), hybrid key switching
+      (Challenge.BFV.relin_realizable, keySwitch_realizable), rounding modulus switching, and
+      multiplication as said above (the lift and rounding slacks e, rho are proved only where a
+      pin is named; otherwise they are a declared assumption about the technique). It is NOT
+      proved for the library's code, whose agreement with the idealised algorithms is assumed;
+      for float-assisted conversions (floatTolerant = true) the assumption is that the library's
+      binary64 sums are within the tolerances doubleSw / doubleSr of the exact ones; with
+      floatTolerant = false, that they never move a rounding. The frontend's translation of the program
+      into the operations listed, and its statement of the technique, are untrusted.
+  (b) Noise of the inputs: every input ciphertext has BFV noise e = [phase - floor(Q/t)*m]_Q with
+      |e|inf <= inputNoise = 640227 (2^19.29) (fhe_check checked Challenge.BFV.decOK
+      for the bound of every input ciphertext at its level, so the noise bound alone gives the input
+      hypothesis, including that the input decrypts: Challenge.BFV.bfv_decrypt_of_noise); every
+      plaintext operand has |p|inf <= t - 1; every key-switching key has error <= keyNoise =
+      39 (2^5.29); every secret-key coefficient has |s_i| <= secretBound = 1.
+      No input declares a bound of its own.
+      These values, and maxInternalDrop = 0, maxInternalDropKS = 0, were supplied by the frontend (openfhe);
+      fhe_check did not derive or check them.
+  (c) Shapes: the multiplication and modulus-switching pins are for two-component operands
+      (fhe_check refuses a program that multiplies or modulus-switches anything else), relin takes
+      a three-component ciphertext, keySwitch a two-component one. The certificate theorem itself
+      covers every run that meets the contracts, whatever the shapes.
+  (d) Worst-case analysis (infinity norm, every coefficient at its extreme); no probabilistic or
+      average-case statement.
+  (e) No security claim: the parameters are not checked for a security level.
+  (f) Scheme-level parameters only: N a power of two, distinct primes coprime to t. Nothing is
+      claimed about NTT roots, word sizes or the storage of the limbs.
+  (g) Plaintext operands are modelled as one-component values [p], p the unscaled plaintext
+      polynomial with p = m (mod t) and |p|inf within its bound (Spec.TraceBFV.PlainOK); an encoding
+      that stores something else is outside the model.
+  (h) Each output is decrypted with the secret key s the inputs were encrypted under.
+  (i) The executable is compiled by the Lean compiler from the verified definitions; the Lean
+      compiler and runtime, and this tool's (untrusted) JSON decoding and printing, are trusted.
+No library (OpenFHE, SEAL, HEIR, Lattigo) has been verified.

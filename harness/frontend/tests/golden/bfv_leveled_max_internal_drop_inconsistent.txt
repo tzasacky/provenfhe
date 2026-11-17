@@ -1,0 +1,2 @@
+fhe_check: tests/negative-bfv/bfv_leveled_max_internal_drop_inconsistent.json
+VERDICT: INVALID INPUT: $.bfv.multiplication.maxInternalDrop: 0, but internalDrops[3] = 1 (maxInternalDrop is a cross-check: it must be at least every internal drop at a mul, square or relin)

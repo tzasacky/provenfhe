@@ -1,0 +1,12 @@
+diff --git a/lib/bgv/bgv-basics.cpp b/lib/bgv/bgv-basics.cpp
+index 9a18e94..6790f7d 100644
+--- a/lib/bgv/bgv-basics.cpp
++++ b/lib/bgv/bgv-basics.cpp
+@@ -16,0 +17 @@
++#include <cstdlib>
+@@ -49,0 +51,2 @@
++    if (const char* e = std::getenv("BGVEXT_EVAL_ADD_COUNT")) parameters.SetEvalAddCount(std::atoi(e));
++    if (const char* e = std::getenv("BGVEXT_KEY_SWITCH_COUNT")) parameters.SetKeySwitchCount(std::atoi(e));
+@@ -68,0 +72,2 @@
++    if (const char* e = std::getenv("BGVEXT_EXTRA_DEPTH")) depth += std::atoi(e);
++    if (const char* e = std::getenv("BGVEXT_RING_DIM")) level = std::atoi(e);

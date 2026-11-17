@@ -1,0 +1,3 @@
+exit 1
+VERDICT: NOT CERTIFIED: the worst-case noise bound overflows at body[12]
+  overflow: 2*B >= Q by 72.82 bits

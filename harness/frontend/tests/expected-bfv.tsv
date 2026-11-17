@@ -1,0 +1,99 @@
+# file (relative to harness/frontend)	exit code	verdict	text that must appear in the human report
+# written by tests/make_expected_bfv.py (run.sh --update) from fhe_check's output: REVIEW every changed line
+examples/openfhe_bfv_behz_bv_chain_d1.fhecheck.json	0	CERTIFIED	ct_5: level 2, noise <= 368347765533033316889698 (2^78.29); largest accepted 2^103.00; margin 24.71 bits
+examples/openfhe_bfv_behz_bv_chain_d2.fhecheck.json	0	CERTIFIED	ct_7: level 3, noise <= 2431824233917069762330759482994143493 (2^120.87); largest accepted 2^163.00; margin 42.13 bits
+examples/openfhe_bfv_behz_hybrid_chain_d1.fhecheck.json	0	CERTIFIED	ct_5: level 2, noise <= 24500940281392117702 (2^64.41); largest accepted 2^103.00; margin 38.59 bits
+examples/openfhe_bfv_behz_hybrid_chain_d2.fhecheck.json	1	NOT CERTIFIED	overflow: 2*(t*B + (Q mod t)*(t-1)) >= Q by 5.41 bits
+examples/openfhe_bfv_behz_hybrid_coefpk_d2.fhecheck.json	0	CERTIFIED	ct_12: level 2, noise <= 39461534692097562015525207080 (2^94.99); largest accepted 2^103.00; margin 8.01 bits
+examples/openfhe_bfv_behz_hybrid_rotsum_d2.fhecheck.json	0	CERTIFIED	ct_14: level 2, noise <= 98003761125570393761 (2^66.41); largest accepted 2^103.00; margin 36.59 bits
+examples/openfhe_bfv_default_chain_d3.fhecheck.json	1	NOT CERTIFIED	overflow: 2*(t*B + (Q mod t)*(t-1)) >= Q by 17.29 bits
+examples/openfhe_bfv_default_coefpk_d2.fhecheck.json	0	CERTIFIED	ct_12: level 3, noise <= 296632572021019956121702179541744 (2^107.87); largest accepted 2^163.00; margin 55.13 bits
+examples/openfhe_bfv_default_dot_d2.fhecheck.json	0	CERTIFIED	ct_9: level 3, noise <= 1657556498065571706101575 (2^80.46); largest accepted 2^163.00; margin 82.54 bits
+examples/openfhe_bfv_default_neg_d1.fhecheck.json	0	CERTIFIED	ct_8: level 2, noise <= 368347837600661556865176 (2^78.29); largest accepted 2^103.00; margin 24.71 bits
+examples/openfhe_bfv_default_norelin_d2.fhecheck.json	0	CERTIFIED	ct_9: level 3, noise <= 424674825754930387342626904186623230211066 (2^138.29); largest accepted 2^163.00; margin 24.71 bits
+examples/openfhe_bfv_default_plain_d2.fhecheck.json	0	CERTIFIED	ct_8: level 3, noise <= 296631814177303962098343948063472 (2^107.87); largest accepted 2^163.00; margin 55.13 bits
+examples/openfhe_bfv_default_rot_d1.fhecheck.json	0	CERTIFIED	ct_6: level 2, noise <= 368344585663814007712862 (2^78.29); largest accepted 2^103.00; margin 24.71 bits
+examples/openfhe_bfv_default_rotsum_d2.fhecheck.json	0	CERTIFIED	ct_14: level 3, noise <= 4420146753122551406175011 (2^81.87); largest accepted 2^163.00; margin 81.13 bits
+examples/openfhe_bfv_hps_bv_chain_d1.fhecheck.json	0	CERTIFIED	ct_5: level 2, noise <= 368347765533170671946848 (2^78.29); largest accepted 2^103.00; margin 24.71 bits
+examples/openfhe_bfv_hps_bv_chain_d2.fhecheck.json	0	CERTIFIED	ct_7: level 3, noise <= 2431824233918089942268455024484642434 (2^120.87); largest accepted 2^163.00; margin 42.13 bits
+examples/openfhe_bfv_hps_hybrid_chain_d1.fhecheck.json	0	CERTIFIED	ct_5: level 2, noise <= 24500940830778810308 (2^64.41); largest accepted 2^103.00; margin 38.59 bits
+examples/openfhe_bfv_hps_hybrid_chain_d2.fhecheck.json	1	NOT CERTIFIED	overflow: 2*(t*B + (Q mod t)*(t-1)) >= Q by 5.41 bits
+examples/openfhe_bfv_hps_hybrid_plain_d2.fhecheck.json	0	CERTIFIED	ct_8: level 2, noise <= 26307684897356576429172816936 (2^94.41); largest accepted 2^103.00; margin 8.59 bits
+examples/openfhe_bfv_hpspoverq_bv_chain_d1.fhecheck.json	0	CERTIFIED	ct_5: level 2, noise <= 368347837600661556059233 (2^78.29); largest accepted 2^103.00; margin 24.71 bits
+examples/openfhe_bfv_hpspoverq_bv_chain_d2.fhecheck.json	0	CERTIFIED	ct_7: level 3, noise <= 2431824709707831688296795600505822851 (2^120.87); largest accepted 2^163.00; margin 42.13 bits
+examples/openfhe_bfv_hpspoverq_hybrid_chain_d1.fhecheck.json	0	CERTIFIED	ct_5: level 2, noise <= 25077445566365958085 (2^64.44); largest accepted 2^103.00; margin 38.56 bits
+examples/openfhe_bfv_hpspoverq_hybrid_chain_d2.fhecheck.json	1	NOT CERTIFIED	overflow: 2*(t*B + (Q mod t)*(t-1)) >= Q by 5.44 bits
+examples/openfhe_bfv_hpspoverq_hybrid_compress_d2.fhecheck.json	0	CERTIFIED	ct_8: level 1, noise <= 102432 (2^16.64); largest accepted 2^43.00; margin 26.36 bits
+examples/openfhe_bfv_hpspoverqleveled_bv_chain_d1.fhecheck.json	0	CERTIFIED	ct_5: level 2, noise <= 368347837600661556059233 (2^78.29); largest accepted 2^103.00; margin 24.71 bits
+examples/openfhe_bfv_hpspoverqleveled_bv_chain_d2.fhecheck.json	0	CERTIFIED	ct_7: level 3, noise <= 424674825742028801817142822869624605504506 (2^138.29); largest accepted 2^163.00; margin 24.71 bits
+examples/openfhe_bfv_hpspoverqleveled_hybrid_chain_d1.fhecheck.json	0	CERTIFIED	ct_5: level 2, noise <= 25077445566365958085 (2^64.44); largest accepted 2^103.00; margin 38.56 bits
+examples/openfhe_bfv_hpspoverqleveled_hybrid_chain_d2.fhecheck.json	1	NOT CERTIFIED	overflow: 2*(t*B + (Q mod t)*(t-1)) >= Q by 5.44 bits
+examples/openfhe_bfv_hpspoverqleveled_hybrid_chain_d4.fhecheck.json	1	NOT CERTIFIED	overflow: 2*(t*B + (Q mod t)*(t-1)) >= Q by 33.45 bits
+examples/openfhe_bfv_hpspoverqleveled_hybrid_compress_d3.fhecheck.json	0	CERTIFIED	ct_9: level 2, noise <= 2730586146610659270 (2^61.24); largest accepted 2^103.00; margin 41.76 bits
+examples/openfhe_bfv_n1024_default_chain_d2.fhecheck.json	1	NOT CERTIFIED	overflow: 2*(t*B + (Q mod t)*(t-1)) >= Q by 8.29 bits
+examples/openfhe_bfv_n1024_hybrid_chain_d2.fhecheck.json	0	CERTIFIED	ct_7: level 2, noise <= 703489005020662098441680494 (2^89.18); largest accepted 2^103.00; margin 13.82 bits
+tests/negative-bfv/bfv_aux_basis_not_coprime.json	2	UNSUPPORTED	multiplication technique HPS at level 2: the ciphertext moduli and the auxiliary moduli ar
+tests/negative-bfv/bfv_aux_basis_too_small.json	2	UNSUPPORTED	multiplication technique HPS at level 2 (HPS, binary64 conversions): the side condition of
+tests/negative-bfv/bfv_behz_modswitch_level2.json	2	UNSUPPORTED	the noise bound is certified for textbook decryption, but the library's decryption of some
+tests/negative-bfv/bfv_ciphertext_as_plaintext.json	1	NOT CERTIFIED	the program is ill-formed at body[3]
+tests/negative-bfv/bfv_decryption_switch_to_one_limb.json	2	UNSUPPORTED	decryption method switch-to-one-limb: for BFV only decryption at the output's own level ("
+tests/negative-bfv/bfv_droplimbs.json	2	UNSUPPORTED	operation dropLimbs (body[0]): not a BFV operation (Spec.TraceBFV: the BFV message is scal
+tests/negative-bfv/bfv_duplicate_input_name.json	3	INVALID INPUT	$.program.inputs: the input "ct_1" is declared more than once
+tests/negative-bfv/bfv_expect_mismatch.json	1	NOT CERTIFIED	the frontend and the verified semantics disagree on the program's shape, so the certificat
+tests/negative-bfv/bfv_extraction_error.json	3	INVALID INPUT	the frontend reported an extraction failure: "UNSUPPORTED: BV key switching with digit siz
+tests/negative-bfv/bfv_f1_compress_t2pow54.json	1	NOT CERTIFIED	the noise bound is certified for textbook decryption, but not for the library's own decryp
+tests/negative-bfv/bfv_hps_idealised.json	1	NOT CERTIFIED FOR THE LIBRARY	every output decrypts correctly, by OpenFHE's own decryption and by textbook decryption, i
+tests/negative-bfv/bfv_hps_libdecrypt_margin_ok.json	0	CERTIFIED	c: level 3, noise <= 9938059491094273185694365576531348493410821472256 (2^162.77); largest accepted 2^163.00; margin 0.23 bits
+tests/negative-bfv/bfv_hps_libdecrypt_margin_refused.json	1	NOT CERTIFIED	the noise bound is certified for textbook decryption, but not for the library's own decryp
+tests/negative-bfv/bfv_input_bound_too_large.json	1	NOT CERTIFIED	the noise bound of input ct_1 is above what decrypts at its level
+tests/negative-bfv/bfv_internal_drops_under_hps.json	3	INVALID INPUT	$.bfv.multiplication.internalDrops[1]: an internal drop of 1 limb(s) is declared under the
+tests/negative-bfv/bfv_leveled_internal_drop_all_limbs.json	3	INVALID INPUT	$.bfv.multiplication.internalDrops[3]: 3 is not below the number of limbs 3
+tests/negative-bfv/bfv_leveled_internal_drop_all_limbs_mul.json	3	INVALID INPUT	$.bfv.multiplication.internalDrops[0]: 3 is not below the number of limbs 3
+tests/negative-bfv/bfv_leveled_internal_drop_at_add.json	3	INVALID INPUT	$.bfv.multiplication.internalDrops[0]: 1, but body[0] is not a mul, square, relin or keySw
+tests/negative-bfv/bfv_leveled_internal_drop_below_top.json	3	INVALID INPUT	$.bfv.multiplication.internalDrops[4]: 1, but the operand of body[4] is at level 2, below
+tests/negative-bfv/bfv_leveled_internal_drops_negative.json	3	INVALID INPUT	$.bfv.multiplication.internalDrops[3]: -1 is negative
+tests/negative-bfv/bfv_leveled_internal_drops_too_long.json	3	INVALID INPUT	$.bfv.multiplication.internalDrops: 5 entries, but the program has 4 instructions (HPSPOVE
+tests/negative-bfv/bfv_leveled_internal_drops_too_short.json	3	INVALID INPUT	$.bfv.multiplication.internalDrops: 3 entries, but the program has 4 instructions (HPSPOVE
+tests/negative-bfv/bfv_leveled_max_internal_drop_inconsistent.json	3	INVALID INPUT	$.bfv.multiplication.maxInternalDrop: 0, but internalDrops[3] = 1 (maxInternalDrop is a cr
+tests/negative-bfv/bfv_leveled_max_internal_drop_ks_inconsistent.json	3	INVALID INPUT	$.bfv.multiplication.maxInternalDropKS: 0, but internalDrops[1] = 1 (maxInternalDropKS is
+tests/negative-bfv/bfv_leveled_missing_internal_drop.json	3	INVALID INPUT	$.bfv.multiplication.internalDrops: missing; HPSPOVERQLEVELED drops limbs internally insid
+tests/negative-bfv/bfv_leveled_missing_internal_drops_and_maxima.json	3	INVALID INPUT	$.bfv.multiplication.internalDrops: missing; HPSPOVERQLEVELED drops limbs internally insid
+tests/negative-bfv/bfv_leveled_mul_drop1_idealised_overflow.json	1	NOT CERTIFIED	overflow: 2*(t*B + (Q mod t)*(t-1)) >= Q by 17.29 bits
+tests/negative-bfv/bfv_leveled_understated_drop.json	0	CERTIFIED	ct_7: level 3, noise <= 2431824709707831688296795600505822851 (2^120.87); largest accepted 2^163.00; margin 42.13 bits
+tests/negative-bfv/bfv_libdecrypt_t40_5limbs.json	0	CERTIFIED	ct_5: level 5, noise <= 44696137792757615712567848147412 (2^105.14); largest accepted 2^259.00; margin 153.86 bits
+tests/negative-bfv/bfv_libdecrypt_t50_3limbs_note.json	1	NOT CERTIFIED	the noise bound is certified for textbook decryption, but not for the library's own decryp
+tests/negative-bfv/bfv_libdecrypt_t50_5limbs.json	1	NOT CERTIFIED	the library's floating-point decryption of a full-limb output is outside its precision con
+tests/negative-bfv/bfv_missing_aux_basis.json	3	INVALID INPUT	$.bfv.multiplication.auxBasis: HPS needs its auxiliary basis R (1 moduli at level 2); 0 gi
+tests/negative-bfv/bfv_missing_bfv_object.json	3	INVALID INPUT	$.bfv.multiplication: missing, and the program multiplies (body[0]); the multiplication te
+tests/negative-bfv/bfv_modswitch_bgv_method.json	2	UNSUPPORTED	modulus-switching method t-corrected-centred (body[0]): for BFV only rounding every compon
+tests/negative-bfv/bfv_negative_internal_drop.json	3	INVALID INPUT	$.bfv.multiplication.maxInternalDrop: -1 is negative
+tests/negative-bfv/bfv_noise_overflow.json	1	NOT CERTIFIED	overflow: 2*(t*B + (Q mod t)*(t-1)) >= Q by 5.41 bits
+tests/negative-bfv/bfv_nonprime_limb.json	1	NOT CERTIFIED	the parameters are rejected
+tests/negative-bfv/bfv_ok_behz_modswitch_level1.json	0	CERTIFIED	y: level 1, noise <= 49155 (2^15.59); largest accepted 2^43.00; margin 27.41 bits
+tests/negative-bfv/bfv_ok_bv_rotation.json	0	CERTIFIED	y: level 2, noise <= 368344585663814006990383 (2^78.29); largest accepted 2^103.00; margin 24.71 bits
+tests/negative-bfv/bfv_ok_hps_mul_relin.json	0	CERTIFIED	ct_5: level 2, noise <= 24500940830778810308 (2^64.41); largest accepted 2^103.00; margin 38.59 bits
+tests/negative-bfv/bfv_ok_internal_drops_zero_under_hps.json	0	CERTIFIED	ct_5: level 2, noise <= 24500940830778810308 (2^64.41); largest accepted 2^103.00; margin 38.59 bits
+tests/negative-bfv/bfv_ok_leveled_mul_drop1_idealised.json	1	NOT CERTIFIED FOR THE LIBRARY	every output decrypts correctly, by OpenFHE's own decryption and by textbook decryption, i
+tests/negative-bfv/bfv_ok_leveled_no_drops_needed.json	0	CERTIFIED	y: level 3, noise <= 1281666 (2^20.29); largest accepted 2^163.00; margin 142.71 bits
+tests/negative-bfv/bfv_ok_leveled_relin_drop1_idealised.json	1	NOT CERTIFIED FOR THE LIBRARY	every output decrypts correctly, by OpenFHE's own decryption and by textbook decryption, i
+tests/negative-bfv/bfv_ok_leveled_rotation_drop1.json	0	CERTIFIED	y: level 3, noise <= 424672393917249739677348319097633699183007 (2^138.29); largest accepted 2^163.00; margin 24.71 bits
+tests/negative-bfv/bfv_ok_leveled_without_maxima.json	0	CERTIFIED	ct_7: level 3, noise <= 424674825742028801817142822869624605504506 (2^138.29); largest accepted 2^163.00; margin 24.71 bits
+tests/negative-bfv/bfv_ok_modswitch_round.json	0	CERTIFIED	y: level 1, noise <= 36868 (2^15.17); largest accepted 2^43.00; margin 27.83 bits
+tests/negative-bfv/bfv_ok_rotation.json	0	CERTIFIED	y: level 2, noise <= 1424957 (2^20.44); largest accepted 2^103.00; margin 82.56 bits
+tests/negative-bfv/bfv_output_rotated_key.json	1	NOT CERTIFIED	output r is left under the rotated key sigma_5(s) (Galois element 5), not under the secret
+tests/negative-bfv/bfv_output_three_parts.json	0	CERTIFIED	ct_4: level 2, noise <= 24500940830778777538 (2^64.41); largest accepted 2^103.00; margin 38.59 bits
+tests/negative-bfv/bfv_packed_window_rot.json	1	NOT CERTIFIED	the plaintext modulus is outside the condition t - 1 <= floor(q0/2) and t <= every ciphert
+tests/negative-bfv/bfv_plain_bound_huge.json	1	NOT CERTIFIED	overflow: 2*(t*B + (Q mod t)*(t-1)) >= Q by 75.41 bits
+tests/negative-bfv/bfv_plainadd_ceil.json	0	CERTIFIED	ct_8: level 2, noise <= 26307684897356576429172816936 (2^94.41); largest accepted 2^103.00; margin 8.59 bits
+tests/negative-bfv/bfv_plainadd_declared_rounded.json	0	CERTIFIED	ct_8: level 2, noise <= 26307684897356576429172816934 (2^94.41); largest accepted 2^103.00; margin 8.59 bits
+tests/negative-bfv/bfv_plainadd_delta.json	0	CERTIFIED	ct_8: level 2, noise <= 26307684897356576429172702740 (2^94.41); largest accepted 2^103.00; margin 8.59 bits
+tests/negative-bfv/bfv_plainadd_missing.json	3	INVALID INPUT	$.bfv.plainAdd: missing, and the program adds a plaintext (body[3]); the method (delta | r
+tests/negative-bfv/bfv_plainadd_unknown_method.json	2	UNSUPPORTED	plaintext-addition method truncate: no proved deviation for this way of adding a plaintext
+tests/negative-bfv/bfv_plaintext_as_ciphertext.json	2	UNSUPPORTED	multiplication of an operand that is not a two-part ciphertext (body[0]): the BFV multipli
+tests/negative-bfv/bfv_relin_two_parts.json	1	NOT CERTIFIED	the program is ill-formed at body[0]
+tests/negative-bfv/bfv_square_under_poverq.json	2	UNSUPPORTED	square under HPSPOVERQ (body[2]): the library lifts the operand of a squaring in two diffe
+tests/negative-bfv/bfv_textbook_squarings.json	2	UNSUPPORTED	the noise bound is certified for textbook decryption, but the library's decryption of some
+tests/negative-bfv/bfv_textbook_squarings_overflow.json	1	NOT CERTIFIED	overflow: 2*(t*B + (Q mod t)*(t-1)) >= Q by 41.87 bits
+tests/negative-bfv/bfv_unsupported_ks_variant.json	2	UNSUPPORTED	key-switching variant bv-base-w: no proved key-switching bound for this variant (centred |
+tests/negative-bfv/bfv_word_modulus_61bit.json	2	UNSUPPORTED	OpenFHE's 64-bit word arithmetic is not shown to be exact on these moduli
+tests/negative-bfv/bfv_wrong_technique.json	2	UNSUPPORTED	multiplication technique HPSQOVERP: unknown BFV multiplication technique (textbook | HPS |

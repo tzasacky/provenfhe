@@ -1,0 +1,10 @@
+fhe_check --no-suggest --max-instructions 0 compare.upstream.fhecheck.json   (excerpt; full report sha256 3e3214d6d09aac2f0de07bbc6c9c0944585dda64ed6b90ad3c3f74e27089283f)
+VERDICT: NOT CERTIFIED: the worst-case noise bound overflows at body[46568]
+WARNING: SECURITY (not part of the verdict): N = 2 is below the smallest ring dimension of the security standard (1024); NOT secure per the standard (HomomorphicEncryption.org Security Standard (Albrecht et al., November 2018), ternary secret, classical security; as transcribed in OpenFHE stdlatticeparms.cpp). The verdict is about correctness only.
+Parameters (BGV, from openfhe): N = 2, t = 257, 11 ciphertext primes (log2 Q = 239.13), 2 special primes (log2 P = 120.00)
+  limb bits: [19.01, 22.00, 22.00, 22.01, 22.01, 22.01, 22.01, 22.01, 22.02, 22.02, 22.02]
+  Spec.schemeParamsOK? (chain): passed
+  Spec.Budget.specialOK? (special primes): passed
+  log2(Q*P) = 359.13 (11 ciphertext limbs, all of them, including any extra limb, and 2 special primes)
+First failing instruction: body[46568]  ct_32779 = mul ct_32777 ct_32778   [{"openfhe":"LeveledSHEBase::EvalMultCore(Ciphertext,Ciphertext)","traceLine":576509}]
+  overflow: 2*B >= Q by 0.17 bits

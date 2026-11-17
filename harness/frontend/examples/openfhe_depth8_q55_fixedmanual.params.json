@@ -1,0 +1,22 @@
+{
+  "scheme": "BGV",
+  "N": 32768,
+  "t": 65537,
+  "qs": [{"q": 36028681044688897, "psi": 113739309039, "bits": 55}, {"q": 36028638094360577, "psi": 637277615520, "bits": 55}, {"q": 36028509243375617, "psi": 860839723539, "bits": 55}, {"q": 36028457702981633, "psi": 106785891664, "bits": 55}, {"q": 36028449112915969, "psi": 178535967317, "bits": 55}, {"q": 36028384687423489, "psi": 775958681818, "bits": 55}, {"q": 36028126985453569, "psi": 127015151087, "bits": 55}, {"q": 36028122690420737, "psi": 212107515670, "bits": 55}, {"q": 36028114100355073, "psi": 884849588102, "bits": 55}],
+  "special": [{"q": 1152921422732787713, "psi": 26625145233332, "bits": 60}, {"q": 1152921409847689217, "psi": 23849877241110, "bits": 60}, {"q": 1152921396962590721, "psi": 19104687499170, "bits": 60}],
+  "keySwitch": "HYBRID",
+  "dnum": 3,
+  "towersPerDigit": 3,
+  "digitSizeBV": 0,
+  "scaling": "FIXEDMANUAL",
+  "sigma": 3.19,
+  "assuranceMeasure": 36,
+  "secretKeyDist": "UNIFORM_TERNARY",
+  "encryptionTechnique": "STANDARD",
+  "noiseScale": 65537,
+  "multiplicativeDepth": 8,
+  "PREMode": "NOT_SET",
+  "multipartyMode": "FIXED_NOISE_MULTIPARTY",
+  "stdLevel": "HEStd_128_classic",
+  "build": {"WITH_REDUCED_NOISE": false, "NATIVEINT": 64, "HAVE_INT128": true}
+}

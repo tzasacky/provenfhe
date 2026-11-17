@@ -1,0 +1,82 @@
+rs_bgv_fm_d1_ops	BGV	--seed 920027024 --scal FIXEDMANUAL --depth 1 --prog ops --msg random
+rs_bgv_fm_d3_ops	BGV	--seed 1276521712 --scal FIXEDMANUAL --depth 3 --prog ops --msg random
+rs_bgv_fm_d6_ops	BGV	--seed 2230756256 --scal FIXEDMANUAL --depth 6 --prog ops --msg random
+rs_bgv_fm_d10_ops	BGV	--seed 2971740279 --scal FIXEDMANUAL --depth 10 --prog ops --msg random
+rs_bgv_fm_d10_chain	BGV	--seed 1556327563 --scal FIXEDMANUAL --depth 10 --prog chain --msg random
+rs_bgv_fa_d1_ops	BGV	--seed 1635347137 --scal FIXEDAUTO --depth 1 --prog ops --msg random
+rs_bgv_fa_d3_ops	BGV	--seed 465123745 --scal FIXEDAUTO --depth 3 --prog ops --msg random
+rs_bgv_fa_d6_ops	BGV	--seed 3545872081 --scal FIXEDAUTO --depth 6 --prog ops --msg random
+rs_bgv_fa_d12_ops	BGV	--seed 768968707 --scal FIXEDAUTO --depth 12 --prog ops --msg random
+rs_bgv_fa_d12_chain	BGV	--seed 3242602341 --scal FIXEDAUTO --depth 12 --prog chain --msg random
+rs_bgv_xa_d1_ops	BGV	--seed 92009252 --scal FLEXIBLEAUTO --depth 1 --prog ops --msg random
+rs_bgv_xa_d3_ops	BGV	--seed 2143002692 --scal FLEXIBLEAUTO --depth 3 --prog ops --msg random
+rs_bgv_xa_d6_ops	BGV	--seed 3076206388 --scal FLEXIBLEAUTO --depth 6 --prog ops --msg random
+rs_bgv_xa_d12_ops	BGV	--seed 347224410 --scal FLEXIBLEAUTO --depth 12 --prog ops --msg random
+rs_bgv_xa_d12_chain	BGV	--seed 611258759 --scal FLEXIBLEAUTO --depth 12 --prog chain --msg random
+rs_bgv_xe_d1_ops	BGV	--seed 2167537114 --scal FLEXIBLEAUTOEXT --depth 1 --prog ops --msg random
+rs_bgv_xe_d3_ops	BGV	--seed 4226920122 --scal FLEXIBLEAUTOEXT --depth 3 --prog ops --msg random
+rs_bgv_xe_d6_ops	BGV	--seed 856760778 --scal FLEXIBLEAUTOEXT --depth 6 --prog ops --msg random
+rs_bgv_xe_d10_ops	BGV	--seed 866007862 --scal FLEXIBLEAUTOEXT --depth 10 --prog ops --msg random
+rs_bgv_xe_d10_chain	BGV	--seed 53048110 --scal FLEXIBLEAUTOEXT --depth 10 --prog chain --msg random
+rs_bgv_fa_d6_compress	BGV	--seed 4206169027 --scal FIXEDAUTO --depth 6 --prog paths:compress --msg random
+rs_bgv_xa_d3_rotsum	BGV	--seed 2298106858 --scal FLEXIBLEAUTO --depth 3 --prog rotsum --msg random
+rs_bfv_hps_hy_d1_random	BFV	--seed 3446039753 --mult HPS --ks HYBRID --depth 1 --prog random --menu core --len 16 --msg random
+rs_bfv_hps_hy_d3_random	BFV	--seed 2403558326 --mult HPS --ks HYBRID --depth 3 --prog random --menu core --len 16 --msg random
+rs_bfv_hps_hy_d6_random	BFV	--seed 3349376466 --mult HPS --ks HYBRID --depth 6 --prog random --menu core --len 16 --msg random
+rs_bfv_hps_hy_d10_random	BFV	--seed 2233384487 --mult HPS --ks HYBRID --depth 10 --prog random --menu core --len 16 --msg random
+rs_bfv_hps_hy_d3_ops	BFV	--seed 3058589444 --mult HPS --ks HYBRID --depth 3 --prog ops --msg random
+rs_bfv_hps_hy_d3_rotsum	BFV	--seed 2794661122 --mult HPS --ks HYBRID --depth 3 --prog rotsum --msg random
+rs_bfv_hps_bv_d1_random	BFV	--seed 3031005296 --mult HPS --ks BV --depth 1 --prog random --menu core --len 16 --msg random
+rs_bfv_hps_bv_d3_random	BFV	--seed 4136402707 --mult HPS --ks BV --depth 3 --prog random --menu core --len 16 --msg random
+rs_bfv_hps_bv_d6_random	BFV	--seed 3194777975 --mult HPS --ks BV --depth 6 --prog random --menu core --len 16 --msg random
+rs_bfv_hps_bv_d10_random	BFV	--seed 3453306738 --mult HPS --ks BV --depth 10 --prog random --menu core --len 16 --msg random
+rs_bfv_hps_bv_d3_ops	BFV	--seed 4198549298 --mult HPS --ks BV --depth 3 --prog ops --msg random
+rs_bfv_hps_bv_d3_rotsum	BFV	--seed 3747363239 --mult HPS --ks BV --depth 3 --prog rotsum --msg random
+rs_bfv_hps_bv_d6_rotsum	BFV	--seed 2545694659 --mult HPS --ks BV --depth 6 --prog rotsum --msg random
+rs_bfv_hps_def_d10_chain	BFV	--seed 1897053663 --mult HPS --depth 10 --prog chain --msg random
+rs_bfv_poq_hy_d1_random	BFV	--seed 2849398119 --mult HPSPOVERQ --ks HYBRID --depth 1 --prog random --menu core --len 16 --msg random
+rs_bfv_poq_hy_d3_random	BFV	--seed 3958594076 --mult HPSPOVERQ --ks HYBRID --depth 3 --prog random --menu core --len 16 --msg random
+rs_bfv_poq_hy_d6_random	BFV	--seed 2735953024 --mult HPSPOVERQ --ks HYBRID --depth 6 --prog random --menu core --len 16 --msg random
+rs_bfv_poq_hy_d10_random	BFV	--seed 3021242609 --mult HPSPOVERQ --ks HYBRID --depth 10 --prog random --menu core --len 16 --msg random
+rs_bfv_poq_hy_d3_ops	BFV	--seed 2125128185 --mult HPSPOVERQ --ks HYBRID --depth 3 --prog ops --msg random
+rs_bfv_poq_bv_d1_random	BFV	--seed 3491316162 --mult HPSPOVERQ --ks BV --depth 1 --prog random --menu core --len 16 --msg random
+rs_bfv_poq_bv_d3_random	BFV	--seed 2453423805 --mult HPSPOVERQ --ks BV --depth 3 --prog random --menu core --len 16 --msg random
+rs_bfv_poq_bv_d6_random	BFV	--seed 3671869657 --mult HPSPOVERQ --ks BV --depth 6 --prog random --menu core --len 16 --msg random
+rs_bfv_poq_bv_d10_random	BFV	--seed 4242504104 --mult HPSPOVERQ --ks BV --depth 10 --prog random --menu core --len 16 --msg random
+rs_bfv_poq_bv_d3_ops	BFV	--seed 849639883 --mult HPSPOVERQ --ks BV --depth 3 --prog ops --msg random
+rs_bfv_poq_bv_d6_rotsum	BFV	--seed 4077653613 --mult HPSPOVERQ --ks BV --depth 6 --prog rotsum --msg random
+rs_bfv_poq_def_d10_chain	BFV	--seed 1075348233 --mult HPSPOVERQ --depth 10 --prog chain --msg random
+rs_bfv_lev_hy_d1_random	BFV	--seed 3927009255 --mult HPSPOVERQLEVELED --ks HYBRID --depth 1 --prog random --menu core --len 16 --msg random
+rs_bfv_lev_hy_d3_random	BFV	--seed 2822004892 --mult HPSPOVERQLEVELED --ks HYBRID --depth 3 --prog random --menu core --len 16 --msg random
+rs_bfv_lev_hy_d6_random	BFV	--seed 3772018432 --mult HPSPOVERQLEVELED --ks HYBRID --depth 6 --prog random --menu core --len 16 --msg random
+rs_bfv_lev_hy_d10_random	BFV	--seed 1508885739 --mult HPSPOVERQLEVELED --ks HYBRID --depth 10 --prog random --menu core --len 16 --msg random
+rs_bfv_lev_hy_d3_ops	BFV	--seed 2468021052 --mult HPSPOVERQLEVELED --ks HYBRID --depth 3 --prog ops --msg random
+rs_bfv_lev_hy_d3_rotsum	BFV	--seed 2179212848 --mult HPSPOVERQLEVELED --ks HYBRID --depth 3 --prog rotsum --msg random
+rs_bfv_lev_bv_d1_random	BFV	--seed 2480831298 --mult HPSPOVERQLEVELED --ks BV --depth 1 --prog random --menu core --len 16 --msg random
+rs_bfv_lev_bv_d3_random	BFV	--seed 3522919485 --mult HPSPOVERQLEVELED --ks BV --depth 3 --prog random --menu core --len 16 --msg random
+rs_bfv_lev_bv_d6_random	BFV	--seed 2568712793 --mult HPSPOVERQLEVELED --ks BV --depth 6 --prog random --menu core --len 16 --msg random
+rs_bfv_lev_bv_d10_random	BFV	--seed 287587774 --mult HPSPOVERQLEVELED --ks BV --depth 10 --prog random --menu core --len 16 --msg random
+rs_bfv_lev_bv_d3_ops	BFV	--seed 3742735114 --mult HPSPOVERQLEVELED --ks BV --depth 3 --prog ops --msg random
+rs_bfv_lev_def_d10_chain	BFV	--seed 2917386003 --mult HPSPOVERQLEVELED --depth 10 --prog chain --msg random
+rs_bfv_behz_hy_d1_random	BFV	--seed 536862700 --mult BEHZ --ks HYBRID --depth 1 --prog random --menu core --len 16 --msg random
+rs_bfv_behz_hy_d3_random	BFV	--seed 1574623383 --mult BEHZ --ks HYBRID --depth 3 --prog random --menu core --len 16 --msg random
+rs_bfv_behz_hy_d6_random	BFV	--seed 356177651 --mult BEHZ --ks HYBRID --depth 6 --prog random --menu core --len 16 --msg random
+rs_bfv_behz_hy_d10_random	BFV	--seed 665540336 --mult BEHZ --ks HYBRID --depth 10 --prog random --menu core --len 16 --msg random
+rs_bfv_behz_hy_d3_ops	BFV	--seed 1446235646 --mult BEHZ --ks HYBRID --depth 3 --prog ops --msg random
+rs_bfv_behz_bv_d1_random	BFV	--seed 1714471757 --mult BEHZ --ks BV --depth 1 --prog random --menu core --len 16 --msg random
+rs_bfv_behz_bv_d3_random	BFV	--seed 605406258 --mult BEHZ --ks BV --depth 3 --prog random --menu core --len 16 --msg random
+rs_bfv_behz_bv_d6_random	BFV	--seed 1828047446 --mult BEHZ --ks BV --depth 6 --prog random --menu core --len 16 --msg random
+rs_bfv_behz_bv_d10_random	BFV	--seed 1868607417 --mult BEHZ --ks BV --depth 10 --prog random --menu core --len 16 --msg random
+rs_bfv_behz_bv_d3_ops	BFV	--seed 440227280 --mult BEHZ --ks BV --depth 3 --prog ops --msg random
+rs_bfv_behz_bv_d1_rotsum	BFV	--seed 1340114425 --mult BEHZ --ks BV --depth 1 --prog rotsum --msg random
+rs_bfv_behz_bv_d3_rotsum	BFV	--seed 231047814 --mult BEHZ --ks BV --depth 3 --prog rotsum --msg random
+rs_bfv_behz_bv_d10_rotsum	BFV	--seed 1185999117 --mult BEHZ --ks BV --depth 10 --prog rotsum --msg random
+rs_bfv_behz_def_d10_chain	BFV	--seed 3550958872 --mult BEHZ --depth 10 --prog chain --msg random
+rs_bfv_hps_def_d14_chain	BFV	--seed 2237503950 --mult HPS --depth 14 --prog chain --progdepth 4 --msg random
+rs_bfv_hps_bv_d16_random	BFV	--seed 196759287 --mult HPS --ks BV --depth 16 --prog random --menu core --len 16 --msg random
+rs_bfv_poq_def_d16_chain	BFV	--seed 600356403 --mult HPSPOVERQ --depth 16 --prog chain --progdepth 4 --msg random
+rs_bfv_poq_def_d6_compress	BFV	--seed 3261819251 --mult HPSPOVERQ --depth 6 --prog compress --msg random
+rs_bfv_lev_def_d10_levels	BFV	--seed 389996321 --mult HPSPOVERQLEVELED --depth 10 --prog levels --msg small
+rs_bfv_def_def_d3_ext_chain	BFV	--seed 2862136818 --depth 3 --enc EXTENDED --prog chain --msg random
+rs_bfv_def_def_d6_chain	BFV	--seed 1212019363 --depth 6 --prog chain --msg random
+rs_bfv_def_def_d6_t786433_chain	BFV	--seed 2650160453 --depth 6 --t 786433 --prog chain --msg random

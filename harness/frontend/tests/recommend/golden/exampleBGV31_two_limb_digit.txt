@@ -1,0 +1,38 @@
+fhe_check recommend: examples/exampleBGV31_two_limb_digit.fhecheck.json
+RECOMMENDATION: CERTIFIED: parameters found that fhe_check certifies (minimum margin 0.36 bits)
+
+Target: neutral (no library prime rule; q = 1 mod 2N, largest primes below 2^b). Search: 2 ciphertext limbs (fixed by the program's levels), sizes [f, s, ..., s] then each limb and the special-prime size lowered one at a time, digits kept from the file; ring dimension policy: the file's N = 16384 (no freshEncryption section: the input noise is only known at this N).
+Objective: least predicted evaluation time (a MODEL, T ~ N log2 N (a*A + b*B) over the program's multiplications and
+key switches, fitted on measured times with error up to 8.00%; the file's digit count is kept unless another is
+predicted faster by more than that). NOT claimed: optimality (per ring dimension and digit count the search minimises
+log2(Q*P) over a family, by bisection). Claimed: the verdict below, which is fhe_check's plain check of the emitted parameters.
+
+Ring dimension N = 16384; plaintext modulus t = 65537
+Ciphertext primes (2; log2 Q = 58.83):
+  q0 = 3735553  (22 bits)
+  q1 = 137438822401  (37 bits)
+Special primes (1; log2 P = 37.00):
+  p0 = 137438691329  (37 bits)
+Key switching: digits of 2 consecutive limbs
+Prime rule: largest prime = 1 mod 2N below 2^b, sizes b = [22, 37], special 37 bits
+
+Security (INPUT ASSUMPTION, not proved here): HomomorphicEncryption.org standard (2018), ternary secret,
+  128-bit classical: log2(Q*P) must stay below 438 at N = 16384; this chain: log2(Q*P) = 95.83.
+
+VERDICT ON THESE EXACT PARAMETERS (fhe_check's plain check of the emitted file): CERTIFIED AT PHASE LEVEL: the raw (phase-level) decryption of every output is correct, in the worst case, under the assumptions below; user-level decryption depends on the backend and is NOT covered
+  certificate theorem: Challenge.Certify.worst_certified
+  c: margin 0.36 bits at its level
+
+Compared with the file's own parameters (hand-written (Spec.FullParams.exampleBGV31)): NOT CERTIFIED there.
+  N 16384 -> 16384; log2 Q 60.00 -> 58.83; log2(Q*P) 90.01 -> 95.83
+  fresh ciphertext in memory (2 x N x L words of 64 bits): 512 KiB -> 512 KiB (ratio 1.00)
+  ciphertext information size (2 x N x log2 Q bits): ratio 0.98
+  evaluation time, MODELLED (not measured): ratio 1.00 (digits 1 vs the file's 1)
+
+LIBRARY CONFIGURATION
+neutral target: no library configuration; the primes above are the parameters.
+
+UNVERIFIED GLUE that affects this verdict (also stated in the emitted file):
+  - input noise: the file's own value (same N)
+  - the search, prime generation and this text; and every assumption of the plain check (run
+    `fhe_check` on the emitted file for the full certificate statement).

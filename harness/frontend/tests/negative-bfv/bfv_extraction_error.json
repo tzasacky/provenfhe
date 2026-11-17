@@ -1,0 +1,4 @@
+{
+ "format": "fhe-check/v1",
+ "error": "UNSUPPORTED: BV key switching with digit size 20 != 0 (base-2^w digits) is not mapped"
+}

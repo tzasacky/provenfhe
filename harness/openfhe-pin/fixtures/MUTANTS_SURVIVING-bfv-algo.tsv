@@ -1,0 +1,3 @@
+# BFV algo mutants that survive on fixtures/mutation-bfv.list (algo/mutation_bfv.sh): mutant<TAB>why.
+# A survivor here is invisible on the recorded data, measured on all 241 BFV fixtures, 2026-11-14.
+decrypt-small-exact-scale	MultiplyAndRound(t, q) of the decryption after Compress computed exactly instead of in double: on the 181 recorded decryptions of ciphertexts with fewer limbs than the chain (3424 coefficients, bfv-fixtures) the two never differ (algo.variant.decrypt "exact MultiplyAndRound": 0 mismatches)

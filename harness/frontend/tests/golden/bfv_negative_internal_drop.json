@@ -1,0 +1,6 @@
+{"verdict": "INVALID INPUT",
+ "tool": "fhe_check",
+ "summary": "$.bfv.multiplication.maxInternalDrop: -1 is negative",
+ "scheme": "BFV",
+ "input": "tests/negative-bfv/bfv_negative_internal_drop.json",
+ "format": "fhe-check-report/v1"}

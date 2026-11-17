@@ -1,0 +1,1 @@
+line 104: LeveledSHEBase::EvalMult(Ciphertext,Ciphertext,EvalKey) on a 3-part operand ct_4: OpenFHE relinearizes only the third component of the product and drops the rest, so the result is not an encryption of the product (relinearize the operand first)

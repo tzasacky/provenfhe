@@ -1,0 +1,6 @@
+{"verdictLabel": "UNSUPPORTED",
+ "verdict": "UNSUPPORTED",
+ "tool": "fhe_check",
+ "summary": "scheme CKKS: fhe_check certifies BGV and BFV programs only",
+ "input": "tests/negative/unsupported_scheme_ckks.json",
+ "format": "fhe-check-report/v1"}

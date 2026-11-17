@@ -1,0 +1,7 @@
+{"verdict": "UNSUPPORTED",
+ "tool": "fhe_check",
+ "summary":
+ "plaintext-addition method truncate: no proved deviation for this way of adding a plaintext (delta | rounded | ceil | floor | scaled)",
+ "scheme": "BFV",
+ "input": "tests/negative-bfv/bfv_plainadd_unknown_method.json",
+ "format": "fhe-check-report/v1"}

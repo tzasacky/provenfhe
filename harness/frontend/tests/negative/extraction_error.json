@@ -1,0 +1,4 @@
+{
+ "format": "fhe-check/v1",
+ "error": "line 7: unknown OpenFHE call"
+}

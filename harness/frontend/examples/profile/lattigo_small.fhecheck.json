@@ -1,0 +1,104 @@
+{
+ "format": "fhe-check/v1",
+ "source": {
+  "tool": "hand-written (Challenge.Instances.Lattigo.small, smallProg)",
+  "note": "Lattigo v6.2.0 BGV at the literal {LogN: 4, LogQ: [30, 25, 25, 25], LogP: [30], PlaintextModulus: 65537}; the program shape recorded in harness/lattigo-pin (smallProg). inputNoise and keyNoise are the t-read Lattigo bounds of Challenge.Instances.Lattigo.params (max of the fresh secret-key and public-key errors; 19*t)."
+ },
+ "params": {
+  "scheme": "BGV",
+  "N": 16,
+  "t": 65537,
+  "limbs": [
+   "1073741857",
+   "33554273",
+   "33554593",
+   "33554849"
+  ],
+  "special": [
+   "1073741953"
+  ],
+  "secretBound": 1,
+  "inputNoise": "1310739",
+  "keyNoise": "1245203"
+ },
+ "keySwitching": {
+  "method": "hybrid",
+  "variant": "centred",
+  "digits": {
+   "kind": "consecutive",
+   "towersPerDigit": 1
+  },
+  "source": "Lattigo: consecutive digits of #P = 1 limb, centred representatives (Challenge.Instances.Lattigo.layout)"
+ },
+ "modSwitch": {
+  "method": "t-corrected-centred",
+  "source": "Lattigo Rescale under the t-reading (Challenge.Instances.Lattigo)"
+ },
+ "program": {
+  "inputs": [
+   {
+    "name": "a",
+    "parts": 2,
+    "level": 4
+   },
+   {
+    "name": "b",
+    "parts": 2,
+    "level": 4
+   }
+  ],
+  "body": [
+   {
+    "op": "mul",
+    "dst": "m",
+    "a": "a",
+    "b": "b"
+   },
+   {
+    "op": "modSwitch",
+    "dst": "m",
+    "a": "m"
+   },
+   {
+    "op": "relin",
+    "dst": "m",
+    "a": "m"
+   },
+   {
+    "op": "automorph",
+    "dst": "r",
+    "a": "m",
+    "g": 5
+   },
+   {
+    "op": "keySwitch",
+    "dst": "r",
+    "a": "r"
+   },
+   {
+    "op": "add",
+    "dst": "y",
+    "a": "m",
+    "b": "r"
+   },
+   {
+    "op": "square",
+    "dst": "z",
+    "a": "y"
+   },
+   {
+    "op": "relin",
+    "dst": "z",
+    "a": "z"
+   },
+   {
+    "op": "modSwitch",
+    "dst": "z",
+    "a": "z"
+   }
+  ],
+  "outputs": [
+   "z"
+  ]
+ }
+}

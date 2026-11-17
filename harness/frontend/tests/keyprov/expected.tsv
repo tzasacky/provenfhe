@@ -1,0 +1,51 @@
+# Key-provenance and refusal red-team regressions for openfhe/extract.py (run.sh section 6b).
+# Columns (tab-separated): source trace dir (relative to harness/frontend; holds params.json and
+# trace.jsonl, or an examples/ prefix), mutate.py kind ("-" = unchanged), extractor options ("-" =
+# none), expected outcome (REFUSE or EXTRACT), text that must appear in the extractor's output.
+#
+# The evaluation's soundness witness: openfheorg/openfhe-network-examples
+# @1cee5bfe src/threshold_fhe_aborts/threshold_fhe.cpp (3-party threshold BGV, MultipartyKeyGen,
+# HYBRID, FLEXIBLEAUTOEXT, N = 2^13), built UNMODIFIED against traced OpenFHE v1.6.1 and run with
+# FHECHECK_TRACE_DIR and OMP_NUM_THREADS=1 (threshold_network_example/{trace.jsonl,params.json}),
+# cut before its first multiparty decryption. The extractor before this fix extracted it under
+# single-party key assumptions (joint secret bounded by 1, key error t*39) and fhe_check answered
+# CERTIFIED.
+tests/keyprov/threshold_network_example	cut_before_decrypt	-	REFUSE	CryptoContext::MultipartyKeyGen(PublicKey,bool,bool): multiparty
+# The same with the multiparty calls hidden: refused by key provenance alone.
+tests/keyprov/threshold_network_example	cut_hide_multiparty	-	REFUSE	was not produced by a traced single-party CryptoContext::KeyGen()
+tests/keyprov/threshold_network_example	-	-	REFUSE	multiparty
+examples/openfhe_dot_depth2	drop_keygen	-	REFUSE	was not produced by a traced single-party CryptoContext::KeyGen()
+examples/openfhe_dot_depth2	drop_keygen	--assume-single-party-keys	EXTRACT	ASSUMED (--assume-single-party-keys)
+examples/openfhe_dot_depth2	drop_multkeygen	-	REFUSE	whose generation is not in the trace
+examples/openfhe_dot_depth2	swap_rotation_index	-	REFUSE	as a auto key for index
+examples/openfhe_dot_depth2	second_secret	-	REFUSE	a second secret key
+examples/openfhe_dot_depth2	thread_error	-	REFUSE	the tracer reported: a traced OpenFHE call ran on another thread
+examples/openfhe_dot_depth2	drop_eval	-	REFUSE	is used but no traced operation produced it
+examples/openfhe_dot_depth2	-	-	EXTRACT	checked from the trace: every Encrypt key comes from one traced single-party
+# Private-key (symmetric) encryption: declared with its own bound, not listed as fresh.
+examples/openfhe_fixedmanual_symenc	-	-	EXTRACT	private-key (symmetric) Encrypt: bound (t-1) + t*Be
+# Conformance-harness reproducers (harness/openfhe-pin, traces from its own tracer on the v1.3.1
+# fork: no key records, no build section, hence the two assumption flags).
+# CoefPacked plaintexts (stored centred and, under FLEXIBLE*, scaled without reduction mod t):
+tests/keyprov/pin/n16_xe_d1_randomcore_alt_09	-	--assume-single-party-keys --assume-default-build	REFUSE	only packed plaintexts are mapped
+tests/keyprov/pin/n16_fa_d2_paths-coefpacked_random	-	--assume-single-party-keys --assume-default-build	REFUSE	only packed plaintexts are mapped
+# EvalMult with a key on a 3-part operand (OpenFHE relinearizes cv[2] only, then resize(2)):
+tests/keyprov/pin/n16_fa_d3_threepart-mul3x2_relindeg3_small	-	--assume-single-party-keys --assume-default-build	REFUSE	relinearizes only the third component
+# A traced call that threw (EvalAutomorphism of a 3-part ciphertext): explicit refusal, no crash.
+tests/keyprov/pin/n16_fa_d2_threepart-rot_max	-	--assume-single-party-keys --assume-default-build	REFUSE	on a 3-part operand: OpenFHE throws
+# Content-hash id recurrence (FIXEDAUTO multiplies operands by the constant 1): the extractor used to
+# bind the next plaintext operation to the wrong value (Source.step: ill-formed); SSA renaming fixes it.
+tests/keyprov/pin/n16_fa_d2_randomcore_max_07	-	--assume-single-party-keys --assume-default-build	EXTRACT	ASSUMED (--assume-default-build)
+# The same kind of trace without the build section and without the flag: refused.
+tests/keyprov/pin/n16_fa_d2_randomcore_max_07	-	--assume-single-party-keys	REFUSE	has no \"build\" section
+# Build configuration recorded by the tracer (params.json "build") and the secret distribution:
+examples/openfhe_dot_depth2	params:build.WITH_REDUCED_NOISE=true	-	REFUSE	OpenFHE built WITH_REDUCED_NOISE
+examples/openfhe_dot_depth2	params:build.NATIVEINT=128	-	REFUSE	only the default 64-bit native integers are mapped
+examples/openfhe_dot_depth2	params:build.HAVE_INT128=false	-	REFUSE	OpenFHE built without HAVE_INT128
+examples/openfhe_dot_depth2	params:secretKeyDist=SPARSE_TERNARY	-	EXTRACT	SPARSE_TERNARY: s has 192 nonzero coefficients
+examples/openfhe_dot_depth2	params:secretKeyDist=GAUSSIAN	-	REFUSE	secret distribution GAUSSIAN
+examples/openfhe_dot_depth2	params:noiseScale=1	-	REFUSE	noiseScale 1 != t
+# The declared sampler mean (freshEncryption.mean) applies to OpenFHE's default sigma = 3.19 only:
+examples/openfhe_dot_depth2	params:sigma=4.0	-	REFUSE	the declared sampler mean applies to sigma = 3.19 only
+examples/openfhe_dot_depth2	params:sigma=3.2	-	REFUSE	the declared sampler mean applies to sigma = 3.19 only
+examples/openfhe_dot_depth2	-	-	EXTRACT	"den": 18446744073709551616

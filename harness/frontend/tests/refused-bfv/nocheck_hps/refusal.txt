@@ -1,0 +1,1 @@
+line 86: CryptoContext::EvalMultNoRelinNoCheck(Ciphertext,Ciphertext): EvalMultNoRelinNoCheck multiplies the components directly (cryptocontext.h, CryptoContextImpl::EvalMultNoRelinNoCheck): for BFV that is not the scale-invariant product (no scaling by t/Q); use EvalMult or EvalMultNoRelin

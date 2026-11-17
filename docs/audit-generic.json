@@ -1,0 +1,1002 @@
+{
+ "generator": "paper/gen/audit_generic.py",
+ "tree": "release tree",
+ "spec": {
+  "files": 29,
+  "lines": 4554,
+  "G": 2955,
+  "M": 733,
+  "L": 866,
+  "libLines": 1115,
+  "genericLines": 3439,
+  "libPercent": 24.5,
+  "L_by_library": {
+   "OpenFHE v1.6.1": 866
+  },
+  "libAddedSinceAudit": 514,
+  "filesAddedSinceAudit": [
+   "Spec/DecryptBFVBEHZ.lean",
+   "Spec/DecryptBFVLib.lean",
+   "Spec/DecryptBFVLow.lean",
+   "Spec/IndCpaD.lean",
+   "Spec/IndCpaDBFV.lean",
+   "Spec/IndCpaDLM.lean",
+   "Spec/IndCpaDProfile.lean",
+   "Spec/IndCpaDSanity.lean",
+   "Spec/Layout.lean",
+   "Spec/MSB.lean",
+   "Spec/MSBScale.lean"
+  ]
+ },
+ "challenge": {
+  "files": 89,
+  "lines": 17992,
+  "G": 7402,
+  "M": 6050,
+  "L": 4540,
+  "L_by_library": {
+   "OpenFHE v1.6.1": 4078,
+   "Lattigo v6.2.0": 462
+  }
+ },
+ "auditTree": {
+  "rev": "pre-split audit tree",
+  "spec": {
+   "files": 18,
+   "lines": 3189,
+   "G": 2144,
+   "M": 695,
+   "L": 350,
+   "libLines": 568,
+   "genericLines": 2621,
+   "libPercent": 17.8
+  },
+  "challenge": {
+   "files": 32,
+   "lines": 9124,
+   "G": 4582,
+   "M": 3141,
+   "L": 1401
+  },
+  "note": "the same rules on the tree the audit was first measured on (its prose estimate: about 610 of 3,189 Spec/ lines library-specific); Spec/Layout.lean was out of its scope then",
+  "outOfScopeThen": [
+   "Spec/Layout.lean"
+  ]
+ },
+ "files": [
+  {
+   "file": "Challenge/BFV.lean",
+   "lines": 347,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/BFV/Defs.lean",
+   "lines": 290,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/BFV/Domain.lean",
+   "lines": 237,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/BFV/PerInstr.lean",
+   "lines": 83,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/BFVDecrypt.lean",
+   "lines": 281,
+   "class": "L",
+   "libLines": 281,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/BFVDecryptBEHZ.lean",
+   "lines": 97,
+   "class": "L",
+   "libLines": 97,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/BFVDecryptLib.lean",
+   "lines": 102,
+   "class": "L",
+   "libLines": 102,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/BFVDecryptLow.lean",
+   "lines": 173,
+   "class": "L",
+   "libLines": 173,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/BFVEncrypt.lean",
+   "lines": 306,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/BFVEncrypt/Defs.lean",
+   "lines": 56,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/BFVMul.lean",
+   "lines": 637,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/BFVMul/BEHZ.lean",
+   "lines": 283,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/BFVMul/BEHZWord.lean",
+   "lines": 123,
+   "class": "L",
+   "libLines": 123,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/BFVMul/Float.lean",
+   "lines": 583,
+   "class": "L",
+   "libLines": 583,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/BFVMul/HPS.lean",
+   "lines": 213,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/BFVMul/KSLeveled.lean",
+   "lines": 227,
+   "class": "L",
+   "libLines": 227,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/BFVMul/POverQ.lean",
+   "lines": 368,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/Budget.lean",
+   "lines": 401,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/BudgetRestrict.lean",
+   "lines": 257,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Certify.lean",
+   "lines": 813,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Certify/Defs.lean",
+   "lines": 115,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/CertifyBFV.lean",
+   "lines": 778,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/CertifyBFV/Defs.lean",
+   "lines": 448,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/CertifyBFV/Library.lean",
+   "lines": 262,
+   "class": "L",
+   "libLines": 262,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/Corpus.lean",
+   "lines": 34,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Decrypt.lean",
+   "lines": 102,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Families/BEHZ.lean",
+   "lines": 272,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/Families/BEHZCover.lean",
+   "lines": 134,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/Families/Coverage.lean",
+   "lines": 138,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/Families/FloatTol.lean",
+   "lines": 294,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/Families/Quantize.lean",
+   "lines": 236,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/Fast.lean",
+   "lines": 74,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Fast/Defs.lean",
+   "lines": 96,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Fast/Profile.lean",
+   "lines": 52,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Fast/ProfileDefs.lean",
+   "lines": 76,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/FreshNoise.lean",
+   "lines": 542,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/FreshNoiseL2.lean",
+   "lines": 245,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Headline.lean",
+   "lines": 37,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Headline/Defs.lean",
+   "lines": 323,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/IndCpaD.lean",
+   "lines": 171,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/IndCpaD/Attack.lean",
+   "lines": 680,
+   "class": "L",
+   "libLines": 680,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/IndCpaD/BadEvent.lean",
+   "lines": 218,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/IndCpaD/Defs.lean",
+   "lines": 89,
+   "class": "L",
+   "libLines": 89,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/IndCpaD/Generic.lean",
+   "lines": 136,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/IndCpaD/LM.lean",
+   "lines": 269,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/IndCpaD/LMAgree.lean",
+   "lines": 130,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/IndCpaD/LMBFV.lean",
+   "lines": 317,
+   "class": "L",
+   "libLines": 317,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/IndCpaD/LMBounds.lean",
+   "lines": 57,
+   "class": "L",
+   "libLines": 57,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/IndCpaD/LMCompose.lean",
+   "lines": 202,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/IndCpaD/LMEmbed.lean",
+   "lines": 200,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/IndCpaD/LMExact.lean",
+   "lines": 76,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/IndCpaD/Profile.lean",
+   "lines": 142,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/IndCpaD/ProfileAdv.lean",
+   "lines": 82,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/IndCpaD/ProfileBGV.lean",
+   "lines": 132,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/IndCpaD/ProfileBGVInstances.lean",
+   "lines": 149,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/IndCpaD/ProfileBGVKS.lean",
+   "lines": 258,
+   "class": "L",
+   "libLines": 258,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/IndCpaD/ProfileInstances.lean",
+   "lines": 145,
+   "class": "L",
+   "libLines": 145,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/IndCpaD/ProfileKernel.lean",
+   "lines": 43,
+   "class": "L",
+   "libLines": 43,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/IndCpaD/Sanity.lean",
+   "lines": 353,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/IndCpaD/SanityInstances.lean",
+   "lines": 165,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/IndCpaD/Textbook.lean",
+   "lines": 71,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/Instances/Lattigo.lean",
+   "lines": 123,
+   "class": "L",
+   "libLines": 123,
+   "library": "Lattigo v6.2.0"
+  },
+  {
+   "file": "Challenge/Instances/Lattigo/Defs.lean",
+   "lines": 142,
+   "class": "L",
+   "libLines": 142,
+   "library": "Lattigo v6.2.0"
+  },
+  {
+   "file": "Challenge/Instances/Lattigo/MSB.lean",
+   "lines": 127,
+   "class": "L",
+   "libLines": 127,
+   "library": "Lattigo v6.2.0"
+  },
+  {
+   "file": "Challenge/MSB.lean",
+   "lines": 271,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/MSBScale.lean",
+   "lines": 40,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Params.lean",
+   "lines": 98,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Profile.lean",
+   "lines": 333,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Profile/Achieve.lean",
+   "lines": 126,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/Profile/Defs.lean",
+   "lines": 129,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Profile/Inputs.lean",
+   "lines": 140,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Profile/Named.lean",
+   "lines": 198,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/Profile/Tool.lean",
+   "lines": 215,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Realize.lean",
+   "lines": 184,
+   "class": "L",
+   "libLines": 184,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/Realize/OpenFHE.lean",
+   "lines": 138,
+   "class": "L",
+   "libLines": 138,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/Realize/OpenFHEBFV.lean",
+   "lines": 117,
+   "class": "L",
+   "libLines": 117,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/RealizeBFV.lean",
+   "lines": 117,
+   "class": "L",
+   "libLines": 117,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Challenge/Ring.lean",
+   "lines": 49,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Sanity/Contracts.lean",
+   "lines": 39,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Sanity/Conventions.lean",
+   "lines": 62,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Sanity/Coverage.lean",
+   "lines": 24,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Sanity/Edges.lean",
+   "lines": 53,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Sanity/EndToEnd.lean",
+   "lines": 185,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Sanity/Lattigo.lean",
+   "lines": 70,
+   "class": "L",
+   "libLines": 70,
+   "library": "Lattigo v6.2.0"
+  },
+  {
+   "file": "Challenge/Scaling.lean",
+   "lines": 203,
+   "class": "M",
+   "libLines": null
+  },
+  {
+   "file": "Challenge/Scheme.lean",
+   "lines": 62,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Source.lean",
+   "lines": 216,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Trace.lean",
+   "lines": 226,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Challenge/Word.lean",
+   "lines": 85,
+   "class": "L",
+   "libLines": 85,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Spec/Budget.lean",
+   "lines": 250,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/BudgetBFV.lean",
+   "lines": 68,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/BudgetBFVRns.lean",
+   "lines": 192,
+   "class": "M",
+   "libLines": 27
+  },
+  {
+   "file": "Spec/Certify.lean",
+   "lines": 135,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/CertifyBFV.lean",
+   "lines": 126,
+   "class": "M",
+   "libLines": 47
+  },
+  {
+   "file": "Spec/Correct.lean",
+   "lines": 41,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/Decrypt.lean",
+   "lines": 81,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/DecryptBFV.lean",
+   "lines": 352,
+   "class": "L",
+   "libLines": 352,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Spec/DecryptBFVBEHZ.lean",
+   "lines": 112,
+   "class": "L",
+   "libLines": 112,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Spec/DecryptBFVLib.lean",
+   "lines": 35,
+   "class": "L",
+   "libLines": 35,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Spec/DecryptBFVLow.lean",
+   "lines": 216,
+   "class": "L",
+   "libLines": 216,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Spec/Encrypt.lean",
+   "lines": 184,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/EncryptBFV.lean",
+   "lines": 158,
+   "class": "M",
+   "libLines": 62
+  },
+  {
+   "file": "Spec/Float.lean",
+   "lines": 121,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/IndCpaD.lean",
+   "lines": 197,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/IndCpaDBFV.lean",
+   "lines": 151,
+   "class": "L",
+   "libLines": 151,
+   "library": "OpenFHE v1.6.1"
+  },
+  {
+   "file": "Spec/IndCpaDLM.lean",
+   "lines": 252,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/IndCpaDProfile.lean",
+   "lines": 140,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/IndCpaDSanity.lean",
+   "lines": 59,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/Layout.lean",
+   "lines": 38,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/MSB.lean",
+   "lines": 241,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/MSBScale.lean",
+   "lines": 70,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/Params.lean",
+   "lines": 211,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/Ring.lean",
+   "lines": 115,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/Scaling.lean",
+   "lines": 257,
+   "class": "M",
+   "libLines": 113
+  },
+  {
+   "file": "Spec/Scheme.lean",
+   "lines": 115,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/Source.lean",
+   "lines": 285,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/Trace.lean",
+   "lines": 156,
+   "class": "G",
+   "libLines": 0
+  },
+  {
+   "file": "Spec/TraceBFV.lean",
+   "lines": 196,
+   "class": "G",
+   "libLines": 0
+  }
+ ],
+ "libSpans": {
+  "Spec/Scaling.lean": [
+   [
+    "section",
+    "^## The library's factor-tracking policy",
+    "^-/"
+   ],
+   [
+    "decl",
+    "facStep"
+   ],
+   [
+    "decl",
+    "facRun"
+   ],
+   [
+    "decl",
+    "factors?"
+   ],
+   [
+    "decl",
+    "decodeFactor"
+   ],
+   [
+    "decl",
+    "tracks"
+   ]
+  ],
+  "Spec/EncryptBFV.lean": [
+   [
+    "section",
+    "^\\*\\*What OpenFHE v1\\.6\\.1 computes\\*\\*",
+    "^\\*\\*The BFV noise of a fresh encryption\\.\\*\\*"
+   ],
+   [
+    "decl",
+    "scaleUpCeil"
+   ],
+   [
+    "decl",
+    "encryptBFV"
+   ],
+   [
+    "decl",
+    "encodeDev"
+   ]
+  ],
+  "Spec/BudgetBFVRns.lean": [
+   [
+    "decl",
+    "doubleSw"
+   ],
+   [
+    "decl",
+    "doubleSr"
+   ],
+   [
+    "decl",
+    "leveledSlack"
+   ],
+   [
+    "decl",
+    "ksLeveled"
+   ]
+  ],
+  "Spec/CertifyBFV.lean": [
+   [
+    "decl",
+    "leveled"
+   ],
+   [
+    "decl",
+    "drops"
+   ],
+   [
+    "decl",
+    "AssumptionBFV"
+   ]
+  ]
+ },
+ "closure": {
+  "tree": "release tree",
+  "by": "paper/gen/audit_closure.lean",
+  "roots": {
+   "bgv": "Challenge.Certify.certify?_sound",
+   "bfv": "Challenge.CertifyBFV.certifyBFV?_sound"
+  },
+  "result": {
+   "bgv": {
+    "statement": {
+     "specDecls": 162,
+     "libSpecific": []
+    },
+    "full": {
+     "specDecls": 233,
+     "libSpecific": []
+    }
+   },
+   "bfv": {
+    "statement": {
+     "specDecls": 157,
+     "libSpecific": [
+      {
+       "name": "Spec.CertifyBFV.Technique.leveled",
+       "file": "Spec/CertifyBFV.lean",
+       "line": 26
+      },
+      {
+       "name": "Spec.CertifyBFV.AssumptionBFV",
+       "file": "Spec/CertifyBFV.lean",
+       "line": 66
+      },
+      {
+       "name": "Spec.CertifyBFV.AssumptionBFV.binary64",
+       "file": "Spec/CertifyBFV.lean",
+       "line": 71
+      },
+      {
+       "name": "Spec.CertifyBFV.AssumptionBFV.idealised",
+       "file": "Spec/CertifyBFV.lean",
+       "line": 79
+      },
+      {
+       "name": "Spec.CertifyBFV.AssumptionBFV.declaredDrops",
+       "file": "Spec/CertifyBFV.lean",
+       "line": 86
+      },
+      {
+       "name": "Spec.CertifyBFV.AssumptionBFV.binary64Dec",
+       "file": "Spec/CertifyBFV.lean",
+       "line": 91
+      }
+     ]
+    },
+    "full": {
+     "specDecls": 234,
+     "libSpecific": [
+      {
+       "name": "Spec.BudgetBFV.doubleSw",
+       "file": "Spec/BudgetBFVRns.lean",
+       "line": 110
+      },
+      {
+       "name": "Spec.BudgetBFV.doubleSr",
+       "file": "Spec/BudgetBFVRns.lean",
+       "line": 113
+      },
+      {
+       "name": "Spec.BudgetBFV.leveledSlack",
+       "file": "Spec/BudgetBFVRns.lean",
+       "line": 148
+      },
+      {
+       "name": "Spec.BudgetBFV.ksLeveled",
+       "file": "Spec/BudgetBFVRns.lean",
+       "line": 180
+      },
+      {
+       "name": "Spec.CertifyBFV.Technique.leveled",
+       "file": "Spec/CertifyBFV.lean",
+       "line": 26
+      },
+      {
+       "name": "Spec.CertifyBFV.InputBFV.drops",
+       "file": "Spec/CertifyBFV.lean",
+       "line": 64
+      },
+      {
+       "name": "Spec.CertifyBFV.AssumptionBFV",
+       "file": "Spec/CertifyBFV.lean",
+       "line": 66
+      },
+      {
+       "name": "Spec.CertifyBFV.AssumptionBFV.binary64",
+       "file": "Spec/CertifyBFV.lean",
+       "line": 71
+      },
+      {
+       "name": "Spec.CertifyBFV.AssumptionBFV.idealised",
+       "file": "Spec/CertifyBFV.lean",
+       "line": 79
+      },
+      {
+       "name": "Spec.CertifyBFV.AssumptionBFV.declaredDrops",
+       "file": "Spec/CertifyBFV.lean",
+       "line": 86
+      },
+      {
+       "name": "Spec.CertifyBFV.AssumptionBFV.binary64Dec",
+       "file": "Spec/CertifyBFV.lean",
+       "line": 91
+      }
+     ]
+    }
+   }
+  }
+ }
+}

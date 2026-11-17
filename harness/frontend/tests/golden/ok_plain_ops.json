@@ -1,0 +1,161 @@
+{"verdictLabel": "CERTIFIED",
+ "verdict": "CERTIFIED",
+ "userDecryption":
+ {"theorem": "Challenge.Scaling.certify?_user",
+  "line": "user-level decryption covered (Challenge.Scaling.certify?_user)",
+  "covered": true},
+ "tool": "fhe_check",
+ "theorems":
+ [{"says":
+   "THE CERTIFICATE (worst case): if Challenge.Certify.certify? returns a certificate c in the worst-case mode, then for every secret s (no bound on s assumed; a run within the budget exists for s within secretBound) and all inputs within inputNoise and their declared bounds, every output of every run meeting the Spec.Trace contracts at the budget Spec.Budget.certified decrypts WITH s to the value the program computes and has noise at most its own bound in c (all outputs jointly)",
+   "name": "Challenge.Certify.worst_certified"},
+  {"says":
+   "the same for one program with one bound (used in the proof, per output)",
+   "name": "Challenge.FreshNoise.certified_decrypts"},
+  {"says":
+   "the BGV headline (= Challenge.Certify.certified_sound): for inputs within the analysed input noise c.params.inputNoise, in any mode, every output of every run within c.budget is under s, decrypts with s and has noise at most its own bound",
+   "name": "Challenge.Certify.certify?_sound"},
+  {"says":
+   "what the fields of the certificate are, and that every check (schemeParamsOK?, specialOK?, the layout at every level, refAnalyze on the whole program and on each output alone, certOK? per output) was made at the analysed parameters",
+   "name": "Challenge.Certify.certify?_spec"},
+  {"says":
+   "certify? = some c implies SchemeParamsOK, BGV, SpecialOK and the layout usable at every level 1..L",
+   "name": "Challenge.Certify.certify?_paramsOK"},
+  {"says":
+   "a certified program has a run at the certified budget from every valid input (the textbook algorithms): the certificate is not about no runs",
+   "name": "Challenge.Certify.certified_run_exists"},
+  {"says": "the key an output is under does not depend on the messages",
+   "name": "Challenge.FreshNoise.outputKey?_eq"},
+  {"says":
+   "the noise bound of refAnalyze at E = Spec.Budget.certified P lay holds for every run meeting the Spec.Trace contracts",
+   "name": "Challenge.Budget.certified_sound"},
+  {"says": "schemeParamsOK? P = true implies SchemeParamsOK P",
+   "name": "Challenge.Params.schemeParamsOK?_sound"},
+  {"says": "specialOK? P = true implies SpecialOK P (special primes)",
+   "name": "Challenge.Budget.specialOK?_sound"},
+  {"says":
+   "relinearization can be done within ksBoundAt at every level (keys with noise <= keyNoise; no prime-size condition)",
+   "name": "Challenge.Budget.relin_realizable"},
+  {"says": "the same for key switching after an automorphism",
+   "name": "Challenge.Budget.keySwitch_realizable"},
+  {"says":
+   "modulus switching of a value with k parts can be done within msBudgetAt P k = ceil(t*sum_{i<k}(N*secretBound)^i/2), for every k",
+   "name": "Challenge.Budget.modSwitch_realizable_parts"},
+  {"says":
+   "modulus switching of a 2-part ciphertext can be done within msBudget",
+   "name": "Challenge.Budget.modSwitch_realizable"},
+  {"says":
+   "modulus switching of a 1-part value (a plaintext operand) can be done within msBudgetOne = ceil(t/2)",
+   "name": "Challenge.Budget.modSwitch_realizable_one"},
+  {"says": "ksBudget covers every level of the chain",
+   "name": "Challenge.Budget.ksBoundAt_le_ksBudget"},
+  {"says":
+   "a ciphertext that Encrypts v with noise <= B and passes decryptOK? decrypts by bgvDecryptSwitched to decScale * message",
+   "name": "Challenge.Decrypt.decrypt_switched"},
+  {"says": "the level of an output does not depend on the messages",
+   "name": "Challenge.Decrypt.outputLevel?_eq"},
+  {"says":
+   "the function fhe_check runs, FHE.Holes.certifyFast, returns exactly what Challenge.Certify.certify? returns, on every input (all modes)",
+   "name": "Challenge.Fast.certifyFast_eq"},
+  {"says":
+   "the analyzer fhe_check runs, FHE.Holes.analyzeFast, returns exactly what Challenge.Headline.refAnalyze returns, on every input",
+   "name": "Challenge.Fast.analyzeFast_eq"},
+  {"says":
+   "a ciphertext that Encrypts a value decrypts to its message exactly by textbook decryption at its own level, under the key it is recorded under",
+   "name": "Challenge.Trace.encrypts_bgv_decrypts"}],
+ "summary":
+ "every output decrypts correctly, in the worst case, under the assumptions below",
+ "statement":
+ "WHAT \"CERTIFIED\" MEANS\nfhe_check computed the value of the locked Lean function Challenge.Certify.certify? on the decoded\nparameters, key-switching layout, program and decryption method, and it returned a\ncertificate. certify? itself runs Spec.schemeParamsOK?, Spec.Budget.specialOK?, the layout\ncheck at every level, Challenge.Headline.refAnalyze (the reference worst-case BGV\nnoise analysis; the hole FHE.Holes.analyze of the headline theorem is defined as this same\nfunction today) with the budget Spec.Budget.certified, which returned the bound shown for each\noutput, and Spec.Encrypt.certOK? on each output with that bound\n(Challenge.Certify.certify?_spec). The Lean theorem Challenge.Certify.worst_certified,\nproved and kernel-checked in this repository, then states, from certify? = some c alone:\nfor every secret key s (no bound on s is assumed here; that an execution within the budget\nexists, and that the reference algorithms stay within it, is proved for s within secretBound:\nChallenge.Certify.certified_run_exists, Challenge.Budget.relin_realizable), all input messages, and\nall input ciphertexts with noise at most inputNoise (and at most their declared bound, for\ninputs that declare one), in EVERY execution of the program in which each operation meets its\nphase contract (Spec.Trace) with the budgets above, each output is a ciphertext under s itself\nthat decrypts WITH s exactly to the value the program computes on the messages (see\nDECRYPTION COVERED), with noise at most the bound shown (Challenge.Budget.certified_sound).\n\nHOW THE VERDICT WAS COMPUTED: by FHE.Holes.certifyFast, which makes the checks of\nChallenge.Certify.certify? with the environments of the analysis in search trees and one pass\nover the program (FHE/Noise/Fast.lean; near-linear instead of quadratic in the program length).\nThe locked statement Challenge.Fast.certifyFast_eq, proved and kernel-checked in this\nrepository, says that it returns exactly what certify? returns, on every input; so a\ncertificate printed here is the value of certify?, and the theorems cited are about it. The\nbounds shown without a certificate are those of Challenge.Headline.refAnalyze, computed by\nFHE.Holes.analyzeFast (Challenge.Fast.analyzeFast_eq: equal on every input).\n\nWhere the budgets come from (Spec.Budget, locked pins in Challenge.Budget, proved):\n  key switching: E.keySwitch = ksBudget, the largest ksBoundAt over the levels of the chain, for\n    canonical representatives and the declared digit layout. Challenge.Budget.relin_realizable\n    and keySwitch_realizable: at every level, RNS hybrid key switching with keys of noise at most\n    keyNoise (divisible by t) meets the relin/keySwitch contract within ksBoundAt, for any prime\n    sizes, given SpecialOK (checked here by Spec.Budget.specialOK?).\n  modulus switching: E.modSwitch = msBudget = ceil(t*(1+N*secretBound)/2) for a 2-part ciphertext\n    (Challenge.Budget.modSwitch_realizable) and E.modSwitchOne = msBudgetOne = ceil(t/2) for a\n    1-part value, i.e. a plaintext operand (Challenge.Budget.modSwitch_realizable_one); for a value\n    with k parts (a product not yet relinearized: k = 3), E.modSwitchAt k = msBudgetAt P k =\n    ceil(t*sum_{i<k}(N*secretBound)^i/2) (Challenge.Budget.modSwitch_realizable_parts): the centred\n    t-corrected switch of every part meets the modSwitch contract within them.\n\nDECRYPTION COVERED: decryption with the PHASE switched to one limb, as OpenFHE's\n  PKEBGVRNS::Decrypt does for a ciphertext in EVALUATION format (bgvrns-pke.cpp:52-71): compute\n  <ct, s> modulo the output's level, switch that one polynomial down to q0 by the centred\n  t-corrected switch, read it modulo q0 (centred) and modulo t. This is\n  Spec.Decrypt.bgvDecryptSwitched, WITH THE SECRET KEY s. certify? evaluates\n  Spec.Encrypt.certOK? on every output with its bound: the output is under s itself (Galois\n  element 1; an output left under a rotated key sigma_g(s) is refused), and\n  Spec.Decrypt.decryptAllOK? holds: the switched-phase bound decBound (shown per output; each\n  dropped limb q maps B to floor((B + t*floor(q/2))/q), no secret-dependent term) is below\n  q0/2. By the certificate theorem each output then decrypts to its message times\n  decScale = (q_1*...*q_(l-1))^-1 mod t, the factor the library keeps in the ciphertext's\n  scaling factor and removes when decoding (see the line \"user-level decryption ...\": covered\n  when Spec.Scaling.scaleOK? accepts the input's scaling data, Challenge.Scaling.certify?_user;\n  that the library tracks its factor as Spec.Scaling.facStep says is an assumption).\n  Textbook decryption with s at the output's level is covered too (same theorem).\n  NOT covered: the COEFFICIENT-format branch of Decrypt, which switches\n  every ciphertext component instead of the phase.\n\nASSUMPTIONS (inputs to the theorem, not proved by it):\n  1. Noise of the inputs: every input ciphertext has centred phase m + t*e with\n     |m + t*e|inf <= inputNoise = 83755761703 (2^36.29); every key-switching key\n     has error <= keyNoise = 2555943 (2^21.29), divisible by t; every secret-key\n     coefficient has |s_i| <= secretBound = 1. 1 input(s) declare their own bound (pt <= 65536); the theorem covers only inputs that meet it.\n     These values were supplied by the frontend\n     (openfhe) from the library's sampler constants and encodings (see \"noise\n     derivation\"); fhe_check did not derive or check them.\n  2. The library's operations meet the per-operation phase contracts of Spec.Trace with these\n     budgets, and its key switching uses the declared digit layout and representatives. That\n     the contracts are achievable is proved for the reference algorithms in this repository\n     (textbook add/multiply, RNS hybrid key switching, centred t-corrected modulus switching),\n     NOT for OpenFHE's C++ or Lattigo's Go code, whose agreement with them is assumed. The\n     frontend's translation of the library's program into the operations listed is untrusted;\n     so is its statement of which decryption the library performs.\n  3. Worst-case analysis (infinity norm, every coefficient at its extreme); no probabilistic or\n     average-case statement.\n  4. BGV only. No security claim: the parameters are not checked for a security level.\n     (The \"Security note\" compares log2(Q*P) with the standard's table; it is not part of\n     the certificate.)\n  5. Each output is decrypted with the secret key s the inputs were encrypted under.\n  6. The executable is compiled by the Lean compiler from the verified definitions; the Lean\n     compiler and runtime, and this tool's (untrusted) JSON decoding and printing, are trusted.\nNeither OpenFHE, nor HEIR, nor Lattigo has been verified.",
+ "security":
+ {"row": "standard-2018",
+  "partOfVerdict": false,
+  "noEntry": null,
+  "log2QP": 254.99,
+  "exceeds128": false,
+  "caps": {"256": 237, "192": 305, "128": 438},
+  "assumption":
+  "INPUT ASSUMPTION, not proved here: HomomorphicEncryption.org Security Standard (Albrecht et al., November 2018), ternary secret, classical security; as transcribed in OpenFHE stdlatticeparms.cpp",
+  "N": "16384"},
+ "params":
+ {"t": "65537",
+  "specialOK": true,
+  "special": ["1152921497895862273", "1152921422732787713"],
+  "schemeParamsOK": true,
+  "log2Q": 134.99,
+  "limbs": ["35156991246337", "35144106147841", "35126926016513"],
+  "N": "16384"},
+ "outputs":
+ [{"name": "y",
+   "marginBits": 22.71,
+   "level": 2,
+   "halfQLog2": 89,
+   "halfQ0Log2": 44,
+   "galoisKey": 1,
+   "decOK": true,
+   "decMarginBits": 22.69,
+   "decBoundLog2": 21.31,
+   "decBound": "2591720",
+   "boundLog2": 66.29,
+   "bound": "89932064341488697344"}],
+ "mode": {"kind": "worst-case", "kappaAvailable": true},
+ "input": "tests/negative/ok_plain_ops.json",
+ "format": "fhe-check-report/v1",
+ "decryption": "switch-to-one-limb",
+ "certifiedProperty": "correctness (exact decryption), not security",
+ "certificateTheorem": "Challenge.Certify.worst_certified",
+ "budget":
+ {"modSwitchOneFrom": "Spec.Budget.msBudgetOne",
+  "modSwitchOne": "32769",
+  "modSwitchMany": [],
+  "modSwitchLog2": 29,
+  "modSwitchFrom": "Spec.Budget.msBudget",
+  "modSwitch": "536911873",
+  "keySwitchUsedLevels": [],
+  "keySwitchPerLevel":
+  [{"log2": 31,
+    "level": 3,
+    "digits": [{"log2Q": 90, "limbs": 2}, {"log2Q": 45, "limbs": 1}],
+    "bound": "2147647567"},
+   {"log2": 31,
+    "level": 2,
+    "digits": [{"log2Q": 90, "limbs": 2}],
+    "bound": "2147647567"},
+   {"log2": 31,
+    "level": 1,
+    "digits": [{"log2Q": 45, "limbs": 1}],
+    "bound": "2147647490"}],
+  "keySwitchLog2": 31,
+  "keySwitchFrom": "Spec.Budget.ksBudget",
+  "keySwitchCanonical": true,
+  "keySwitch": "2147647567"},
+ "boundLog2": 66.29,
+ "bound": "89932064341488697344",
+ "assumptions":
+ {"suppliedBy": "openfhe",
+  "secretBound": "1",
+  "noiseDerivation":
+  {"symmetricInputNoiseFormula":
+   "(t-1) + t*Be: Encrypt with a private key, c = (a*s + t*e + m, -a) (cryptocontext.h:1419-1436; rns-pke.cpp:45-59,115-150); declared as the input's own bound",
+   "secret": "UNIFORM_TERNARY (base-pke.cpp:66-67)",
+   "scalingTechnique": "FIXEDMANUAL",
+   "plaintextBound":
+   "t-1 (packed encoding, scaling factor applied mod t before the lift to [0,t))",
+   "openfheVersion":
+   "openfheorg/openfhe-development v1.6.1 (b59e1f291965f14fbee5172cd83a20f5b856204f) + harness/frontend/openfhe/openfhe-v1.6.1-tracer.patch, WITH_REDUCED_NOISE=OFF",
+   "keyProvenance":
+   "checked from the trace: every Encrypt key comes from one traced single-party CryptoContext::KeyGen(); every relinearization/rotation key used was generated from its secret key by a traced EvalMultKeyGen/EvalMultKeysGen/rotation-key generation for the index used; no multiparty, proxy re-encryption or key-switching call in the trace",
+   "keyNoiseFormula": "t*Be (keyswitch-hybrid.cpp:104-128)",
+   "inputNoiseFormula":
+   "(t-1) + t*Be*(1 + 2*N*Bs): public-key encryption, v ternary, packed plaintext (scaled mod t) lifted to [0,t) (rns-pke.cpp:61-75,152-199; packedencoding.cpp:66-119)",
+   "errorBoundSource":
+   "OpenFHE DGG (Peikert inversion): sigma = 3.19f, |e| <= ceil(sigma*12.00610553538285) = 39, else OPENFHE_THROW (discretegaussiangenerator-impl.h:81-82,94-99)",
+   "errorBound": 39,
+   "build":
+   {"WITH_REDUCED_NOISE": false, "NATIVEINT": 64, "HAVE_INT128": true}},
+  "modSwitchMethod": "t-corrected-centred",
+  "keySwitchVariant": "openfhe",
+  "keyNoise": "2555943",
+  "inputNoise": "83755761703",
+  "declaredBounds": [{"input": "pt", "bound": "65536"}]},
+ "analyzer": "Challenge.Headline.refAnalyze"}

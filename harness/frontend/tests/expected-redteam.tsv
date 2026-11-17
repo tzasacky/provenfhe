@@ -1,0 +1,50 @@
+# Red-team regressions: witnesses of wrong verdicts and hangs found by the adversarial review of 2026-11-12,
+# and what fhe_check must say now. Columns (tab-separated): file (relative to harness/frontend), "-" or a
+# --kappa value, exit code, verdict, text that must appear in the human report. run.sh runs each under a 30 s timeout.
+#
+# F2: an output left under a rotated key (automorph without keySwitch; an input declared under key 3) was CERTIFIED
+# as "decrypts"; the theorems spoke of decryption under sigma_g(s). Now refused by Spec.Encrypt.certOK?.
+tests/redteam/rotkey.json	-	1	NOT CERTIFIED	output o is left under the rotated key sigma_5(s) (Galois element 5), not under the secret key s
+tests/redteam/rotkey.json	128	1	NOT CERTIFIED	output o is left under the rotated key sigma_5(s)
+tests/redteam/rotkey.json	-	1	NOT CERTIFIED	[UNDER THE ROTATED KEY sigma_5(s), NOT s]
+tests/redteam/inkey3.json	-	1	NOT CERTIFIED	output o is left under the rotated key sigma_3(s) (Galois element 3)
+tests/redteam/rotkey_switched_back.json	-	1	NOT CERTIFIED	user-level decryption not covered
+# F1: --kappa certified vacuously when a fresh input also declared a bound (the analysis started at the bound,
+# the theorem assumed the encryption met it). fb_honest is the same program without the bounds: rejected then and now.
+tests/redteam/fb_bound.json	128	2	UNSUPPORTED	Spec.Encrypt.freshOK? = false: fresh input ct_1 also declares a bound (65536)
+tests/redteam/fb_honest.json	128	1	NOT CERTIFIED	overflows at body[2]
+# F1: a non-fresh 2-part ciphertext with a declared bound was accepted as a "plaintext operand".
+tests/redteam/nonfresh.json	128	2	UNSUPPORTED	input ct_1 is not a fresh encryption (freshEncryption.inputs) and has 2 parts
+# F1: an empty fresh list gave a probabilistic certificate about no encryption.
+tests/redteam/nofresh.json	128	2	UNSUPPORTED	no input is a fresh encryption (freshEncryption.inputs is empty)
+tests/redteam/fresh_ghost.json	128	3	INVALID INPUT	"ghost" is not a declared input of the program
+# F8: with a frontend inputNoise below the verified worst case, --kappa silently fell back to the frontend's value.
+# Now --kappa never uses it, and the worst-case mode prints the unsupported assumption under the verdict.
+tests/redteam/lowin.json	128	1	NOT CERTIFIED	user-level decryption not covered
+tests/redteam/lowin.json	128	1	NOT CERTIFIED	WARNING: the frontend's inputNoise = 40000 (2^15.29) is BELOW the worst case of a fresh encryption
+tests/redteam/lowin.json	-	1	NOT CERTIFIED	WARNING: ASSUMPTION NOT COVERED BY THE FILE'S OWN SAMPLER BOUNDS: the frontend's inputNoise = 40000 (2^15.29) is BELOW
+# F9: duplicate input names (Source reads the first declaration only), duplicate outputs, and inputs that hang or
+# crash the parser (1e400000 was evaluated as a big integer; deep nesting; a 5000-digit number).
+tests/redteam/dup.json	-	3	INVALID INPUT	the input "ct_1" is declared more than once
+tests/redteam/dup.json	128	3	INVALID INPUT	the input "ct_1" is declared more than once
+tests/redteam/dup2.json	128	3	INVALID INPUT	the input "ct_1" is declared more than once
+tests/redteam/dupout.json	128	3	INVALID INPUT	the output "ct_9" is listed more than once
+tests/redteam/bigexp.json	-	3	INVALID INPUT	refused before parsing: a number is written with an exponent
+tests/redteam/deepnest.json	-	3	INVALID INPUT	refused before parsing: arrays/objects are nested more than 64 deep
+tests/redteam/longnum.json	-	3	INVALID INPUT	refused before parsing: a number token is longer than 400 characters
+tests/redteam/smallexp.json	-	3	INVALID INPUT	refused before parsing: a number is written with an exponent
+tests/redteam/negexp.json	-	3	INVALID INPUT	refused before parsing: a number has a negative exponent of more than 3 digits
+# BFV BEHZ (2026-11-14): t ~ 2^36, 40-bit primes, Enc(0)*Enc(0) at N = 2048 and at the secure N = 8192 OpenFHE chose.
+# The machine-word condition Challenge.BFVMul.behzWordOK? (checked by certifyBFV?) does not hold there, so the program is
+# refused (UNSUPPORTED). The inside_word and outside_word files are cases on either side of the condition.
+tests/redteam/bfv_behz_word_t36_q40_n2048.json	-	2	UNSUPPORTED	the machine-word side condition Challenge.BFVMul.behzWordOK? of OpenFHE's BEHZ code is false on these bases
+tests/redteam/bfv_behz_word_t36_q40_n2048.json	-	2	UNSUPPORTED	m_sk was enlarged to 50 bits against 40-bit moduli in B
+tests/redteam/bfv_behz_word_t36_q40_secure_n.json	-	2	UNSUPPORTED	m_sk was enlarged to 52 bits against 40-bit moduli in B
+tests/redteam/bfv_behz_word_t36_q40_secure_n.json	128	2	UNSUPPORTED	Challenge.BFVMul.behzWordOK? of OpenFHE's BEHZ code is false
+# The boundary at 40-bit primes, N = 2048 (t*N*Q against B*2*q_min, about t = 2^30): just outside (t = 1073872897; m_sk
+# enlarged 4 bits; just outside the word condition, which is a worst-case condition over all operands, about t ~ 2^31.5)
+# and, as the positive control, just inside (t = 1073479681; m_sk enlarged 3 bits): CERTIFIED, the word condition holds.
+tests/redteam/bfv_behz_word_outside.json	-	2	UNSUPPORTED	its worst case exceeds the bound by less than 0.01 bits
+tests/redteam/bfv_behz_word_inside.json	-	0	CERTIFIED	Challenge.BFVMul.behzWordOK? = true
+tests/redteam/bfv_behz_word_inside.json	-	0	CERTIFIED	ct_4: level 4, noise <= 8108807634964155572590260 (2^82.75)
+tests/redteam/bfv_behz_word_inside.json	-	0	CERTIFIED	Library decryption: PROVED

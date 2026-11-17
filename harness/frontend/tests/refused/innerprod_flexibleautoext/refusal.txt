@@ -1,0 +1,1 @@
+line 91: CryptoContext::EvalInnerProduct(Ciphertext,Ciphertext,uint32_t): EvalInnerProduct calls EvalSum (fused radix fold, base-advancedshe.cpp:514-637), not modelled; write it with EvalMult, EvalRotate/EvalAtIndex and EvalAdd

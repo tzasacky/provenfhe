@@ -1,0 +1,2 @@
+fhe_check: tests/negative/fresh_mean_den_zero.json
+VERDICT: INVALID INPUT: $.freshEncryption.mean.den: must be positive

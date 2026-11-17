@@ -1,0 +1,18 @@
+{"verdict": "UNSUPPORTED",
+ "tool": "fhe_check",
+ "summary":
+ "no recommendation for an OpenFHE FLEXIBLEAUTOEXT program (only FIXEDMANUAL programs keep their meaning when the primes change)",
+ "notes":
+ ["OpenFHE FLEXIBLEAUTOEXT: the extracted program itself depends on the primes (the library inserts its own",
+  "  modulus switches and multiplies by constants c = sf2*sf1^-1*q mod t chosen from the primes,",
+  "  bgvrns-leveledshe.cpp:101-266; FLEXIBLEAUTOEXT adds an extra limb), so certifying this program",
+  "  body on other primes would certify a program OpenFHE does not run. And OpenFHE refuses",
+  "  SetScalingModSize/SetFirstModSize outside FIXEDMANUAL (gen-cryptocontext-params-validation.cpp:124-133).",
+  "What a user CAN do:",
+  "  (a) switch to FIXEDMANUAL (SetScalingTechnique(FIXEDMANUAL), with ModReduce after each",
+  "      multiplication), trace and extract that program, and run `fhe_check recommend` on it;",
+  "  (b) stay in this mode and raise SetEvalAddCount, one of the inputs that size the primes",
+  "      OpenFHE picks (bgvrns-parametergeneration.cpp:101-280), then re-extract and re-check: see",
+  "      harness/frontend/recommend/roundtrip.sh --auto for what this achieves on the default programs."],
+ "input": "examples/openfhe_flexibleautoext_chain.fhecheck.json",
+ "format": "fhe-check-recommend/v1"}

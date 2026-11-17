@@ -1,0 +1,309 @@
+{
+ "format": "fhe-check/v1",
+ "source": {
+  "tool": "openfhe",
+  "artifact": "levelbfv_default_bv_t50_chain_d3_x1",
+  "scheme": "BFVRNS",
+  "multiplicationTechnique": "HPSPOVERQLEVELED",
+  "keySwitchTechnique": "BV",
+  "encryptionTechnique": "STANDARD",
+  "multiplicativeDepth": 4
+ },
+ "params": {
+  "scheme": "BFV",
+  "N": 16384,
+  "t": 1125899915231233,
+  "limbs": [
+   {
+    "q": "1152921504606748673",
+    "psi": "62213374832584"
+   },
+   {
+    "q": "1152921504606683137",
+    "psi": "212089012217363"
+   },
+   {
+    "q": "1152921504606584833",
+    "psi": "92166579128688"
+   },
+   {
+    "q": "1152921504605962241",
+    "psi": "74756755228070"
+   },
+   {
+    "q": "1152921504604979201",
+    "psi": "52069629205452"
+   },
+   {
+    "q": "1152921504600260609",
+    "psi": "27543819356734"
+   }
+  ],
+  "special": [],
+  "secretBound": 1,
+  "inputNoise": "995062040977424",
+  "keyNoise": "39"
+ },
+ "noiseDerivation": {
+  "noiseDefinition": "BFV noise e = [c0 + c1*s - floor(Q/t)*m]_Q (centred), m = the stored plaintext polynomial, coefficients in [0, t)",
+  "errorBound": 39,
+  "errorBoundSource": "OpenFHE DGG (Peikert inversion): sigma = 3.19f, |e| <= ceil(sigma*12.00610553538285) = 39, else OPENFHE_THROW (core/include/math/discretegaussiangenerator-impl.h:81-82,94-99)",
+  "encryptionTechnique": "STANDARD",
+  "inputNoiseFormula": "Be*(1 + 2*N*Bs) + max_l ceil(r_l*(t-1)/t), r_l = Q_l mod t, l over the numbers of limbs at which the trace encrypts: phase = v*e_pk + e0 + e1*s + ceil(Q*m/t) and ceil(Q*m/t) - floor(Q/t)*m = ceil(r*m/t) for m in [0,t)",
+  "inputNoiseTerms": {
+   "Be*(1+2*N*Bs)": 1277991,
+   "maxEncodingDeviation": 995062039699433,
+   "encryptionLevels": [
+    6
+   ]
+  },
+  "inputNoiseSource": "PKEBFVRNS::Encrypt(DCRTPoly, PublicKey) (pke/lib/scheme/bfvrns/bfvrns-pke.cpp:167-223): EncryptZeroCore (pke/lib/schemerns/rns-pke.cpp:152-200: c0 = pk0*v + ns*e0, c1 = pk1*v + ns*e1, v from the ternary generator, ns = 1), pk = (ns*e - a*s, a) (bfvrns-pke.cpp:88-90); then c0 += TimesQovert(ptxt) (bfvrns-pke.cpp:204-206; core/include/lattice/hal/default/dcrtpoly-impl.h:918-935: every residue x -> [x * (-Q mod t)]_t * t^-1 mod q_i, i.e. the integer (Q*m + [-Q*m]_t)/t = ceil(Q*m/t)); EXTENDED: the same modulo Q*px with px = PreviousPrime(q_last) (bfvrns-cryptoparameters.cpp:78,97-122; bfvrns-pke.cpp:182-189,197-200), then ScaleAndRoundPOverQ on both components (bfvrns-pke.cpp:211-214; dcrtpoly-impl.h:1699-1714; the lift of the px-residue is centred: core/lib/math/hal/intnat/mubintvecnat.cpp:217-237)",
+  "keyNoiseFormula": "Be: key-switching keys b = -a*s' + e (+ the key material), noise scale 1 (pke/lib/keyswitch/keyswitch-hybrid.cpp:91,120,123; keyswitch-bv.cpp:64,98-101)",
+  "secret": "UNIFORM_TERNARY",
+  "build": {
+   "WITH_REDUCED_NOISE": false,
+   "NATIVEINT": 64,
+   "HAVE_INT128": true
+  },
+  "keyProvenance": "checked from the trace: every Encrypt key comes from one traced single-party CryptoContext::KeyGen(); every relinearization/rotation key used was generated from its secret key by a traced EvalMultKeyGen/EvalMultKeysGen/rotation-key generation for the index used; no multiparty, proxy re-encryption or key-switching call in the trace",
+  "plaintextBound": "t-1: packed encoding lifts every coefficient of the inverse-NTT'd slot vector to [0, t) and stores the same integer in every limb (pke/lib/encoding/packedencoding.cpp:74-86,115-131); EvalMult(ct, pt) multiplies every component by that polynomial (pke/lib/schemerns/rns-leveledshe.cpp:263-278, NORESCALE branch), and EvalAdd/EvalSub(ct, pt) add TimesQovert of it (bfvrns-leveledshe.cpp:56-96)",
+  "openfheVersion": "openfheorg/openfhe-development v1.6.1 (b59e1f291965f14fbee5172cd83a20f5b856204f) + harness/frontend/openfhe/openfhe-v1.6.1-tracer.patch, WITH_REDUCED_NOISE=OFF",
+  "plainAdd": {
+   "method": "ceil",
+   "deviationBound": "1125891325197314",
+   "source": "LeveledSHEBFVRNS::EvalAddInPlace/EvalSubInPlace(Ciphertext, Plaintext) (pke/lib/scheme/bfvrns/bfvrns-leveledshe.cpp:56-96) add TimesQovert(p) to c0 (core/include/lattice/hal/default/dcrtpoly-impl.h:918-935): residue-wise [p*(-Q mod t)]_t * t^-1 mod q_i, which is the integer (Q*p + [-Q*p]_t)/t = CEIL(Q*p/t) for the stored p in [0,t) -- not floor(Q/t)*p ('delta') and not the rounding to nearest ('rounded'): ceil(Q*p/t) - floor(Q/t)*p = ceil((Q mod t)*p/t), which exceeds the 'rounded' deviation floor(((Q mod t)*p + t/2)/t) by one whenever the fractional part of (Q mod t)*p/t lies in (0, 1/2). deviationBound = max of ceil((Q_l mod t)*(t-1)/t) over the numbers of limbs l of the plaintext operands of this trace ([1, 2, 3, 4, 5, 6]; every level if there is none)"
+  }
+ },
+ "keySwitching": {
+  "method": "hybrid",
+  "variant": "centred",
+  "digits": {
+   "kind": "consecutive",
+   "towersPerDigit": 1,
+   "dnum": 6
+  },
+  "technique": "BV",
+  "source": "KeySwitchBV with digit size 0 (CRT digits), MODELLED as hybrid key switching with no special prime (P = 1) and one limb per digit: the key of limb i is b_i = F_i*s' - (a_i*s + e_i), F_i*s' = s' on limb i and 0 on the others, i.e. the CRT idempotent (Q/q_i)*[(Q/q_i)^-1]_{q_i} times s' (pke/lib/keyswitch/keyswitch-bv.cpp:93-103); the digits are CRTDecompose(0): digit i = the residue [c]_{q_i}, extended to the other limbs by NativeVector::SwitchModulus, which maps v > q_i/2 to v - q_i: the CENTRED representative (keyswitch-bv.cpp:251-255; core/include/lattice/hal/default/dcrtpoly-impl.h:249-273; core/lib/math/hal/intnat/mubintvecnat.cpp:191-215); the result is sum_i digit_i*(b_i, a_i) with the keys truncated to the ciphertext's limbs (keyswitch-bv.cpp:257-330). Error: sum_i digit_i*e_i, |.| <= N*Be*sum_i q_i/2; there is no ModDown (the hybrid formula's rounding term with P = 1 over-approximates). Under HPSPOVERQLEVELED the switch runs on the first L - internalDrop limbs and the result is multiplied by Q/Q_l (provenance: internalDrop)"
+ },
+ "modSwitch": {
+  "method": "round",
+  "source": "LeveledSHEBFVRNS::Compress (pke/lib/scheme/bfvrns/bfvrns-leveledshe.cpp:902-932): per dropped limb, DropLastElementAndScale of every component (dcrtpoly-impl.h:737-755): (c - [c]_{q_last})/q_last with the centred [c]_{q_last} (mubintvecnat.cpp:191-215), i.e. round(c/q_last)"
+ },
+ "decryption": {
+  "method": "at-output-level",
+  "source": "PKEBFVRNS::Decrypt (pke/lib/scheme/bfvrns/bfvrns-pke.cpp:225-278) computes round(t*[c0 + c1*s]_Q/Q) mod t. IDEALISED here as the exact rounding at the output's level. What the library does: (a) an output with all L limbs: the RNS ScaleAndRound (:238-253), for the HPS techniques with a double-precision sum of the fractional parts (dcrtpoly-impl.h:1220-1388; the comments there bound the float error by 1/4), for BEHZ with the gamma-corrected integer procedure (dcrtpoly-impl.h:1652-1696; gamma = 2^26); neither is exact rounding when the phase is within the procedure's error of a rounding boundary. (b) an output with fewer limbs (after Compress): the PHASE is switched down to one limb by DropLastElementAndScale and then rounded with MultiplyAndRound(t, q_0) (:254-275); each switch adds at most 1/2 to the phase error, which this declaration does not account for"
+ },
+ "bfv": {
+  "multiplication": {
+   "technique": "HPSPOVERQLEVELED",
+   "auxBasis": [
+    "1152921504599080961",
+    "1152921504598720513",
+    "1152921504597114881",
+    "1152921504597016577",
+    "1152921504596525057",
+    "1152921504595968001"
+   ],
+   "floatTolerant": true,
+   "auxBasisRule": "prefix",
+   "source": "HPSPOVERQLEVELED: sizeQ auxiliary primes R = PreviousPrime chain below q_last, read from GetParamsRl (pke/lib/scheme/bfvrns/bfvrns-cryptoparameters.cpp:78-79,128-142); the base extensions and the scaling use double-precision estimates of the overflow/quotient (dcrtpoly-impl.h ExpandCRTBasis/SwitchCRTBasis/ScaleAndRound with the *Frac tables and m_qInv, bfvrns-cryptoparameters.cpp:263-289); a multiplication on k limbs uses P_k = the FIRST k primes of auxBasis (m_paramsRl[k-1], bfvrns-cryptoparameters.cpp:243-255): operand 1 is ExpandCRTBasis'd to Q_k u P_k, operand 2 is switched Q -> P_k (scaled by P_k/Q) and extended, tensor, ScaleAndRound by t/P_k into Q_k (bfvrns-leveledshe.cpp:238-262,380-390); LEVELED: on a ciphertext with all L limbs the library first drops d = FindLevelsToDrop(noiseScaleDeg - 1, params, MSB(q_0), keySwitch) limbs (bfvrns-leveledshe.cpp:98-198): EvalMult/EvalSquare scale operand 1 by Q_l/Q with rounding (ScaleAndRound), multiply on l = L - d limbs with P_l and expand the result by Q/Q_l (ExpandCRTBasisQlHat) (:263-301,391-405,485-524,667-681); RelinearizeCore scales c2 (or c1 for a rotation) by Q_l/Q, key-switches on l limbs and multiplies the result by Q/Q_l (:869-889); keySwitch = true only for the 2-part (rotation) case (:860,874). maxInternalDrop is the largest d over the traced multiplications, squarings and relinearizations of 3 components, maxInternalDropKS the largest over the traced 2-component key switches (rotations); the per-operation values are in provenance[].internalDrop. A ciphertext with fewer than L limbs (after Compress) is multiplied as HPSPOVERQ at its own level, with no drop (:238-239)",
+   "maxInternalDrop": 3,
+   "maxInternalDropKS": 0,
+   "internalDrops": [
+    0,
+    0,
+    0,
+    1,
+    1,
+    3
+   ],
+   "mulLimbs": [
+    5,
+    6
+   ]
+  },
+  "encryption": {
+   "technique": "STANDARD",
+   "inputs": [
+    "ct_1",
+    "ct_2",
+    "ct_3"
+   ],
+   "keyError": 39,
+   "u": 1,
+   "e0": 39,
+   "e1": 39,
+   "encoding": "ceil(Q*m/t)",
+   "encodingDeviation": "995062039699433",
+   "source": "PKEBFVRNS::Encrypt(DCRTPoly, PublicKey) (pke/lib/scheme/bfvrns/bfvrns-pke.cpp:167-223): EncryptZeroCore (pke/lib/schemerns/rns-pke.cpp:152-200: c0 = pk0*v + ns*e0, c1 = pk1*v + ns*e1, v from the ternary generator, ns = 1), pk = (ns*e - a*s, a) (bfvrns-pke.cpp:88-90); then c0 += TimesQovert(ptxt) (bfvrns-pke.cpp:204-206; core/include/lattice/hal/default/dcrtpoly-impl.h:918-935: every residue x -> [x * (-Q mod t)]_t * t^-1 mod q_i, i.e. the integer (Q*m + [-Q*m]_t)/t = ceil(Q*m/t)); EXTENDED: the same modulo Q*px with px = PreviousPrime(q_last) (bfvrns-cryptoparameters.cpp:78,97-122; bfvrns-pke.cpp:182-189,197-200), then ScaleAndRoundPOverQ on both components (bfvrns-pke.cpp:211-214; dcrtpoly-impl.h:1699-1714; the lift of the px-residue is centred: core/lib/math/hal/intnat/mubintvecnat.cpp:217-237)"
+  }
+ },
+ "program": {
+  "inputs": [
+   {
+    "name": "ct_1",
+    "parts": 2,
+    "level": 6,
+    "key": 1,
+    "origin": {
+     "openfhe": "pt_1"
+    }
+   },
+   {
+    "name": "ct_2",
+    "parts": 2,
+    "level": 6,
+    "key": 1,
+    "origin": {
+     "openfhe": "pt_2"
+    }
+   },
+   {
+    "name": "ct_3",
+    "parts": 2,
+    "level": 6,
+    "key": 1,
+    "origin": {
+     "openfhe": "pt_3"
+    }
+   }
+  ],
+  "body": [
+   {
+    "op": "mul",
+    "dst": "ct_4",
+    "a": "ct_1",
+    "b": "ct_2",
+    "expect": {
+     "level": 6,
+     "parts": 3
+    }
+   },
+   {
+    "op": "relin",
+    "dst": "ct_5",
+    "a": "ct_4",
+    "expect": {
+     "level": 6,
+     "parts": 2
+    }
+   },
+   {
+    "op": "mul",
+    "dst": "ct_6",
+    "a": "ct_5",
+    "b": "ct_5",
+    "expect": {
+     "level": 6,
+     "parts": 3
+    }
+   },
+   {
+    "op": "relin",
+    "dst": "ct_7",
+    "a": "ct_6",
+    "expect": {
+     "level": 6,
+     "parts": 2
+    }
+   },
+   {
+    "op": "mul",
+    "dst": "ct_8",
+    "a": "ct_7",
+    "b": "ct_7",
+    "expect": {
+     "level": 6,
+     "parts": 3
+    }
+   },
+   {
+    "op": "relin",
+    "dst": "ct_9",
+    "a": "ct_8",
+    "expect": {
+     "level": 6,
+     "parts": 2
+    }
+   }
+  ],
+  "outputs": [
+   "ct_9"
+  ]
+ },
+ "provenance": [
+  {
+   "index": 0,
+   "openfhe": "LeveledSHEBFVRNS::EvalMult(Ciphertext,Ciphertext)",
+   "traceLine": 93,
+   "internalDrop": 0,
+   "internalLimbs": 6,
+   "findLevelsToDrop": {
+    "levels": 0,
+    "keySwitch": false
+   }
+  },
+  {
+   "index": 1,
+   "openfhe": "LeveledSHEBFVRNS::RelinearizeCore(Ciphertext,EvalKey)",
+   "traceLine": 99,
+   "internalDrop": 0,
+   "internalLimbs": 6,
+   "findLevelsToDrop": {
+    "levels": 1,
+    "keySwitch": false
+   }
+  },
+  {
+   "index": 2,
+   "openfhe": "LeveledSHEBFVRNS::EvalSquare(Ciphertext)",
+   "traceLine": 114,
+   "internalDrop": 0,
+   "internalLimbs": 6,
+   "findLevelsToDrop": {
+    "levels": 1,
+    "keySwitch": false
+   },
+   "note": "EvalSquare under a P-over-Q technique: two different lifts of the operand (bfvrns-leveledshe.cpp:459-524,626-636), emitted as mul a a"
+  },
+  {
+   "index": 3,
+   "openfhe": "LeveledSHEBFVRNS::RelinearizeCore(Ciphertext,EvalKey)",
+   "traceLine": 119,
+   "internalDrop": 1,
+   "internalLimbs": 5,
+   "findLevelsToDrop": {
+    "levels": 2,
+    "keySwitch": false
+   }
+  },
+  {
+   "index": 4,
+   "openfhe": "LeveledSHEBFVRNS::EvalSquare(Ciphertext)",
+   "traceLine": 134,
+   "internalDrop": 1,
+   "internalLimbs": 5,
+   "findLevelsToDrop": {
+    "levels": 2,
+    "keySwitch": false
+   },
+   "note": "EvalSquare under a P-over-Q technique: two different lifts of the operand (bfvrns-leveledshe.cpp:459-524,626-636), emitted as mul a a"
+  },
+  {
+   "index": 5,
+   "openfhe": "LeveledSHEBFVRNS::RelinearizeCore(Ciphertext,EvalKey)",
+   "traceLine": 139,
+   "internalDrop": 3,
+   "internalLimbs": 3,
+   "findLevelsToDrop": {
+    "levels": 3,
+    "keySwitch": false
+   }
+  }
+ ],
+ "crossCheck": {
+  "what": "levels and parts replayed vs OpenFHE's own towers/parts per ciphertext; for HPSPOVERQLEVELED the library's FindLevelsToDrop table vs the Python replica",
+  "mismatches": [],
+  "findLevelsToDropReplicaAgrees": true
+ }
+}

@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using these metadata."
+type: software
+title: "Machine-Checked Worst-Case Noise Bounds for RNS BGV and BFV: IND-CPA-D Security and What It Costs"
+abstract: >-
+  ProvenFHE makes worst-case noise bounds, the countermeasure the IND-CPA-D attack papers
+  recommend, checkable for RNS BGV and BFV. It provides fhe_check, a checker whose CERTIFIED
+  verdict has a machine-checked Lean 4 soundness theorem covering the RNS algorithms libraries
+  run (hybrid key switching, modulus switching, BEHZ and HPS-family multiplication with their
+  binary64 sums), and a proof that on the circuits it accepts IND-CPA-D reduces to IND-CPA, for
+  BGV and BFV, with textbook decryption and public evaluation keys: in the fresh-only game for
+  every evaluator within the budget, and in the game with evaluation on earlier results for local
+  step-by-step interpreters. It
+  also provides provenfhe_ref, a reference implementation proved to compute the definitions the
+  theorems are about, and a measured cost of certified parameters on OpenFHE. Existing libraries
+  (OpenFHE, Lattigo) are tested instances, compared with the models on recorded runs.
+authors:
+  - family-names: "Zasacky"
+    given-names: "Tye"
+    email: "tzasacky@gmail.com"
+version: "0.1.0"
+date-released: "2026-11-16"
+license: Apache-2.0
+repository-code: "https://github.com/tzasacky/provenfhe"
+keywords:
+  - Lean 4
+  - formal verification
+  - fully homomorphic encryption
+  - BGV
+  - BFV
+  - noise analysis
+  - IND-CPA-D
+doi: "10.5281/zenodo.24296319"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.24296319"
+    description: "Archived snapshot of release v0.1.0"

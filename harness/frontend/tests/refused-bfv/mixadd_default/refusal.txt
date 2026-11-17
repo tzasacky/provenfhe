@@ -1,0 +1,1 @@
+line 103: LeveledSHEBase::EvalAddCoreInPlace(Ciphertext,Ciphertext): operand ct_4 is the unrelinearised output of a BFV product (EvalMultNoRelin, or EvalMult/EvalSquare without a key); `add` of it with an operand that is not such a product is not supported (relinearize the product first)

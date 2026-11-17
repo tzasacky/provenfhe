@@ -1,0 +1,108 @@
+fhe_check: examples/heir_cmux.worstcase.fhecheck.json
+VERDICT: CERTIFIED AT PHASE LEVEL: the raw (phase-level) decryption of every output is correct, in the worst case, under the assumptions below; user-level decryption depends on the backend and is NOT covered
+NOTE: what is certified is correctness (exact decryption), not security; see "Security note" below.
+user-level decryption not covered: no scaling data in the input (the library's scaling-factor bookkeeping, $.scaling, is needed)
+
+Parameters (BGV, from heir): N = 4096, t = 65537, 2 ciphertext primes (log2 Q = 62.00), 1 special primes (log2 P = 31.00)
+  limb bits: [31.00, 31.00]
+  Spec.schemeParamsOK? (chain): passed
+  Spec.Budget.specialOK? (special primes): passed
+
+Security note (NOT part of the verdict; the table is an INPUT ASSUMPTION, not proved here):
+  log2(Q*P) = 93.00 (2 ciphertext limbs, all of them, including any extra limb, and 1 special primes)
+  caps on log2(Q*P) at N = 4096 (ASSUMED, from the HomomorphicEncryption.org Security Standard (Albrecht et al., November 2018), ternary secret, classical security; as transcribed in OpenFHE stdlatticeparms.cpp): 109 (128-bit), 75 (192-bit), 58 (256-bit)
+  these parameters: within the 128-bit cap; above the 192- and 256-bit caps
+
+Mode: worst case (input noise 2^27.00, supplied by the frontend)
+
+Budgets (computed by fhe_check, not read from the input):
+  E.keySwitch = Spec.Budget.ksBudget = 10468488256 (2^33.29): max of ksBoundAt over levels 1..2, canonical representatives (reference algorithm: Spec.Budget.ksBoundAt (canonical layout))
+    level 2: ksBoundAt = 2^33.29; digits (limbs, log2 Q_j): [(1, 31.00), (1, 31.00)]
+    (the program does not key-switch; the budget is unused)
+  E.modSwitch = Spec.Budget.msBudget = ceil(t*(1+N*secretBound)/2) = 134252545 (2^27.00)
+
+Outputs (bound = Challenge.Headline.refAnalyze on the program with this output alone):
+  %ct_5: level 1, noise <= 2^27.32, Q/2 = 2^30.00, margin 2.68 bits
+
+Steps (diagnostic replay with the locked refBound):
+  [0] %ct@neg = mulConst %arg2 -1: level 2, parts 2, B = 2^27.00, margin 34.00 bits
+  [1] %ct = addPlain %ct@neg %pt@L2: level 2, parts 2, B = 2^27.00, margin 34.00 bits
+  [2] %ct_1 = mulPlain %arg2 %pt_0@L2: level 2, parts 2, B = 2^55.00, margin 6.00 bits
+  [3] %ct_3 = mulPlain %ct %pt_2@L2: level 2, parts 2, B = 2^55.00, margin 6.00 bits
+  [4] %ct_4 = add %ct_1 %ct_3: level 2, parts 2, B = 2^56.00, margin 5.00 bits
+  [5] %ct_5 = modSwitch %ct_4: level 1, parts 2, B = 2^27.32, margin 2.68 bits
+
+Noise derivation (from the frontend, printed, NOT checked): {"errorBound":19,"errorBoundSource":"Lattigo v6.1.0 DefaultXe: sigma 3.2, Bound 19.2 (core/rlwe/security.go:10-17), hard rejection v <= 19.2 then rounding, so |e| <= 19 (ring/sampler_gaussian.go:160-166); HEIR emits no Xe/Xs (LattigoEmitter.cpp:1992-2010)","inputNoiseFormula":"(t-1) + t*floor((2*Be*(2N+1) + (N+1)*(p0-1))/(2*p0)) with p0 = 2147721217: Lattigo public-key encryption mod Q*p0 then centred division by p0 (encryptor.go:172-260); m lifted to [0,t) (encoder.go:218-222,361)","keyNoiseFormula":"t*Be: Lattigo keys carry plain e in MSB form (keygenerator.go:296-310), i.e. t*e in the LSB view","keySwitchingVariant":"centred: Lattigo ModUp is exact and centred (|d_j| <= Q_j/2, ring/basis_extension.go:401-435,498-525) and ModDown is an exact centred rounding (|r| <= 1/2, basis_extension.go:222-256); so its LSB-view error, at most t*(N*Be*sum_j Q_j/2 + P*(1+N)/2)/P, is below the centred reference bound ksBoundAt and hence below the canonical one used here (ASSUMED match, argued from source, not proved)","modSwitch":"Lattigo Rescale = DivRoundByLastModulusNTT, centred (schemes/bgv/evaluator.go:1436-1443, ring/scaling.go:99-107)","msbForm":"Lattigo BGV keeps ct phase = m*t^-1 + e (encoder.go:376-377); all bounds here are for the LSB view Phi = t*phase = m + t*e","plaintextBound":"t-1 (canonical [0,t) lift)","secret":"ternary, density 2/3 (security.go:19; sampler_ternary.go:32-37): |s_i| <= 1"}
+
+WHAT "CERTIFIED" MEANS
+fhe_check computed the value of the locked Lean function Challenge.Certify.certify? on the decoded
+parameters, key-switching layout, program and decryption method, and it returned a
+certificate. certify? itself runs Spec.schemeParamsOK?, Spec.Budget.specialOK?, the layout
+check at every level, Challenge.Headline.refAnalyze (the reference worst-case BGV
+noise analysis; the hole FHE.Holes.analyze of the headline theorem is defined as this same
+function today) with the budget Spec.Budget.certified, which returned the bound shown for each
+output, and Spec.Encrypt.certOK? on each output with that bound
+(Challenge.Certify.certify?_spec). The Lean theorem Challenge.Certify.worst_certified,
+proved and kernel-checked in this repository, then states, from certify? = some c alone:
+for every secret key s (no bound on s is assumed here; that an execution within the budget
+exists, and that the reference algorithms stay within it, is proved for s within secretBound:
+Challenge.Certify.certified_run_exists, Challenge.Budget.relin_realizable), all input messages, and
+all input ciphertexts with noise at most inputNoise (and at most their declared bound, for
+inputs that declare one), in EVERY execution of the program in which each operation meets its
+phase contract (Spec.Trace) with the budgets above, each output is a ciphertext under s itself
+that decrypts WITH s exactly to the value the program computes on the messages (see
+DECRYPTION COVERED), with noise at most the bound shown (Challenge.Budget.certified_sound).
+
+HOW THE VERDICT WAS COMPUTED: by FHE.Holes.certifyFast, which makes the checks of
+Challenge.Certify.certify? with the environments of the analysis in search trees and one pass
+over the program (FHE/Noise/Fast.lean; near-linear instead of quadratic in the program length).
+The locked statement Challenge.Fast.certifyFast_eq, proved and kernel-checked in this
+repository, says that it returns exactly what certify? returns, on every input; so a
+certificate printed here is the value of certify?, and the theorems cited are about it. The
+bounds shown without a certificate are those of Challenge.Headline.refAnalyze, computed by
+FHE.Holes.analyzeFast (Challenge.Fast.analyzeFast_eq: equal on every input).
+
+Where the budgets come from (Spec.Budget, locked pins in Challenge.Budget, proved):
+  key switching: E.keySwitch = ksBudget, the largest ksBoundAt over the levels of the chain, for
+    canonical representatives and the declared digit layout. Challenge.Budget.relin_realizable
+    and keySwitch_realizable: at every level, RNS hybrid key switching with keys of noise at most
+    keyNoise (divisible by t) meets the relin/keySwitch contract within ksBoundAt, for any prime
+    sizes, given SpecialOK (checked here by Spec.Budget.specialOK?).
+  modulus switching: E.modSwitch = msBudget = ceil(t*(1+N*secretBound)/2) for a 2-part ciphertext
+    (Challenge.Budget.modSwitch_realizable) and E.modSwitchOne = msBudgetOne = ceil(t/2) for a
+    1-part value, i.e. a plaintext operand (Challenge.Budget.modSwitch_realizable_one); for a value
+    with k parts (a product not yet relinearized: k = 3), E.modSwitchAt k = msBudgetAt P k =
+    ceil(t*sum_{i<k}(N*secretBound)^i/2) (Challenge.Budget.modSwitch_realizable_parts): the centred
+    t-corrected switch of every part meets the modSwitch contract within them.
+
+DECRYPTION COVERED: textbook decryption WITH THE SECRET KEY s modulo the output's own level,
+  [[<ct, s>]_Q]_t (Spec.Scheme.bgvDecrypt). certify? evaluates Spec.Encrypt.certOK?: every
+  output is under s itself (Galois element 1; an output left under a rotated key is refused).
+  NOT covered: a decryption
+  that first switches the ciphertext or its phase to fewer limbs (OpenFHE's Decrypt does; its
+  extractor declares that, and this file does not).
+
+ASSUMPTIONS (inputs to the theorem, not proved by it):
+  1. Noise of the inputs: every input ciphertext has centred phase m + t*e with
+     |m + t*e|inf <= inputNoise = 134285312 (2^27.00); every key-switching key
+     has error <= keyNoise = 1245203 (2^20.25), divisible by t; every secret-key
+     coefficient has |s_i| <= secretBound = 1. 3 input(s) declare their own bound (%pt@L2 <= 65536, %pt_0@L2 <= 65536, %pt_2@L2 <= 65536); the theorem covers only inputs that meet it.
+     These values were supplied by the frontend
+     (heir) from the library's sampler constants and encodings (see "noise
+     derivation"); fhe_check did not derive or check them.
+  2. The library's operations meet the per-operation phase contracts of Spec.Trace with these
+     budgets, and its key switching uses the declared digit layout and representatives. That
+     the contracts are achievable is proved for the reference algorithms in this repository
+     (textbook add/multiply, RNS hybrid key switching, centred t-corrected modulus switching),
+     NOT for OpenFHE's C++ or Lattigo's Go code, whose agreement with them is assumed. The
+     frontend's translation of the library's program into the operations listed is untrusted;
+     so is its statement of which decryption the library performs.
+  3. Worst-case analysis (infinity norm, every coefficient at its extreme); no probabilistic or
+     average-case statement.
+  4. BGV only. No security claim: the parameters are not checked for a security level.
+     (The "Security note" compares log2(Q*P) with the standard's table; it is not part of
+     the certificate.)
+  5. Each output is decrypted with the secret key s the inputs were encrypted under.
+  6. The executable is compiled by the Lean compiler from the verified definitions; the Lean
+     compiler and runtime, and this tool's (untrusted) JSON decoding and printing, are trusted.
+Neither OpenFHE, nor HEIR, nor Lattigo has been verified.

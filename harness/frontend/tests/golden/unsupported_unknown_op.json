@@ -1,0 +1,6 @@
+{"verdictLabel": "UNSUPPORTED",
+ "verdict": "UNSUPPORTED",
+ "tool": "fhe_check",
+ "summary": "operation bootstrap (body[6]): unknown operation",
+ "input": "tests/negative/unsupported_unknown_op.json",
+ "format": "fhe-check-report/v1"}

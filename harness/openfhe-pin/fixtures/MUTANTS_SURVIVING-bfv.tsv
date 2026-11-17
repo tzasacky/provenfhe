@@ -1,0 +1,9 @@
+# BFV mutants that survive on fixtures/mutation-bfv.list (61 cases of bfv-fixtures, including the 16 hand-built N = 64
+# adversarial cases; lean/mutation_bfv.sh): mutant<TAB>why. A surviving BUDGET mutant means the recorded executions do not
+# constrain that number to within the perturbation. Margins: largest measured value against the trusted budget, over
+# bfv-fixtures and bfv-adv (276 decodable cases), 2026-11-14. (bound-mul-k0 is caught: bfv_n64_*_advmul-handbuilt*.)
+mulround-half	E.mulRound / 2 covers every recorded product: smallest headroom against E.mulRound/2 is 0.40 bits on the fixtures (2^34.62 against 2^35.02, bfv_n64_poq_hy_d2_advmul-handbuiltsq) and 0.02 bits on bfv-adv (2^46.98 against 2^47.00, bfv_n1024_poq_hy_d2_advmul-handbuiltsq): measured at most 1.02 bits below E.mulRound
+mullift-half	the lift witness stays at most floor(E.mulLift/2): measured ||k|| = 14 against floor(33/2) = 16 (bfv_n64_poq_hy_d2_advmul-handbuiltkey; 1.24 bits below E.mulLift)
+ks-half	E.keySwitch / 2 covers every recorded relin/keySwitch error: no recorded key switch comes within a factor two of the budget, on the fixtures or on bfv-adv
+ms-half	E.modSwitch / 2 = 4 covers the measured ceil(||delta||/q) <= 3 of every Compress step (1.58 bits below E.modSwitch = 9); bfv-adv has no modSwitch
+plainadd-rounded	the measured ceil deviations stay below plainAddRounded = plainAddScaled - 1 (58347 against 59937, 0.04 bits); bfv-adv has no addPlain/subPlain

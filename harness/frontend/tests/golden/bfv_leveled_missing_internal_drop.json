@@ -1,0 +1,7 @@
+{"verdict": "INVALID INPUT",
+ "tool": "fhe_check",
+ "summary":
+ "$.bfv.multiplication.internalDrops: missing; HPSPOVERQLEVELED drops limbs internally inside a multiplication or key switch (body[0]), and the number dropped at each instruction is an assumption the file must state (one entry per instruction of program.body, 0 where the library drops nothing)",
+ "scheme": "BFV",
+ "input": "tests/negative-bfv/bfv_leveled_missing_internal_drop.json",
+ "format": "fhe-check-report/v1"}

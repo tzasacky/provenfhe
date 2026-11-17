@@ -1,0 +1,7 @@
+{"verdict": "UNSUPPORTED",
+ "tool": "fhe_check",
+ "summary":
+ "key-switching variant bv-base-w: no proved key-switching bound for this variant (centred | canonical | openfhe)",
+ "scheme": "BFV",
+ "input": "tests/negative-bfv/bfv_unsupported_ks_variant.json",
+ "format": "fhe-check-report/v1"}

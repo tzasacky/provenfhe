@@ -1,0 +1,7 @@
+{"verdictLabel": "UNSUPPORTED",
+ "verdict": "UNSUPPORTED",
+ "tool": "fhe_check",
+ "summary":
+ "operation rescale (body[6]): rescale is not an operation of the BGV or BFV programs this tool covers",
+ "input": "tests/negative/unsupported_rescale.json",
+ "format": "fhe-check-report/v1"}

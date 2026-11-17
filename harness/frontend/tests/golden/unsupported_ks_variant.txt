@@ -1,0 +1,2 @@
+fhe_check: tests/negative/unsupported_ks_variant.json
+VERDICT: UNSUPPORTED: key-switching variant lattigo-exact: no proved key-switching bound for this variant (centred | canonical | openfhe)

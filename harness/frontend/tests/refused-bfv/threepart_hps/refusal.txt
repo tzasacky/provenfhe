@@ -1,0 +1,1 @@
+line 103: LeveledSHEBFVRNS::EvalMult(Ciphertext,Ciphertext): operand ct_4 is the unrelinearised output of a BFV product (EvalMultNoRelin, or EvalMult/EvalSquare without a key); `mul` of it is not supported (relinearize the product first)

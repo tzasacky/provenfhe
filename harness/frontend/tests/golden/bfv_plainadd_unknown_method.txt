@@ -1,0 +1,2 @@
+fhe_check: tests/negative-bfv/bfv_plainadd_unknown_method.json
+VERDICT: UNSUPPORTED: plaintext-addition method truncate: no proved deviation for this way of adding a plaintext (delta | rounded | ceil | floor | scaled)

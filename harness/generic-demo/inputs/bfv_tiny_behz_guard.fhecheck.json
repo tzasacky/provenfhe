@@ -1,0 +1,72 @@
+{
+ "format": "fhe-check/v1",
+ "source": {
+  "tool": "hand-written (Challenge.CertifyBFV.tinyIn mulProg behzTech)"
+ },
+ "params": {
+  "scheme": "BFV",
+  "N": 4,
+  "t": 17,
+  "limbs": [
+   "65537",
+   "786433"
+  ],
+  "special": [],
+  "secretBound": 1,
+  "inputNoise": "64",
+  "keyNoise": 64
+ },
+ "keySwitching": {
+  "method": "hybrid",
+  "variant": "centred",
+  "digits": {
+   "kind": "consecutive",
+   "towersPerDigit": 1
+  }
+ },
+ "modSwitch": {
+  "method": "round"
+ },
+ "bfv": {
+  "multiplication": {
+   "technique": "BEHZ",
+   "auxBasis": [
+    "1000003",
+    "1000033"
+   ],
+   "mSk": "1000037",
+   "mTilde": "65536",
+   "source": "behzTech"
+  }
+ },
+ "program": {
+  "inputs": [
+   {
+    "name": "a",
+    "parts": 2,
+    "level": 2
+   },
+   {
+    "name": "b",
+    "parts": 2,
+    "level": 2
+   }
+  ],
+  "body": [
+   {
+    "op": "mul",
+    "dst": "c",
+    "a": "a",
+    "b": "b"
+   },
+   {
+    "op": "relin",
+    "dst": "c",
+    "a": "c"
+   }
+  ],
+  "outputs": [
+   "c"
+  ]
+ }
+}

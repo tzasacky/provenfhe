@@ -1,0 +1,2 @@
+fhe_check: tests/negative/unsupported_unknown_op.json
+VERDICT: UNSUPPORTED: operation bootstrap (body[6]): unknown operation

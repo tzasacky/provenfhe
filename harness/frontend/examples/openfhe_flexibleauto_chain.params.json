@@ -1,0 +1,22 @@
+{
+  "scheme": "BGV",
+  "N": 16384,
+  "t": 65537,
+  "qs": [{"q": 8590163969, "psi": 27746, "bits": 34}, {"q": 8796093349889, "psi": 281089423, "bits": 44}, {"q": 8796093775873, "psi": 518669568, "bits": 44}],
+  "special": [{"q": 1152921497895862273, "psi": 36320716136738, "bits": 60}, {"q": 1152921422732787713, "psi": 43788717183325, "bits": 60}],
+  "keySwitch": "HYBRID",
+  "dnum": 2,
+  "towersPerDigit": 2,
+  "digitSizeBV": 0,
+  "scaling": "FLEXIBLEAUTO",
+  "sigma": 3.19,
+  "assuranceMeasure": 36,
+  "secretKeyDist": "UNIFORM_TERNARY",
+  "encryptionTechnique": "STANDARD",
+  "noiseScale": 65537,
+  "multiplicativeDepth": 2,
+  "PREMode": "NOT_SET",
+  "multipartyMode": "FIXED_NOISE_MULTIPARTY",
+  "stdLevel": "HEStd_128_classic",
+  "build": {"WITH_REDUCED_NOISE": false, "NATIVEINT": 64, "HAVE_INT128": true}
+}

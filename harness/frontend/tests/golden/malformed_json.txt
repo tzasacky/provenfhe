@@ -1,0 +1,2 @@
+fhe_check: tests/negative/malformed_json.json
+VERDICT: INVALID INPUT: malformed JSON: offset 38: unexpected end of input

@@ -1,0 +1,7 @@
+{"verdict": "INVALID INPUT",
+ "tool": "fhe_check",
+ "summary":
+ "$.bfv.multiplication.internalDrops[1]: an internal drop of 1 limb(s) is declared under the technique HPS; only HPSPOVERQLEVELED drops limbs internally (the field must be absent or all zero)",
+ "scheme": "BFV",
+ "input": "tests/negative-bfv/bfv_internal_drops_under_hps.json",
+ "format": "fhe-check-report/v1"}

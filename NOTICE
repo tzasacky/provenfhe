@@ -1,0 +1,111 @@
+ProvenFHE
+Copyright 2026 Tye Zasacky.
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This project is not affiliated with, sponsored by or endorsed by Google, the OpenFHE project (Duality Technologies, NJIT and contributors), or the
+Lean FRO / Mathlib community. Product and project names are used only to identify the software
+that was tested.
+
+The repository contains no third-party library source code, except the short adapted passages
+listed under (1) and (2). It does contain files that are, or are derived from, the INPUTS and
+OUTPUTS of third-party tools, used as test vectors. They are listed below with their origin and
+licence. Each upstream licence applies to the material derived from that upstream; the rest of
+the repository is under Apache-2.0.
+
+----------------------------------------------------------------------------------------------
+1. OpenFHE, including a tracing fork
+   Upstream:  https://github.com/openfheorg/openfhe-development
+   Fork:      https://github.com/AlexanderViand/openfhe-development
+   Commit:    7e2eafc49b6b4c1a0000b1722a8749797ec277d9 (OpenFHE v1.3.1 plus a tracing framework)
+   Licence:   BSD-2-Clause. Copyright (c) 2014-2022, NJIT, Duality Technologies Inc. and other
+              contributors; Copyright (c) 2022, OpenFHE.
+
+   Included:
+   - harness/frontend/examples/openfhe_*.{params.json,trace.jsonl,fhecheck.json}: parameter dumps
+     and operation traces recorded from OpenFHE running this project's driver
+     (harness/frontend/openfhe/bgv_demo.cpp), and files derived from them; likewise
+     harness/frontend/tests/values/*/ (parameters, traces and decrypted values of small-ring
+     OpenFHE runs).
+   - harness/frontend/openfhe/{bgv_demo,bfv_demo}.cpp and fhecheck-tracer.h are this project's own
+     code written against OpenFHE's API; they contain no copied OpenFHE source.
+   - Upstream OpenFHE v1.6.1 (https://github.com/openfheorg/openfhe-development, tag v1.6.1,
+     commit b59e1f291965f14fbee5172cd83a20f5b856204f, BSD-2-Clause, same notice) is what the
+     frontend and the conformance fixtures use. It is not redistributed. We ship
+     harness/frontend/openfhe/openfhe-v1.6.1-tracer.patch: a patch against it that adds
+     observation-only tracing hooks. Its new files src/core/include/utils/tracing.h and
+     simpletracer.h are byte-identical to the files of the fork above (commit 7e2eafc) and carry
+     no copyright or licence header there either; the hooks in the patched OpenFHE files are
+     ported from the same fork into files that carry OpenFHE's notice. The patch's
+     src/pke/include/utils/fhecheck-tracer.h is this project's own (Apache-2.0);
+     src/pke/include/plaintext-ser.h carries OpenFHE's own notice.
+   - Python and Lean models that follow OpenFHE routines step by step, citing file:line
+     (harness/bfv-rns, harness/bfv-float; Challenge/BFVMul/, FHE/Pin/Algo*,
+     Challenge/Realize/OpenFHE.lean, FHE/Check/Security.lean). They are our own code written from
+     reading the C++, not copies; they implement OpenFHE's algorithms and constants, and the
+     attribution applies.
+   - harness/frontend/tests/keyprov/threshold_network_example/{trace.jsonl,params.json}: trace and
+     parameters recorded from openfheorg/openfhe-network-examples @1cee5bfe
+     (src/threshold_fhe_aborts/threshold_fhe.cpp; BSD-2-Clause, Copyright (c) 2022, OpenFHE) built
+     unmodified; no source of that program is included.
+
+   BSD-2-Clause notice, reproduced as that licence requires:
+
+     Redistribution and use in source and binary forms, with or without modification, are
+     permitted provided that the following conditions are met:
+     1. Redistributions of source code must retain the above copyright notice, this list of
+        conditions and the following disclaimer.
+     2. Redistributions in binary form must reproduce the above copyright notice, this list of
+        conditions and the following disclaimer in the documentation and/or other materials
+        provided with the distribution.
+     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+     OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+     MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+     COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+     EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+     GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+     AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+     NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+     OF THE POSSIBILITY OF SUCH DAMAGE.
+
+2. Google HEIR
+   Upstream:  https://github.com/google/heir
+   Version:   nightly release tagged nightly-2026.11.11, commit
+              86d9fc0acd760bee21003830a6cfba54d6182bec (binary heir-opt-manylinux_2_28_x86_64,
+              sha256 ff9a597eb115dcf6ad29d21ee599b25a6b9d278d70dec6abdb0a9b93bc5f078b);
+              source inputs from tests/Examples/common/{mult_dep_8,dot_product_8,cmux}.mlir at
+              that commit. (A separate local checkout at 26306bba55653516c3dd4dd86b0340531b0cb68b
+              was used only to read HEIR's source for citations; no fixture comes from it.)
+   Licence:   Apache-2.0 (copyright the HEIR authors).
+
+   Included:
+   - harness/frontend/examples/heir_*.mlir (4 files): verbatim heir-opt output on HEIR's example
+     programs; harness/frontend/examples/heir_*.fhecheck.json are derived from them.
+
+3. Lattigo (Tune Insight SA and contributors)
+   Upstream:  https://github.com/tuneinsight/lattigo, v6.2.0 (harness/lattigo-pin) and v6.1.0
+              (the version HEIR's go.mod pins, harness/frontend/examples/heir_*)
+   Licence:   Apache-2.0.
+   No Lattigo source is included. harness/lattigo-pin/export/main.go is this project's own
+   program written against Lattigo's public API (the module is fetched at build time; go.sum
+   holds checksums only); harness/lattigo-pin/fixtures* are its outputs. The heir_*.lattigo.*.mlir
+   files contain parameters that HEIR's Lattigo backend emitted.
+
+4. Lean 4 and Mathlib
+   Lean 4 (https://github.com/leanprover/lean4, Apache-2.0) and Mathlib
+   (https://github.com/leanprover-community/mathlib4, Apache-2.0), with Mathlib's dependencies
+   pinned in lake-manifest.json, are build dependencies fetched at build time. They are not
+   redistributed in this repository.
+
+5. Third-party programs used by the evaluation, not redistributed
+   - julenbernabe/bgv-extend-openfhe (https://github.com/julenbernabe/bgv-extend-openfhe),
+     commit be4d8d10892445d8720c0f067588999404c78117: OpenFHE BGV programs (comparison, sign,
+     integer division) that harness/eval/analyzer-speed/real/run.sh fetches at that commit and
+     builds. No source of it is included. The shipped
+     harness/eval/analyzer-speed/real/bgv-extend-params.diff holds only this project's added lines
+     (environment-variable overrides of OpenFHE parameter inputs) and hunk headers naming the
+     patched file; results.tsv and reports/ hold fhe_check output on the traced runs.
+   - hmchoe0528/NEW_INDCPAD_HE (https://github.com/hmchoe0528/NEW_INDCPAD_HE), commit
+     8d057909e0fe2d57e74c7facd0d99fd934f7d3ab: the public code of Choe, Kang and Stehle, "New
+     IND-CPA-D Attacks on BFV and BGV". harness/eval/cks26/cks26.cpp is this project's own code,
+     written from their paper and a reading of that code, citing it by file and line; no code of
+     it is copied.

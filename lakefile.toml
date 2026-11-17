@@ -1,0 +1,58 @@
+name = "lean-fhe"
+defaultTargets = ["Spec", "Challenge"]
+
+# Every variable must be bound explicitly, in every library and executable of this package: a
+# misspelt name in a statement is an error, never a silently generalised variable.
+[leanOptions]
+autoImplicit = false
+relaxedAutoImplicit = false
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "v4.35.0"
+
+# Trusted definitions. The declarations the locked statements depend on are pinned by theorems
+# in `Challenge` (proved in `Validation`), by equality with the independent re-specification
+# (`Respec/Equiv`), or by execution against recorded OpenFHE runs (`harness/openfhe-pin`).
+[[lean_lib]]
+name = "Spec"
+
+# Locked statements: the headline theorem, spec pins, non-vacuity witnesses (all `sorry`).
+[[lean_lib]]
+name = "Challenge"
+
+# Proofs of the statements in `Challenge` (untrusted; checked by Lean and the gate's kernel replay).
+[[lean_lib]]
+name = "Validation"
+
+# Untrusted library: checkers, intermediate lemmas and proofs toward the locked statements.
+[[lean_lib]]
+name = "FHE"
+
+# An independent re-specification of BGV/BFV/RNS written blind from the primary literature
+# (`Respec/*.lean`, sharing only `Spec/Ring.lean`), and the proofs that the trusted definitions
+# of `Spec/` agree with it (`Respec/Equiv/`). Not a default target: `lake build Respec`. The gate
+# builds it and puts `Respec.Equiv.*` under the same axiom scan and kernel replay as `FHE`.
+[[lean_lib]]
+name = "Respec"
+globs = ["Respec.+"]
+
+# Untrusted glue: runs the trusted definitions and the proved reference algorithms on data
+# dumped from real OpenFHE runs (`harness/openfhe-pin/`).
+[[lean_exe]]
+name = "openfhe_pin"
+root = "OpenfhePin"
+
+# The noise checker: runs the verified analyzer on a program in the neutral fhe-check format.
+[[lean_exe]]
+name = "fhe_check"
+root = "FheCheck"
+
+# The proved reference implementation: BGV and BFV key generation, encryption, evaluation and
+# textbook decryption at N = 2^13, each computed by a function proved equal to the locked
+# definition it implements (`FHE/Ref/*.lean`); the driver is untrusted glue
+# (`docs/REFERENCE-IMPLEMENTATION.md`).
+[[lean_exe]]
+name = "provenfhe_ref"
+root = "ProvenfheRef"

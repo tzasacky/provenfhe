@@ -1,0 +1,8 @@
+OpenFHE: upstream openfheorg/openfhe-development v1.6.1
+commit: b59e1f291965f14fbee5172cd83a20f5b856204f
+patch: harness/frontend/openfhe/openfhe-v1.6.1-tracer.patch (sha256 a1792781bd823a7a57eaaae2b924343b4808b9121140db211ab9d5d5aa79a461), observation-only ENABLE_TRACER hooks
+tracer: harness/frontend/openfhe/fhecheck-tracer.h (sha256 cbec99d82276c5834c8544d4d9922e4042edf54b4b390b0dea8a0a7daa5c2f2b)
+build: harness/frontend/openfhe/build_openfhe.sh (Release, ENABLE_TRACER=ON, WITH_OPENMP=OFF, WITH_REDUCED_NOISE=OFF, NATIVEINT 64), c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+exporter: harness/openfhe-pin/cpp/pin_export.cpp + pin_dump.h + pin_prng.cpp (export/build_cpp.sh), OMP_NUM_THREADS=1
+extractor: harness/frontend/openfhe/extract.py (sha256 4d9eb0d1d1f26e7f00b603ccb38f7150e225e9a60a09241a28eb8a30a4ed71a2)
+suite: export/gen_matrix.py --suite fixtures; archived: 263 cases (N = 16 and N = 64) of 269

@@ -1,0 +1,1 @@
+line 76: CryptoContext::Encrypt(PrivateKey,Plaintext): encryption with the PRIVATE key is not mapped for BFV (the input noise bound is derived for PKEBFVRNS::Encrypt with a public key)

@@ -1,0 +1,7 @@
+{"verdict": "INVALID INPUT",
+ "tool": "fhe_check",
+ "summary":
+ "$.bfv.multiplication.internalDrops: 3 entries, but the program has 4 instructions (HPSPOVERQLEVELED: one entry per instruction of program.body, 0 where the library drops nothing)",
+ "scheme": "BFV",
+ "input": "tests/negative-bfv/bfv_leveled_internal_drops_too_short.json",
+ "format": "fhe-check-report/v1"}

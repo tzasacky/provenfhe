@@ -1,0 +1,402 @@
+{
+ "what": "harness/frontend/openfhe/check_patch_observation.sh: is the tracer patch observation-only? A: static hunk classification (ENABLE_TRACER=OFF semantics + registerOutput returns its argument); B: the same deterministic programs on pristine v1.6.1 and on the patched build (ENABLE_TRACER=ON), no tracer and with the fhecheck JsonTracer / SimpleTracer recording, digests compared bit for bit",
+ "static": {
+  "patch": "openfhe-v1.6.1-tracer.patch",
+  "patchSha256": "a1792781bd823a7a57eaaae2b924343b4808b9121140db211ab9d5d5aa79a461",
+  "files": 20,
+  "hunks": 270,
+  "linesAdded": 2737,
+  "linesRemoved": 177,
+  "modifiedSourceFiles": 13,
+  "newFiles": 4,
+  "hunkKinds": {
+   "hook": 249,
+   "tracer include": 2,
+   "residue (allowlisted)": 11,
+   "new file": 4,
+   "build configuration": 4,
+   "UNEXPLAINED": 0
+  },
+  "ifTraceStatements": {
+   "tracer variable": 259,
+   "register call": 402,
+   "other (allowlist)": 10,
+   "register loop": 16
+  },
+  "ifTraceOutsideKnownShapes": [
+   {
+    "file": "src/pke/include/cryptocontext.h",
+    "statement": "std::shared_ptr<Tracer<Element>> m_tracer",
+    "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+   },
+   {
+    "file": "src/pke/include/cryptocontext.h",
+    "statement": "void setTracer(std::shared_ptr<Tracer<Element>>&& tracer) { m_tracer = tracer; }",
+    "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+   },
+   {
+    "file": "src/pke/include/cryptocontext.h",
+    "statement": "std::shared_ptr<Tracer<Element>> getTracer() const { return m_tracer; }",
+    "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+   },
+   {
+    "file": "src/pke/include/cryptocontext.h",
+    "statement": ", Tracer<Element>* tracer = nullptr",
+    "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+   },
+   {
+    "file": "src/pke/include/cryptocontext.h",
+    "statement": "m_tracer = tracer ? std::shared_ptr<Tracer<Element>>(tracer) : std::make_shared<NullTracer<Element>>()",
+    "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+   },
+   {
+    "file": "src/pke/include/cryptocontext.h",
+    "statement": ", std::shared_ptr<Tracer<Element>> tracer = nullptr",
+    "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+   },
+   {
+    "file": "src/pke/include/cryptocontext.h",
+    "statement": "m_tracer = tracer ? tracer : std::make_shared<NullTracer<Element>>()",
+    "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+   },
+   {
+    "file": "src/pke/include/cryptocontext.h",
+    "statement": "m_tracer = other.m_tracer",
+    "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+   },
+   {
+    "file": "src/pke/include/cryptocontext.h",
+    "statement": "m_tracer = rhs.m_tracer",
+    "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+   },
+   {
+    "file": "src/pke/lib/cryptocontextfactory.cpp",
+    "statement": "fhecheck::MaybeAutoTrace<Element>(cc)",
+    "reason": "with FHECHECK_TRACE_DIR set, CryptoContextFactory gives every new BGV/BFV context a JsonTracer (fhecheck-tracer.h); otherwise nothing"
+   }
+  ],
+  "registerOutputDefinitions": 39,
+  "registerOutputViolations": [],
+  "residue": [
+   {
+    "file": "src/pke/include/cryptocontext.h",
+    "hunk": "-2722,8 +2962,12",
+    "sha256": "3ce6dafc16bacaa45d750e562ff47c2394a125150f047d69c12c7fe1c2faa331",
+    "old": "voidLevelReduceInPlace(Ciphertext<Element>&ciphertext,constEvalKey<Element>evalKey,size_tlevels=1)const{ValidateCiphertext(ciphertext);if(levels>0)m_scheme->LevelReduceInPlace(ciphertext,evalKey,levels*GetCompositeDegreeFromCtxt());}",
+    "new": "voidLevelReduceInPlace(Ciphertext<Element>&ciphertext,constEvalKey<Element>evalKey,size_tlevels=1)const{ValidateCiphertext(ciphertext);if(levels==0)return;m_scheme->LevelReduceInPlace(ciphertext,evalKey,levels*GetCompositeDegreeFromCtxt());}",
+    "reason": "rewrite with identical behaviour: 'if (levels > 0) f();' becomes 'if (levels == 0) return; f();' at the end of a void function (so the hook can follow)"
+   },
+   {
+    "file": "src/pke/include/cryptocontext.h",
+    "hunk": "-2772,7 +3020,11",
+    "sha256": "af6ef8a707f2ef6bc27ab4440a781287814d81e8838e11020dff22b5835ffc9c",
+    "old": "Ciphertext<Element>EvalAddManyInPlace(std::vector<Ciphertext<Element>>&ciphertextVec)const{if(ciphertextVec.empty())OPENFHE_THROW(\"Emptyinputciphertextvector\");returnm_scheme->EvalAddManyInPlace(ciphertextVec);}",
+    "new": "Ciphertext<Element>EvalAddManyInPlace(std::vector<Ciphertext<Element>>&ciphertextVec)const{if(ciphertextVec.empty())OPENFHE_THROW(\"Emptyinputciphertextvector\");autoresult=m_scheme->EvalAddManyInPlace(ciphertextVec);returnresult;}",
+    "reason": "rewrite with identical behaviour: 'return f();' becomes 'auto result = f(); return result;' (so the result can be registered)"
+   },
+   {
+    "file": "src/pke/include/encoding/ckkspackedencoding.h",
+    "hunk": "-402,6 +402,42",
+    "sha256": "b46b94bbfeb0454170b532dadfdaa404b5952fc25d113d249d5f08a5569f11bc",
+    "old": "voidFitToNativeVector(conststd::vector<int128_t>&vec,int128_tbigBound,NativeVector*nativeVec)const;#endif};}",
+    "new": "voidFitToNativeVector(conststd::vector<int128_t>&vec,int128_tbigBound,NativeVector*nativeVec)const;#endifpublic:template<classArchive>voidsave(Archive&ar,std::uint32_tconstversion)const{ar(cereal::base_class<PlaintextImpl>(this));ar(cereal::make_nvp(\"v\",value));ar(cereal::make_nvp(\"le\",m_logError));}template<classArchive>voidload(Archive&ar,std::uint32_tconstversion){if(version>SerializedVersion())OPENFHE_THROW(\"serializedobjectversion\"+std::to_string(version)+\"isfromalaterversionofthelibrary\");ar(cereal::base_class<PlaintextImpl>(this));ar(cereal::make_nvp(\"v\",value));ar(cereal::make_nvp(\"le\"",
+    "reason": "plaintext serialization: cereal save/load member templates and SerializedVersion() added at the end of the class (used only if a plaintext is serialized, e.g. by the tracer's plaintext-ser.h); no existing member changed"
+   },
+   {
+    "file": "src/pke/include/encoding/coefpackedencoding.h",
+    "hunk": "-104,6 +104,9",
+    "sha256": "dd1e265cd9989de49f1fe51611ff0cdf8e05a117604019484598e2e9a18a0f7b",
+    "old": "template<typenameT,typenamestd::enable_if<std::is_same<T,Poly::Params>::value||std::is_same<T,NativePoly::Params>::value||std::is_same<T,DCRTPoly::Params>::value,",
+    "new": "CoefPackedEncoding():PlaintextImpl(std::shared_ptr<Poly::Params>(0),nullptr,COEF_PACKED_ENCODING){}template<typenameT,typenamestd::enable_if<std::is_same<T,Poly::Params>::value||std::is_same<T,NativePoly::Params>::value||std::is_same<T,DCRTPoly::Params>::value,",
+    "reason": "a default constructor of CoefPackedEncoding (cereal registration of plaintexts needs it); not called by the library's computations"
+   },
+   {
+    "file": "src/pke/include/encoding/coefpackedencoding.h",
+    "hunk": "-173,6 +176,40",
+    "sha256": "ff644f3af7cdb0bafdd3f66d494b7ef38bdd2d35b8b9a81a02704d2fc4fa3726",
+    "old": "voidSetLength(size_tsiz)override{value.resize(siz);}};}",
+    "new": "voidSetLength(size_tsiz)override{value.resize(siz);}public:template<classArchive>voidsave(Archive&ar,std::uint32_tconstversion)const{ar(cereal::base_class<PlaintextImpl>(this));ar(cereal::make_nvp(\"v\",value));}template<classArchive>voidload(Archive&ar,std::uint32_tconstversion){if(version>SerializedVersion())OPENFHE_THROW(\"serializedobjectversion\"+std::to_string(version)+\"isfromalaterversionofthelibrary\");ar(cereal::base_class<PlaintextImpl>(this));ar(cereal::make_nvp(\"v\",value));}staticuint32_tSerializedVersion(){return1;}};}",
+    "reason": "plaintext serialization: cereal save/load member templates and SerializedVersion() added at the end of the class (used only if a plaintext is serialized, e.g. by the tracer's plaintext-ser.h); no existing member changed"
+   },
+   {
+    "file": "src/pke/include/encoding/packedencoding.h",
+    "hunk": "-280,6 +280,40",
+    "sha256": "c52d89505ff0c9d715da7749241d90d5693162dca6a26216478158e329ff2840",
+    "old": "template<typenameP>voidUnpack(P*ring,constPlaintextModulus&modulus)const;};}",
+    "new": "template<typenameP>voidUnpack(P*ring,constPlaintextModulus&modulus)const;public:template<classArchive>voidsave(Archive&ar,std::uint32_tconstversion)const{ar(cereal::base_class<PlaintextImpl>(this));ar(cereal::make_nvp(\"v\",value));}template<classArchive>voidload(Archive&ar,std::uint32_tconstversion){if(version>SerializedVersion())OPENFHE_THROW(\"serializedobjectversion\"+std::to_string(version)+\"isfromalaterversionofthelibrary\");ar(cereal::base_class<PlaintextImpl>(this));ar(cereal::make_nvp(\"v\",value));}staticuint32_tSerializedVersion(){return1;}};}",
+    "reason": "plaintext serialization: cereal save/load member templates and SerializedVersion() added at the end of the class (used only if a plaintext is serialized, e.g. by the tracer's plaintext-ser.h); no existing member changed"
+   },
+   {
+    "file": "src/pke/include/encoding/plaintext.h",
+    "hunk": "-527,6 +527,93",
+    "sha256": "1a598d07e634d0f51a3b9d3d7777a9ace6a0653d32f65db22d48533c7b1bcc05",
+    "old": "virtualstd::stringGetFormattedValues(int64_tprecision)const{OPENFHE_THROW(\"notimplemented\");}};",
+    "new": "virtualstd::stringGetFormattedValues(int64_tprecision)const{OPENFHE_THROW(\"notimplemented\");}public:template<classArchive>voidsave(Archive&ar,std::uint32_tconstversion)const{ar(cereal::make_nvp(\"ie\",isEncoded));ar(cereal::make_nvp(\"tf\",typeFlag));ar(cereal::make_nvp(\"ep\",encodingParams));if(typeFlag==IsPoly){ar(cereal::make_nvp(\"ev\",encodedVector));}elseif(typeFlag==IsNativePoly){ar(cereal::make_nvp(\"env\",encodedNativeVector));}elseif(typeFlag==IsDCRTPoly){ar(cereal::make_nvp(\"ev\",encodedVector));ar(cereal::make_nvp(\"evd\",encodedVectorDCRT));}ar(cereal::make_nvp(\"pe\",ptxtEncoding));ar(cereal::",
+    "reason": "plaintext serialization: cereal save/load member templates and SerializedVersion() added at the end of the class (used only if a plaintext is serialized, e.g. by the tracer's plaintext-ser.h); no existing member changed"
+   },
+   {
+    "file": "src/pke/include/encoding/stringencoding.h",
+    "hunk": "-54,6 +54,11",
+    "sha256": "c45dcd75c400288925ddd3d4faa2ff315d95713f68a6a5eaad55b995e7d3b93a",
+    "old": "public:",
+    "new": "public:StringEncoding():PlaintextImpl(std::shared_ptr<Poly::Params>(0),nullptr,STRING_ENCODING){}",
+    "reason": "a default constructor of StringEncoding (cereal registration of plaintexts needs it); not called by the library's computations"
+   },
+   {
+    "file": "src/pke/include/encoding/stringencoding.h",
+    "hunk": "-144,6 +149,40",
+    "sha256": "0dc02fc1f14e5851331eea491d21301c6c5499363d261988859c765c7a6a6f29",
+    "old": "voidPrintValue(std::ostream&out)constoverride{out<<ptx;}};}",
+    "new": "voidPrintValue(std::ostream&out)constoverride{out<<ptx;}public:template<classArchive>voidsave(Archive&ar,std::uint32_tconstversion)const{ar(cereal::base_class<PlaintextImpl>(this));ar(cereal::make_nvp(\"ptx\",ptx));}template<classArchive>voidload(Archive&ar,std::uint32_tconstversion){if(version>SerializedVersion())OPENFHE_THROW(\"serializedobjectversion\"+std::to_string(version)+\"isfromalaterversionofthelibrary\");ar(cereal::base_class<PlaintextImpl>(this));ar(cereal::make_nvp(\"ptx\",ptx));}staticuint32_tSerializedVersion(){return1;}};}",
+    "reason": "plaintext serialization: cereal save/load member templates and SerializedVersion() added at the end of the class (used only if a plaintext is serialized, e.g. by the tracer's plaintext-ser.h); no existing member changed"
+   },
+   {
+    "file": "src/pke/lib/scheme/bfvrns/bfvrns-leveledshe.cpp",
+    "hunk": "-784,15 +822,21",
+    "sha256": "8bb0f081ca9d6570adb01270ccf7b806ef00b2ef7e76834de4947eb68e9990f4",
+    "old": "cryptoParams->GetQlQHatInvModqDivqFrac(l),cryptoParams->GetModqBarrettMu());c1.SetFormat(EVALUATION,DCRTPoly::THREADS_CRT_BASIS_SWITCH);returnalgo->EvalKeySwitchPrecomputeCore(c1,ciphertext->GetCryptoParameters());}}Ciphertext<DCRTPoly>LeveledSHEBFVRNS::EvalFastRotation(ConstCiphertext<DCRTPoly>&ciphertext,constuint32_tindex,constuint32_tm,conststd::shared_ptr<std::vector<DCRTPoly>>digits)const{if(index==0)returnciphertext->Clone();constautocc=ciphertext->GetCryptoContext();",
+    "new": "cryptoParams->GetQlQHatInvModqDivqFrac(l),cryptoParams->GetModqBarrettMu());c1.SetFormat(EVALUATION,DCRTPoly::THREADS_CRT_BASIS_SWITCH);autoresult=algo->EvalKeySwitchPrecomputeCore(c1,ciphertext->GetCryptoParameters());returnresult;}}Ciphertext<DCRTPoly>LeveledSHEBFVRNS::EvalFastRotation(ConstCiphertext<DCRTPoly>&ciphertext,constuint32_tindex,constuint32_tm,conststd::shared_ptr<std::vector<DCRTPoly>>digits)const{if(index==0)returnciphertext->Clone();constautocc=ciphertext->GetCryptoContext();",
+    "reason": "rewrite with identical behaviour: 'return f();' becomes 'auto result = f(); return result;' (so the result can be registered)"
+   },
+   {
+    "file": "src/pke/lib/scheme/bgvrns/bgvrns-leveledshe.cpp",
+    "hunk": "-41,10 +41,16",
+    "sha256": "86c664ff9f6150980edd8da79a9bb39acc7bb9ba6ebabcf24d2e75f7932dfb9c",
+    "old": "#include\"ciphertext.h\"#include\"scheme/bgvrns/bgvrns-cryptoparameters.h\"namespacelbcrypto{voidLeveledSHEBGVRNS::ModReduceInternalInPlace(Ciphertext<DCRTPoly>&ciphertext,size_tlevels)const{constautocryptoParams=std::dynamic_pointer_cast<CryptoParametersBGVRNS>(ciphertext->GetCryptoParameters());constautot=ciphertext->GetCryptoParameters()->GetPlaintextModulus();",
+    "new": "#include\"ciphertext.h\"#include\"scheme/bgvrns/bgvrns-cryptoparameters.h\"#include\"cryptocontext.h\"namespacelbcrypto{voidLeveledSHEBGVRNS::ModReduceInternalInPlace(Ciphertext<DCRTPoly>&ciphertext,size_tlevels)const{constautocryptoParams=std::dynamic_pointer_cast<CryptoParametersBGVRNS>(ciphertext->GetCryptoParameters());constautot=ciphertext->GetCryptoParameters()->GetPlaintextModulus();",
+    "reason": "an added #include \"cryptocontext.h\" (the hooks reach the CryptoContext's tracer); declarations only"
+   }
+  ],
+  "perFile": [
+   {
+    "file": "CMakeLists.txt",
+    "hunks": 2,
+    "added": 2,
+    "removed": 0,
+    "kind": "build configuration"
+   },
+   {
+    "file": "OpenFHEConfig.cmake.in",
+    "hunks": 1,
+    "added": 1,
+    "removed": 0,
+    "kind": "build configuration"
+   },
+   {
+    "file": "configure/config_core.in",
+    "hunks": 1,
+    "added": 1,
+    "removed": 0,
+    "kind": "build configuration"
+   },
+   {
+    "file": "src/core/include/utils/simpletracer.h",
+    "hunks": 1,
+    "added": 358,
+    "removed": 0,
+    "kind": "new file"
+   },
+   {
+    "file": "src/core/include/utils/tracing.h",
+    "hunks": 1,
+    "added": 271,
+    "removed": 0,
+    "kind": "new file"
+   },
+   {
+    "file": "src/pke/include/cryptocontext.h",
+    "hunks": 152,
+    "added": 496,
+    "removed": 106,
+    "kind": "modified source",
+    "hunkKinds": {
+     "hook": 149,
+     "tracer include": 1,
+     "residue": 2
+    }
+   },
+   {
+    "file": "src/pke/include/encoding/ckkspackedencoding.h",
+    "hunks": 1,
+    "added": 36,
+    "removed": 0,
+    "kind": "modified source",
+    "hunkKinds": {
+     "hook": 0,
+     "tracer include": 0,
+     "residue": 1
+    }
+   },
+   {
+    "file": "src/pke/include/encoding/coefpackedencoding.h",
+    "hunks": 2,
+    "added": 37,
+    "removed": 0,
+    "kind": "modified source",
+    "hunkKinds": {
+     "hook": 0,
+     "tracer include": 0,
+     "residue": 2
+    }
+   },
+   {
+    "file": "src/pke/include/encoding/packedencoding.h",
+    "hunks": 1,
+    "added": 34,
+    "removed": 0,
+    "kind": "modified source",
+    "hunkKinds": {
+     "hook": 0,
+     "tracer include": 0,
+     "residue": 1
+    }
+   },
+   {
+    "file": "src/pke/include/encoding/plaintext.h",
+    "hunks": 1,
+    "added": 87,
+    "removed": 0,
+    "kind": "modified source",
+    "hunkKinds": {
+     "hook": 0,
+     "tracer include": 0,
+     "residue": 1
+    }
+   },
+   {
+    "file": "src/pke/include/encoding/stringencoding.h",
+    "hunks": 2,
+    "added": 39,
+    "removed": 0,
+    "kind": "modified source",
+    "hunkKinds": {
+     "hook": 0,
+     "tracer include": 0,
+     "residue": 2
+    }
+   },
+   {
+    "file": "src/pke/include/plaintext-ser.h",
+    "hunks": 1,
+    "added": 64,
+    "removed": 0,
+    "kind": "new file"
+   },
+   {
+    "file": "src/pke/include/utils/fhecheck-tracer.h",
+    "hunks": 1,
+    "added": 793,
+    "removed": 0,
+    "kind": "new file"
+   },
+   {
+    "file": "src/pke/lib/cryptocontext.cpp",
+    "hunks": 18,
+    "added": 103,
+    "removed": 20,
+    "kind": "modified source",
+    "hunkKinds": {
+     "hook": 18,
+     "tracer include": 0,
+     "residue": 0
+    }
+   },
+   {
+    "file": "src/pke/lib/cryptocontextfactory.cpp",
+    "hunks": 2,
+    "added": 2,
+    "removed": 0,
+    "kind": "modified source",
+    "hunkKinds": {
+     "hook": 1,
+     "tracer include": 1,
+     "residue": 0
+    }
+   },
+   {
+    "file": "src/pke/lib/scheme/bfvrns/bfvrns-leveledshe.cpp",
+    "hunks": 17,
+    "added": 63,
+    "removed": 11,
+    "kind": "modified source",
+    "hunkKinds": {
+     "hook": 16,
+     "tracer include": 0,
+     "residue": 1
+    }
+   },
+   {
+    "file": "src/pke/lib/scheme/bgvrns/bgvrns-leveledshe.cpp",
+    "hunks": 5,
+    "added": 36,
+    "removed": 0,
+    "kind": "modified source",
+    "hunkKinds": {
+     "hook": 4,
+     "tracer include": 0,
+     "residue": 1
+    }
+   },
+   {
+    "file": "src/pke/lib/scheme/ckksrns/ckksrns-leveledshe.cpp",
+    "hunks": 17,
+    "added": 87,
+    "removed": 8,
+    "kind": "modified source",
+    "hunkKinds": {
+     "hook": 17,
+     "tracer include": 0,
+     "residue": 0
+    }
+   },
+   {
+    "file": "src/pke/lib/schemebase/base-leveledshe.cpp",
+    "hunks": 22,
+    "added": 77,
+    "removed": 12,
+    "kind": "modified source",
+    "hunkKinds": {
+     "hook": 22,
+     "tracer include": 0,
+     "residue": 0
+    }
+   },
+   {
+    "file": "src/pke/lib/schemerns/rns-leveledshe.cpp",
+    "hunks": 22,
+    "added": 150,
+    "removed": 20,
+    "kind": "modified source",
+    "hunkKinds": {
+     "hook": 22,
+     "tracer include": 0,
+     "residue": 0
+    }
+   }
+  ],
+  "problems": [],
+  "pass": true
+ },
+ "behavioural": {
+  "runs": [
+   "pristine",
+   "patched, no tracer",
+   "patched, tracing every context",
+   "patched, frontend install"
+  ],
+  "lines": 943,
+  "contexts": 20,
+  "ciphertextDigests": 470,
+  "decryptions": 430,
+  "exceptions": 4,
+  "differingLines": {
+   "patched, no tracer": 0,
+   "patched, tracing every context": 0,
+   "patched, frontend install": 0
+  },
+  "tracedContexts": 20,
+  "traceLines": 14893,
+  "identical": true
+ },
+ "pass": true
+}

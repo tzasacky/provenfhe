@@ -1,0 +1,4 @@
+# check<TAB>case : (check, case) pairs that are KNOWN to fail on the committed fixtures.
+# EMPTY: no disagreement between OpenFHE v1.6.1 and the Lean definitions remains on the fixtures. Every case the
+# extractor does not map is an explicit, tested refusal (fixtures/EXPECTED_REFUSALS.tsv), not a failing check.
+# harness/openfhe-pin/difftest.sh (the gate) fails if this file has any entry.

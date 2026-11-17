@@ -1,0 +1,27 @@
+# case<TAB>extractor options<TAB>expected: OK:<decrypted output> (extracted, the decrypted ciphertext is an output) or a substring of the refusal
+# The cases are real runs of openfhe/tamper_demo.cpp (recorded by openfhe/make_tamper.sh); see harness/frontend/README.md "What the frontend assumes".
+bfv_honest	-	OK:ct_6
+bfv_honest	--outputs-from-decrypt	OK:ct_6
+bfv_honest	--outputs ct_5	--outputs ct_5 omits ['ct_6'], which the program decrypts
+bfv_nocheck	-	the decrypted ciphertext ct_7 (towers 2, parts 2) is not a value any traced operation produced
+bfv_addnocheck	-	the decrypted ciphertext ct_7 (towers 2, parts 2) is not a value any traced operation produced
+bfv_elements	-	the decrypted ciphertext ct_7 (towers 2, parts 2) is not a value any traced operation produced
+bfv_setlevel	-	the decrypted ciphertext ct_7 (towers 2, parts 2) is not a value any traced operation produced
+bfv_nocheck	--assume-fresh-inputs	the decrypted ciphertext ct_7 (towers 2, parts 2) is not a value any traced operation produced
+bfv_midmutate	-	ciphertext ct_6 (towers 2, parts 2) is used but no traced operation produced it
+bfv_midmutate	--assume-fresh-inputs	--assume-fresh-inputs does not apply: its noiseScaleDeg is 2
+bfv_ptelement	-	plaintext pt_4 was not produced by a traced CryptoContext::Make*Plaintext of this context
+bfv_ptother	-	plaintext pt_4 was not produced by a traced CryptoContext::Make*Plaintext of this context
+bfv_relinkey	-	uses evaluation key ek_2, whose generation is not in the trace
+bfv_setparam	-	the tracer reported: the parameters of the CryptoContext changed after params.json was written
+bgv_honest	-	OK:ct_10
+bgv_honest	--outputs-from-decrypt	OK:ct_10
+bgv_nocheck	-	the decrypted ciphertext ct_11 (towers 3, parts 2) is not a value any traced operation produced
+bgv_addnocheck	-	the decrypted ciphertext ct_11 (towers 3, parts 2) is not a value any traced operation produced
+bgv_elements	-	the decrypted ciphertext ct_11 (towers 3, parts 2) is not a value any traced operation produced
+bgv_setlevel	-	the decrypted ciphertext ct_11 (towers 3, parts 2) is not a value any traced operation produced
+bgv_midmutate	-	ciphertext ct_8 (towers 3, parts 2) is used but no traced operation produced it
+bgv_midmutate	--assume-fresh-inputs	--assume-fresh-inputs does not apply: it first appears after the traced call at line 97 produced a ciphertext
+bgv_ptelement	-	plaintext pt_4 was not produced by a traced CryptoContext::Make*Plaintext of this context
+bgv_relinkey	-	uses evaluation key ek_2, whose generation is not in the trace
+bgv_setparam	-	the tracer reported: the parameters of the CryptoContext changed after params.json was written

@@ -1,0 +1,105 @@
+# CI for provenfhe. Runs ./verify.sh, the same one command a reader runs after cloning.
+#
+# What a GitHub-hosted runner (ubuntu-24.04, 4 vCPU, 16 GB RAM, ~14 GB free disk after clean-up)
+# can and cannot do:
+# - bwrap (the gate's build sandbox): Ubuntu 24.04 restricts unprivileged user namespaces through
+#   AppArmor, so bwrap fails out of the box. The jobs install bubblewrap and lift the restriction
+#   with sysctl (hosted runners have passwordless sudo). VERIFY_STRICT=1 makes verify.sh FAIL if the
+#   sandbox still does not work, rather than pass unsandboxed.
+# - Mathlib comes from Mathlib's prebuilt cache (`lake exe cache get`); see verify.sh for what that
+#   trusts. A from-source Mathlib build does not fit a hosted runner; run
+#   VERIFY_FROM_SOURCE=1 ./verify.sh on your own machine for that.
+# - Only .lake/packages (the dependencies) and the toolchain are cached, keyed on lean-toolchain +
+#   lake-manifest.json. The project's own .lake/build is never cached: every run rebuilds and
+#   re-checks every proof.
+# - Resources: see the header of verify.sh. On a 128-core machine that was otherwise idle when the
+#   run started, a from-scratch strict ./verify.sh took 817 s, with 7.2 GB peak memory in its
+#   largest process; 8.4 GB of disk including the dependencies; a 453 MB Mathlib cache download.
+#   On a hosted runner, a `quick` run completed in 1 h 2 min; `full` was not timed there. The
+#   workflow runs two modes:
+#     mode `quick` (push, pull request): VERIFY_SKIP_MUTANTS=1;
+#     mode `full`  (weekly, manual):      the complete strict gate.
+#   Memory: if step 5 is OOM-killed on a 16 GB runner, use a larger runner or set REPLAY_JOBS=1.
+#   In `quick` the gate prints "skipped (SKIP_MUTANTS=1)" for step 7; verify.sh runs it non-strict
+#   and re-imposes the other strict conditions itself. Only `full` is a strict PASS.
+# - The development replay cache (build/gate-cache) is never used here: `quick` sets
+#   REPLAY_CACHE=0 through verify.sh and `full` is STRICT=1, so every root is kernel-replayed.
+# - Never run in CI: anything that needs a library build (LIVE=1 re-recording of OpenFHE runs,
+#   the evaluation harnesses). Run those by hand.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * 1"   # weekly full gate; also notices upstream breakage (Mathlib cache)
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    # quick on push / pull request; full on the weekly schedule and on manual runs.
+    name: verify.sh
+    runs-on: ubuntu-24.04
+    timeout-minutes: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && 300 || 150 }}
+    env:
+      MODE: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && 'full' || 'quick' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Free disk space (dependencies and build need about 9 GB)
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h .
+
+      - name: Install bubblewrap and allow unprivileged user namespaces
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq bubblewrap
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
+          bwrap --ro-bind / / --dev /dev --unshare-net true && echo "bwrap works"
+
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Cache the Lean toolchain
+        uses: actions/cache@v4
+        with:
+          path: ~/.elan/toolchains
+          key: elan-${{ runner.os }}-${{ hashFiles('lean-toolchain') }}
+
+      - name: Cache dependencies (.lake/packages only, never the project's build)
+        uses: actions/cache@v4
+        with:
+          path: .lake/packages
+          key: lake-packages-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+
+      - name: ./verify.sh
+        env:
+          VERIFY_STRICT: "1"
+          VERIFY_SKIP_MUTANTS: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && '0' || '1' }}
+          # Keep Mathlib's download cache inside the workspace so it can be deleted afterwards.
+          MATHLIB_CACHE_DIR: ${{ github.workspace }}/.mathlib-cache
+        run: |
+          echo "mode: $MODE"
+          ./verify.sh
+
+      - name: Upload gate logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gate-logs-${{ env.MODE }}
+          path: |
+            build/verify/
+            build/check-spec/
+          retention-days: 14

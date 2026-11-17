@@ -1,0 +1,9 @@
+# Compressed goldens: binary, never diffed or merged textually.
+*.json.xz binary
+# Generated test data and vendor outputs: keep byte-exact (the harness compares hashes), and keep
+# them out of language statistics.
+harness/**/golden/** -text linguist-generated
+harness/frontend/examples/** -text linguist-generated
+harness/frontend/tests/golden/** -text linguist-generated
+# Shell scripts must keep LF line endings on every platform.
+*.sh text eol=lf

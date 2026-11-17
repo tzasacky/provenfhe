@@ -1,0 +1,7 @@
+{"verdictLabel": "UNSUPPORTED",
+ "verdict": "UNSUPPORTED",
+ "tool": "fhe_check",
+ "summary":
+ "decryption method round-then-guess: no proved statement for this decryption (at-output-level | switch-to-one-limb)",
+ "input": "tests/negative/unsupported_decryption_method.json",
+ "format": "fhe-check-report/v1"}

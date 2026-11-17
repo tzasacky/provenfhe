@@ -1,0 +1,2 @@
+fhe_check: tests/negative/format_v0.json
+VERDICT: INVALID INPUT: format fhe-check/v0 is the superseded draft; regenerate the file with the v1 extractors in harness/frontend/

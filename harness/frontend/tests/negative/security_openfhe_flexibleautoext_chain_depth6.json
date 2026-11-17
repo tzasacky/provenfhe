@@ -1,0 +1,430 @@
+{
+ "format": "fhe-check/v1",
+ "source": {
+  "tool": "openfhe",
+  "artifact": "openfhe_flexibleautoext_chain_depth6",
+  "scaling": "FLEXIBLEAUTOEXT",
+  "multiplicativeDepth": 6,
+  "decryptSwitch": true
+ },
+ "params": {
+  "scheme": "BGV",
+  "N": 16384,
+  "t": 65537,
+  "limbs": [
+   {
+    "q": "2148728833",
+    "psi": "8602"
+   },
+   {
+    "q": "137439510529",
+    "psi": "7105241"
+   },
+   {
+    "q": "137439870977",
+    "psi": "34669709"
+   },
+   {
+    "q": "137440198657",
+    "psi": "12651409"
+   },
+   {
+    "q": "137440264193",
+    "psi": "12335773"
+   },
+   {
+    "q": "137440362497",
+    "psi": "18028048"
+   },
+   {
+    "q": "137440854017",
+    "psi": "218053"
+   },
+   {
+    "q": "163841",
+    "psi": "7"
+   }
+  ],
+  "special": [
+   {
+    "q": "1152921497895862273",
+    "psi": "36320716136738"
+   },
+   {
+    "q": "1152921422732787713",
+    "psi": "43788717183325"
+   }
+  ],
+  "secretBound": 1,
+  "inputNoise": "83755761703",
+  "keyNoise": "2555943"
+ },
+ "noiseDerivation": {
+  "errorBound": 39,
+  "errorBoundSource": "OpenFHE DGG (Peikert inversion): sigma = 3.19f, |e| <= ceil(sigma*12.00610553538285) = 39, else OPENFHE_THROW (discretegaussiangenerator-impl.h:81-82,94-99)",
+  "inputNoiseFormula": "(t-1) + t*Be*(1 + 2*N*Bs): public-key encryption, v ternary, packed plaintext (scaled mod t) lifted to [0,t) (rns-pke.cpp:61-75,152-199; packedencoding.cpp:66-119)",
+  "symmetricInputNoiseFormula": "(t-1) + t*Be: Encrypt with a private key, c = (a*s + t*e + m, -a) (cryptocontext.h:1419-1436; rns-pke.cpp:45-59,115-150); declared as the input's own bound",
+  "keyNoiseFormula": "t*Be (keyswitch-hybrid.cpp:104-128)",
+  "secret": "UNIFORM_TERNARY (base-pke.cpp:66-67)",
+  "build": {
+   "WITH_REDUCED_NOISE": false,
+   "NATIVEINT": 64,
+   "HAVE_INT128": true
+  },
+  "keyProvenance": "checked from the trace: every Encrypt key comes from one traced single-party CryptoContext::KeyGen(); every relinearization/rotation key used was generated from its secret key by a traced EvalMultKeyGen/EvalMultKeysGen/rotation-key generation for the index used; no multiparty, proxy re-encryption or key-switching call in the trace",
+  "plaintextBound": "t-1 (packed encoding, scaling factor applied mod t before the lift to [0,t))",
+  "scalingTechnique": "FLEXIBLEAUTOEXT",
+  "openfheVersion": "openfheorg/openfhe-development v1.6.1 (b59e1f291965f14fbee5172cd83a20f5b856204f) + harness/frontend/openfhe/openfhe-v1.6.1-tracer.patch, WITH_REDUCED_NOISE=OFF"
+ },
+ "keySwitching": {
+  "method": "hybrid",
+  "variant": "openfhe",
+  "digits": {
+   "kind": "consecutive",
+   "towersPerDigit": 3,
+   "dnum": 3
+  }
+ },
+ "modSwitch": {
+  "method": "t-corrected-centred"
+ },
+ "decryption": {
+  "method": "switch-to-one-limb",
+  "source": "PKEBGVRNS::Decrypt, EVALUATION branch: ModReduce of the phase to one tower (bgvrns-pke.cpp:56-75), not traced"
+ },
+ "freshEncryption": {
+  "inputs": [
+   "ct_1",
+   "ct_2",
+   "ct_3"
+  ],
+  "keyError": 39,
+  "u": 1,
+  "e1": 39,
+  "e2": 39,
+  "plaintextBound": 65536,
+  "mean": {
+   "num": 3431,
+   "den": 18446744073709551616,
+   "source": "declared assumption for the sigma = 3.19 encryption sampler: |mean| <= 3431/2^64 for every coefficient of (u, e1, e2) = OpenFHE's (v, e0, e1), support -27..26; ternary sampler uniform on {-1, 0, 1} (mean 0)"
+  },
+  "source": "PKERNS::Encrypt with a public key: (b*v + t*e0 + m, a*v + t*e1), b = t*e - a*s (rns-pke.cpp:61-75,152-199; base-pke.cpp:66-91); v ternary (TUG), e, e0, e1 from the DGG with |e| <= 39 (discretegaussiangenerator-impl.h:81-82,94-99)"
+ },
+ "program": {
+  "inputs": [
+   {
+    "name": "ct_1",
+    "parts": 2,
+    "level": 8,
+    "key": 1,
+    "origin": {
+     "openfhe": "pt_1"
+    }
+   },
+   {
+    "name": "ct_2",
+    "parts": 2,
+    "level": 8,
+    "key": 1,
+    "origin": {
+     "openfhe": "pt_2"
+    }
+   },
+   {
+    "name": "ct_3",
+    "parts": 2,
+    "level": 8,
+    "key": 1,
+    "origin": {
+     "openfhe": "pt_3"
+    }
+   }
+  ],
+  "body": [
+   {
+    "op": "modSwitch",
+    "dst": "ct_4",
+    "a": "ct_1",
+    "expect": {
+     "level": 7,
+     "parts": 2
+    }
+   },
+   {
+    "op": "modSwitch",
+    "dst": "ct_5",
+    "a": "ct_2",
+    "expect": {
+     "level": 7,
+     "parts": 2
+    }
+   },
+   {
+    "op": "mul",
+    "dst": "ct_6",
+    "a": "ct_4",
+    "b": "ct_5",
+    "expect": {
+     "level": 7,
+     "parts": 3
+    }
+   },
+   {
+    "op": "relin",
+    "dst": "ct_7",
+    "a": "ct_6",
+    "expect": {
+     "level": 7,
+     "parts": 2
+    }
+   },
+   {
+    "op": "modSwitch",
+    "dst": "ct_8",
+    "a": "ct_7",
+    "expect": {
+     "level": 6,
+     "parts": 2
+    }
+   },
+   {
+    "op": "square",
+    "dst": "ct_9",
+    "a": "ct_8",
+    "expect": {
+     "level": 6,
+     "parts": 3
+    }
+   },
+   {
+    "op": "relin",
+    "dst": "ct_10",
+    "a": "ct_9",
+    "expect": {
+     "level": 6,
+     "parts": 2
+    }
+   },
+   {
+    "op": "modSwitch",
+    "dst": "ct_11",
+    "a": "ct_10",
+    "expect": {
+     "level": 5,
+     "parts": 2
+    }
+   },
+   {
+    "op": "square",
+    "dst": "ct_12",
+    "a": "ct_11",
+    "expect": {
+     "level": 5,
+     "parts": 3
+    }
+   },
+   {
+    "op": "relin",
+    "dst": "ct_13",
+    "a": "ct_12",
+    "expect": {
+     "level": 5,
+     "parts": 2
+    }
+   },
+   {
+    "op": "modSwitch",
+    "dst": "ct_14",
+    "a": "ct_13",
+    "expect": {
+     "level": 4,
+     "parts": 2
+    }
+   },
+   {
+    "op": "square",
+    "dst": "ct_15",
+    "a": "ct_14",
+    "expect": {
+     "level": 4,
+     "parts": 3
+    }
+   },
+   {
+    "op": "relin",
+    "dst": "ct_16",
+    "a": "ct_15",
+    "expect": {
+     "level": 4,
+     "parts": 2
+    }
+   },
+   {
+    "op": "modSwitch",
+    "dst": "ct_17",
+    "a": "ct_16",
+    "expect": {
+     "level": 3,
+     "parts": 2
+    }
+   },
+   {
+    "op": "square",
+    "dst": "ct_18",
+    "a": "ct_17",
+    "expect": {
+     "level": 3,
+     "parts": 3
+    }
+   },
+   {
+    "op": "relin",
+    "dst": "ct_19",
+    "a": "ct_18",
+    "expect": {
+     "level": 3,
+     "parts": 2
+    }
+   },
+   {
+    "op": "modSwitch",
+    "dst": "ct_20",
+    "a": "ct_19",
+    "expect": {
+     "level": 2,
+     "parts": 2
+    }
+   },
+   {
+    "op": "square",
+    "dst": "ct_21",
+    "a": "ct_20",
+    "expect": {
+     "level": 2,
+     "parts": 3
+    }
+   },
+   {
+    "op": "relin",
+    "dst": "ct_22",
+    "a": "ct_21",
+    "expect": {
+     "level": 2,
+     "parts": 2
+    }
+   }
+  ],
+  "outputs": [
+   "ct_22"
+  ]
+ },
+ "provenance": [
+  {
+   "index": 0,
+   "openfhe": "LeveledSHEBGVRNS::ModReduceInternalInPlace(Ciphertext,size_t)",
+   "traceLine": 108
+  },
+  {
+   "index": 1,
+   "openfhe": "LeveledSHEBGVRNS::ModReduceInternalInPlace(Ciphertext,size_t)",
+   "traceLine": 113
+  },
+  {
+   "index": 2,
+   "openfhe": "LeveledSHEBase::EvalMultCore(Ciphertext,Ciphertext)",
+   "traceLine": 124
+  },
+  {
+   "index": 3,
+   "openfhe": "LeveledSHEBase::EvalMult(Ciphertext,Ciphertext,EvalKey)",
+   "traceLine": 89
+  },
+  {
+   "index": 4,
+   "openfhe": "LeveledSHEBGVRNS::ModReduceInternalInPlace(Ciphertext,size_t)",
+   "traceLine": 145
+  },
+  {
+   "index": 5,
+   "openfhe": "LeveledSHERNS::EvalSquare(ciphertext)",
+   "traceLine": 140
+  },
+  {
+   "index": 6,
+   "openfhe": "LeveledSHEBase::EvalSquare(Ciphertext,EvalKey)",
+   "traceLine": 137
+  },
+  {
+   "index": 7,
+   "openfhe": "LeveledSHEBGVRNS::ModReduceInternalInPlace(Ciphertext,size_t)",
+   "traceLine": 168
+  },
+  {
+   "index": 8,
+   "openfhe": "LeveledSHERNS::EvalSquare(ciphertext)",
+   "traceLine": 163
+  },
+  {
+   "index": 9,
+   "openfhe": "LeveledSHEBase::EvalSquare(Ciphertext,EvalKey)",
+   "traceLine": 160
+  },
+  {
+   "index": 10,
+   "openfhe": "LeveledSHEBGVRNS::ModReduceInternalInPlace(Ciphertext,size_t)",
+   "traceLine": 191
+  },
+  {
+   "index": 11,
+   "openfhe": "LeveledSHERNS::EvalSquare(ciphertext)",
+   "traceLine": 186
+  },
+  {
+   "index": 12,
+   "openfhe": "LeveledSHEBase::EvalSquare(Ciphertext,EvalKey)",
+   "traceLine": 183
+  },
+  {
+   "index": 13,
+   "openfhe": "LeveledSHEBGVRNS::ModReduceInternalInPlace(Ciphertext,size_t)",
+   "traceLine": 214
+  },
+  {
+   "index": 14,
+   "openfhe": "LeveledSHERNS::EvalSquare(ciphertext)",
+   "traceLine": 209
+  },
+  {
+   "index": 15,
+   "openfhe": "LeveledSHEBase::EvalSquare(Ciphertext,EvalKey)",
+   "traceLine": 206
+  },
+  {
+   "index": 16,
+   "openfhe": "LeveledSHEBGVRNS::ModReduceInternalInPlace(Ciphertext,size_t)",
+   "traceLine": 237
+  },
+  {
+   "index": 17,
+   "openfhe": "LeveledSHERNS::EvalSquare(ciphertext)",
+   "traceLine": 232
+  },
+  {
+   "index": 18,
+   "openfhe": "LeveledSHEBase::EvalSquare(Ciphertext,EvalKey)",
+   "traceLine": 229
+  }
+ ],
+ "crossCheck": {
+  "what": "message scale factors and levels replayed vs OpenFHE's own scalingFactorInt/towers per ciphertext (all scaling techniques)",
+  "mismatches": [],
+  "decryption": [
+   {
+    "output": "ct_22",
+    "fromLevel": 2,
+    "toLevel": 1,
+    "scale": 6040
+   }
+  ]
+ }
+}

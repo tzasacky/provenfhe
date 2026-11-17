@@ -1,0 +1,2642 @@
+{
+ "meta": {
+  "loadBefore": "23.05 27.69 22.79",
+  "start": "2026-11-14 09:07:32",
+  "maxLoad": 20.0,
+  "checker": "fhe_check (FHE_CHECK)",
+  "timed": false,
+  "timingsFrom": {
+   "start": "2026-11-14 08:40:27",
+   "loadBefore": "9.85 10.09 10.19",
+   "loadAfter": "11.06 10.56 10.35"
+  },
+  "loadAfter": "23.05 27.69 22.79",
+  "end": "2026-11-14 09:07:32"
+ },
+ "rows": [
+  {
+   "t": 65537,
+   "ks": "bv",
+   "d": 1,
+   "tries": [
+    {
+     "N": 8192,
+     "limbs": 2,
+     "log2Q": 120.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 24.71,
+     "relinBits": [
+      78.29
+     ],
+     "mulBits": [
+      61.5
+     ],
+     "j": 0
+    }
+   ],
+   "cert": {
+    "N": 8192,
+    "limbs": 2,
+    "log2Q": 120.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 24.71,
+    "relinBits": [
+     78.29
+    ],
+    "mulBits": [
+     61.5
+    ],
+    "j": 0
+   },
+   "default": {
+    "N": 8192,
+    "limbs": 2,
+    "log2Q": 120.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 24.71,
+    "relinBits": [
+     78.29
+    ],
+    "mulBits": [
+     61.5
+    ],
+    "j": 0
+   }
+  },
+  {
+   "t": 65537,
+   "ks": "bv",
+   "d": 2,
+   "tries": [
+    {
+     "N": 8192,
+     "limbs": 3,
+     "log2Q": 180.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 24.71,
+     "relinBits": [
+      78.87,
+      138.29
+     ],
+     "mulBits": [
+      61.35,
+      120.87
+     ],
+     "j": 0
+    }
+   ],
+   "cert": {
+    "N": 8192,
+    "limbs": 3,
+    "log2Q": 180.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 24.71,
+    "relinBits": [
+     78.87,
+     138.29
+    ],
+    "mulBits": [
+     61.35,
+     120.87
+    ],
+    "j": 0
+   },
+   "default": {
+    "N": 8192,
+    "limbs": 3,
+    "log2Q": 180.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 24.71,
+    "relinBits": [
+     78.87,
+     138.29
+    ],
+    "mulBits": [
+     61.35,
+     120.87
+    ],
+    "j": 0
+   }
+  },
+  {
+   "t": 65537,
+   "ks": "bv",
+   "d": 3,
+   "tries": [
+    {
+     "N": 8192,
+     "limbs": 3,
+     "log2Q": 180.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 17.29,
+     "at": "body[4] mul",
+     "relinBits": [
+      78.87,
+      138.29
+     ],
+     "mulBits": [
+      61.35,
+      120.87,
+      180.29
+     ],
+     "j": 0
+    },
+    {
+     "N": 16384,
+     "limbs": 4,
+     "log2Q": 240.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 39.13,
+     "relinBits": [
+      80.29,
+      139.87,
+      183.87
+     ],
+     "mulBits": [
+      64.36,
+      124.29,
+      183.87
+     ],
+     "j": 1
+    }
+   ],
+   "cert": {
+    "N": 16384,
+    "limbs": 4,
+    "log2Q": 240.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 39.13,
+    "relinBits": [
+     80.29,
+     139.87,
+     183.87
+    ],
+    "mulBits": [
+     64.36,
+     124.29,
+     183.87
+    ],
+    "j": 1
+   },
+   "default": {
+    "N": 8192,
+    "limbs": 3,
+    "log2Q": 180.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 17.29,
+    "at": "body[4] mul",
+    "relinBits": [
+     78.87,
+     138.29
+    ],
+    "mulBits": [
+     61.35,
+     120.87,
+     180.29
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 28.0115,
+    "certMs": 84.0552,
+    "defaultRange": [
+     27.9435,
+     28.3356
+    ],
+    "certRange": [
+     83.6284,
+     84.8546
+    ],
+    "ratio": 3.0007389822037376,
+    "ratioRange": [
+     2.951354479876904,
+     3.036648952350278
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     9.85,
+     9.85,
+     9.85,
+     9.85,
+     9.85,
+     9.85,
+     9.87,
+     9.87,
+     9.87
+    ],
+    "loadMedian": 9.85,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 65537,
+   "ks": "bv",
+   "d": 4,
+   "tries": [
+    {
+     "N": 16384,
+     "limbs": 4,
+     "log2Q": 240.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 4.87,
+     "at": "body[6] mul",
+     "relinBits": [
+      80.29,
+      139.87,
+      183.87
+     ],
+     "mulBits": [
+      64.36,
+      124.29,
+      183.87,
+      227.87
+     ],
+     "j": 0
+    },
+    {
+     "N": 16384,
+     "limbs": 4,
+     "log2Q": 240.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 4.87,
+     "at": "body[6] mul",
+     "relinBits": [
+      80.29,
+      139.87,
+      183.87
+     ],
+     "mulBits": [
+      64.36,
+      124.29,
+      183.87,
+      227.87
+     ],
+     "j": 1
+    },
+    {
+     "N": 16384,
+     "limbs": 5,
+     "log2Q": 300.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 54.71,
+     "relinBits": [
+      80.61,
+      140.29,
+      184.29,
+      228.29
+     ],
+     "mulBits": [
+      64.46,
+      124.61,
+      184.29,
+      228.29
+     ],
+     "j": 2
+    }
+   ],
+   "cert": {
+    "N": 16384,
+    "limbs": 5,
+    "log2Q": 300.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 54.71,
+    "relinBits": [
+     80.61,
+     140.29,
+     184.29,
+     228.29
+    ],
+    "mulBits": [
+     64.46,
+     124.61,
+     184.29,
+     228.29
+    ],
+    "j": 2
+   },
+   "default": {
+    "N": 16384,
+    "limbs": 4,
+    "log2Q": 240.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 4.87,
+    "at": "body[6] mul",
+    "relinBits": [
+     80.29,
+     139.87,
+     183.87
+    ],
+    "mulBits": [
+     64.36,
+     124.29,
+     183.87,
+     227.87
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 106.154,
+    "certMs": 145.288,
+    "defaultRange": [
+     105.571,
+     106.414
+    ],
+    "certRange": [
+     144.604,
+     146.04
+    ],
+    "ratio": 1.3686530889085669,
+    "ratioRange": [
+     1.3588813501982824,
+     1.3833344384347974
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     9.87,
+     9.87,
+     9.87,
+     9.96,
+     9.96,
+     9.96,
+     9.96,
+     9.96,
+     9.96
+    ],
+    "loadMedian": 9.96,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 65537,
+   "ks": "bv",
+   "d": 5,
+   "tries": [
+    {
+     "N": 16384,
+     "limbs": 4,
+     "log2Q": 240.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 4.87,
+     "at": "body[6] mul",
+     "relinBits": [
+      80.29,
+      139.87,
+      183.87
+     ],
+     "mulBits": [
+      64.36,
+      124.29,
+      183.87,
+      227.87
+     ],
+     "j": 0
+    },
+    {
+     "N": 16384,
+     "limbs": 5,
+     "log2Q": 300.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 10.71,
+     "relinBits": [
+      80.61,
+      140.29,
+      184.29,
+      228.29,
+      272.29
+     ],
+     "mulBits": [
+      64.46,
+      124.61,
+      184.29,
+      228.29,
+      272.29
+     ],
+     "j": 1
+    }
+   ],
+   "cert": {
+    "N": 16384,
+    "limbs": 5,
+    "log2Q": 300.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 10.71,
+    "relinBits": [
+     80.61,
+     140.29,
+     184.29,
+     228.29,
+     272.29
+    ],
+    "mulBits": [
+     64.46,
+     124.61,
+     184.29,
+     228.29,
+     272.29
+    ],
+    "j": 1
+   },
+   "default": {
+    "N": 16384,
+    "limbs": 4,
+    "log2Q": 240.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 4.87,
+    "at": "body[6] mul",
+    "relinBits": [
+     80.29,
+     139.87,
+     183.87
+    ],
+    "mulBits": [
+     64.36,
+     124.29,
+     183.87,
+     227.87
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 122.861,
+    "certMs": 170.368,
+    "defaultRange": [
+     122.668,
+     124.179
+    ],
+    "certRange": [
+     169.636,
+     171.121
+    ],
+    "ratio": 1.3866727439952466,
+    "ratioRange": [
+     1.3660602839449503,
+     1.394992989206639
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     9.96,
+     9.96,
+     10.04,
+     10.04,
+     10.04,
+     10.04,
+     10.04,
+     10.04,
+     10.04
+    ],
+    "loadMedian": 10.04,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 65537,
+   "ks": "hybrid",
+   "d": 1,
+   "tries": [
+    {
+     "N": 16384,
+     "limbs": 2,
+     "log2Q": 120.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 38.56,
+     "relinBits": [
+      64.44
+     ],
+     "mulBits": [
+      64.44
+     ],
+     "j": 0
+    }
+   ],
+   "cert": {
+    "N": 16384,
+    "limbs": 2,
+    "log2Q": 120.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 38.56,
+    "relinBits": [
+     64.44
+    ],
+    "mulBits": [
+     64.44
+    ],
+    "j": 0
+   },
+   "default": {
+    "N": 16384,
+    "limbs": 2,
+    "log2Q": 120.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 38.56,
+    "relinBits": [
+     64.44
+    ],
+    "mulBits": [
+     64.44
+    ],
+    "j": 0
+   }
+  },
+  {
+   "t": 65537,
+   "ks": "hybrid",
+   "d": 2,
+   "tries": [
+    {
+     "N": 16384,
+     "limbs": 2,
+     "log2Q": 120.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 5.44,
+     "at": "body[2] mul",
+     "relinBits": [
+      64.44
+     ],
+     "mulBits": [
+      64.44,
+      108.44
+     ],
+     "j": 0
+    },
+    {
+     "N": 16384,
+     "limbs": 3,
+     "log2Q": 180.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 54.55,
+     "relinBits": [
+      64.45,
+      108.45
+     ],
+     "mulBits": [
+      64.45,
+      108.45
+     ],
+     "j": 1
+    }
+   ],
+   "cert": {
+    "N": 16384,
+    "limbs": 3,
+    "log2Q": 180.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 54.55,
+    "relinBits": [
+     64.45,
+     108.45
+    ],
+    "mulBits": [
+     64.45,
+     108.45
+    ],
+    "j": 1
+   },
+   "default": {
+    "N": 16384,
+    "limbs": 2,
+    "log2Q": 120.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 5.44,
+    "at": "body[2] mul",
+    "relinBits": [
+     64.44
+    ],
+    "mulBits": [
+     64.44,
+     108.44
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 38.3484,
+    "certMs": 57.8714,
+    "defaultRange": [
+     38.1515,
+     40.7162
+    ],
+    "certRange": [
+     57.4909,
+     58.6239
+    ],
+    "ratio": 1.5090955554860177,
+    "ratioRange": [
+     1.4119908046428695,
+     1.5366079970643356
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     10.2,
+     10.2,
+     10.2,
+     10.2,
+     10.2,
+     10.2,
+     10.2,
+     10.2,
+     10.18
+    ],
+    "loadMedian": 10.2,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 65537,
+   "ks": "hybrid",
+   "d": 3,
+   "tries": [
+    {
+     "N": 16384,
+     "limbs": 3,
+     "log2Q": 180.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 10.55,
+     "relinBits": [
+      64.45,
+      108.45,
+      152.45
+     ],
+     "mulBits": [
+      64.45,
+      108.45,
+      152.45
+     ],
+     "j": 0
+    }
+   ],
+   "cert": {
+    "N": 16384,
+    "limbs": 3,
+    "log2Q": 180.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 10.55,
+    "relinBits": [
+     64.45,
+     108.45,
+     152.45
+    ],
+    "mulBits": [
+     64.45,
+     108.45,
+     152.45
+    ],
+    "j": 0
+   },
+   "default": {
+    "N": 16384,
+    "limbs": 3,
+    "log2Q": 180.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 10.55,
+    "relinBits": [
+     64.45,
+     108.45,
+     152.45
+    ],
+    "mulBits": [
+     64.45,
+     108.45,
+     152.45
+    ],
+    "j": 0
+   }
+  },
+  {
+   "t": 65537,
+   "ks": "hybrid",
+   "d": 4,
+   "tries": [
+    {
+     "N": 16384,
+     "limbs": 3,
+     "log2Q": 180.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 33.45,
+     "at": "body[6] mul",
+     "relinBits": [
+      64.45,
+      108.45,
+      152.45
+     ],
+     "mulBits": [
+      64.45,
+      108.45,
+      152.45,
+      196.45
+     ],
+     "j": 0
+    },
+    {
+     "N": 16384,
+     "limbs": 4,
+     "log2Q": 240.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 26.64,
+     "relinBits": [
+      64.36,
+      108.36,
+      152.36,
+      196.36
+     ],
+     "mulBits": [
+      64.36,
+      108.36,
+      152.36,
+      196.36
+     ],
+     "j": 1
+    }
+   ],
+   "cert": {
+    "N": 16384,
+    "limbs": 4,
+    "log2Q": 240.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 26.64,
+    "relinBits": [
+     64.36,
+     108.36,
+     152.36,
+     196.36
+    ],
+    "mulBits": [
+     64.36,
+     108.36,
+     152.36,
+     196.36
+    ],
+    "j": 1
+   },
+   "default": {
+    "N": 16384,
+    "limbs": 3,
+    "log2Q": 180.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 33.45,
+    "at": "body[6] mul",
+    "relinBits": [
+     64.45,
+     108.45,
+     152.45
+    ],
+    "mulBits": [
+     64.45,
+     108.45,
+     152.45,
+     196.45
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 101.639,
+    "certMs": 137.998,
+    "defaultRange": [
+     101.375,
+     101.958
+    ],
+    "certRange": [
+     137.192,
+     145.41
+    ],
+    "ratio": 1.357726856816773,
+    "ratioRange": [
+     1.345573667588615,
+     1.4343773119605425
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     10.18,
+     10.18,
+     10.18,
+     10.18,
+     10.17,
+     10.17,
+     10.17,
+     10.17,
+     10.17
+    ],
+    "loadMedian": 10.17,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 65537,
+   "ks": "hybrid",
+   "d": 5,
+   "tries": [
+    {
+     "N": 16384,
+     "limbs": 4,
+     "log2Q": 240.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 17.36,
+     "at": "body[8] mul",
+     "relinBits": [
+      64.36,
+      108.36,
+      152.36,
+      196.36
+     ],
+     "mulBits": [
+      64.36,
+      108.36,
+      152.36,
+      196.36,
+      240.36
+     ],
+     "j": 0
+    },
+    {
+     "N": 16384,
+     "limbs": 4,
+     "log2Q": 240.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 17.36,
+     "at": "body[8] mul",
+     "relinBits": [
+      64.36,
+      108.36,
+      152.36,
+      196.36
+     ],
+     "mulBits": [
+      64.36,
+      108.36,
+      152.36,
+      196.36,
+      240.36
+     ],
+     "j": 1
+    },
+    {
+     "N": 32768,
+     "limbs": 5,
+     "log2Q": 300.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 31.59,
+     "relinBits": [
+      67.41,
+      113.41,
+      159.41,
+      205.41,
+      251.41
+     ],
+     "mulBits": [
+      67.41,
+      113.41,
+      159.41,
+      205.41,
+      251.41
+     ],
+     "j": 2
+    }
+   ],
+   "cert": {
+    "N": 32768,
+    "limbs": 5,
+    "log2Q": 300.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 31.59,
+    "relinBits": [
+     67.41,
+     113.41,
+     159.41,
+     205.41,
+     251.41
+    ],
+    "mulBits": [
+     67.41,
+     113.41,
+     159.41,
+     205.41,
+     251.41
+    ],
+    "j": 2
+   },
+   "default": {
+    "N": 16384,
+    "limbs": 4,
+    "log2Q": 240.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 17.36,
+    "at": "body[8] mul",
+    "relinBits": [
+     64.36,
+     108.36,
+     152.36,
+     196.36
+    ],
+    "mulBits": [
+     64.36,
+     108.36,
+     152.36,
+     196.36,
+     240.36
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 164.05,
+    "certMs": 460.802,
+    "defaultRange": [
+     163.678,
+     165.193
+    ],
+    "certRange": [
+     458.27,
+     462.871
+    ],
+    "ratio": 2.8089119170984453,
+    "ratioRange": [
+     2.7741490256851074,
+     2.827936558364594
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     10.23,
+     10.23,
+     10.37,
+     10.37,
+     10.51,
+     10.46,
+     10.46,
+     10.43,
+     10.43
+    ],
+    "loadMedian": 10.43,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 1099512938497,
+   "ks": "bv",
+   "d": 1,
+   "tries": [
+    {
+     "N": 8192,
+     "limbs": 2,
+     "log2Q": 120.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 25.63,
+     "at": "body[0] mul",
+     "relinBits": [],
+     "mulBits": [
+      104.63
+     ],
+     "j": 0
+    },
+    {
+     "N": 8192,
+     "limbs": 3,
+     "log2Q": 180.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 32.02,
+     "relinBits": [
+      106.98
+     ],
+     "mulBits": [
+      106.98
+     ],
+     "j": 1
+    }
+   ],
+   "cert": {
+    "N": 8192,
+    "limbs": 3,
+    "log2Q": 180.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 32.02,
+    "relinBits": [
+     106.98
+    ],
+    "mulBits": [
+     106.98
+    ],
+    "j": 1
+   },
+   "default": {
+    "N": 8192,
+    "limbs": 2,
+    "log2Q": 120.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 25.63,
+    "at": "body[0] mul",
+    "relinBits": [],
+    "mulBits": [
+     104.63
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 7.0645,
+    "certMs": 11.1915,
+    "defaultRange": [
+     7.00439,
+     7.17912
+    ],
+    "certRange": [
+     11.1056,
+     11.3463
+    ],
+    "ratio": 1.5841885483756812,
+    "ratioRange": [
+     1.5469305430192002,
+     1.6198841012564977
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     10.47,
+     10.47,
+     10.47,
+     10.47,
+     10.47,
+     10.47,
+     10.47,
+     10.47,
+     10.47
+    ],
+    "loadMedian": 10.47,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 1099512938497,
+   "ks": "bv",
+   "d": 2,
+   "tries": [
+    {
+     "N": 8192,
+     "limbs": 3,
+     "log2Q": 180.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 33.98,
+     "at": "body[2] mul",
+     "relinBits": [
+      106.98
+     ],
+     "mulBits": [
+      106.98,
+      172.98
+     ],
+     "j": 0
+    },
+    {
+     "N": 16384,
+     "limbs": 4,
+     "log2Q": 240.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 22.48,
+     "relinBits": [
+      108.52,
+      176.52
+     ],
+     "mulBits": [
+      108.52,
+      176.52
+     ],
+     "j": 1
+    }
+   ],
+   "cert": {
+    "N": 16384,
+    "limbs": 4,
+    "log2Q": 240.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 22.48,
+    "relinBits": [
+     108.52,
+     176.52
+    ],
+    "mulBits": [
+     108.52,
+     176.52
+    ],
+    "j": 1
+   },
+   "default": {
+    "N": 8192,
+    "limbs": 3,
+    "log2Q": 180.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 33.98,
+    "at": "body[2] mul",
+    "relinBits": [
+     106.98
+    ],
+    "mulBits": [
+     106.98,
+     172.98
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 20.9088,
+    "certMs": 61.1105,
+    "defaultRange": [
+     20.7563,
+     21.0266
+    ],
+    "certRange": [
+     60.8359,
+     61.5656
+    ],
+    "ratio": 2.922716750841751,
+    "ratioRange": [
+     2.893282794174998,
+     2.966116311674046
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     10.47,
+     10.47,
+     10.47,
+     10.47,
+     10.47,
+     10.43,
+     10.43,
+     10.43,
+     10.43
+    ],
+    "loadMedian": 10.47,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 1099512938497,
+   "ks": "bv",
+   "d": 3,
+   "tries": [
+    {
+     "N": 16384,
+     "limbs": 4,
+     "log2Q": 240.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 45.53,
+     "at": "body[4] mul",
+     "relinBits": [
+      108.52,
+      176.52
+     ],
+     "mulBits": [
+      108.52,
+      176.52,
+      244.53
+     ],
+     "j": 0
+    },
+    {
+     "N": 16384,
+     "limbs": 5,
+     "log2Q": 300.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 17.86,
+     "relinBits": [
+      105.14,
+      173.14,
+      241.14
+     ],
+     "mulBits": [
+      105.14,
+      173.14,
+      241.14
+     ],
+     "j": 1
+    }
+   ],
+   "cert": {
+    "N": 16384,
+    "limbs": 5,
+    "log2Q": 300.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 17.86,
+    "relinBits": [
+     105.14,
+     173.14,
+     241.14
+    ],
+    "mulBits": [
+     105.14,
+     173.14,
+     241.14
+    ],
+    "j": 1
+   },
+   "default": {
+    "N": 16384,
+    "limbs": 4,
+    "log2Q": 240.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 45.53,
+    "at": "body[4] mul",
+    "relinBits": [
+     108.52,
+     176.52
+    ],
+    "mulBits": [
+     108.52,
+     176.52,
+     244.53
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 83.7088,
+    "certMs": 111.603,
+    "defaultRange": [
+     83.1861,
+     88.6222
+    ],
+    "certRange": [
+     111.425,
+     112.734
+    ],
+    "ratio": 1.3332290034022707,
+    "ratioRange": [
+     1.2573034747501188,
+     1.3552023715500547
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     10.43,
+     10.43,
+     10.43,
+     10.56,
+     10.56,
+     10.56,
+     10.56,
+     10.56,
+     10.6
+    ],
+    "loadMedian": 10.56,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 1099512938497,
+   "ks": "bv",
+   "d": 4,
+   "tries": [
+    {
+     "N": 16384,
+     "limbs": 5,
+     "log2Q": 300.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 50.14,
+     "at": "body[6] mul",
+     "relinBits": [
+      105.14,
+      173.14,
+      241.14
+     ],
+     "mulBits": [
+      105.14,
+      173.14,
+      241.14,
+      309.14
+     ],
+     "j": 0
+    },
+    {
+     "N": 16384,
+     "limbs": 6,
+     "log2Q": 360.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 8.24,
+     "relinBits": [
+      106.76,
+      174.76,
+      242.76,
+      310.76
+     ],
+     "mulBits": [
+      106.76,
+      174.76,
+      242.76,
+      310.76
+     ],
+     "j": 1
+    }
+   ],
+   "cert": {
+    "N": 16384,
+    "limbs": 6,
+    "log2Q": 360.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 8.24,
+    "relinBits": [
+     106.76,
+     174.76,
+     242.76,
+     310.76
+    ],
+    "mulBits": [
+     106.76,
+     174.76,
+     242.76,
+     310.76
+    ],
+    "j": 1
+   },
+   "default": {
+    "N": 16384,
+    "limbs": 5,
+    "log2Q": 300.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 50.14,
+    "at": "body[6] mul",
+    "relinBits": [
+     105.14,
+     173.14,
+     241.14
+    ],
+    "mulBits": [
+     105.14,
+     173.14,
+     241.14,
+     309.14
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 135.627,
+    "certMs": 176.239,
+    "defaultRange": [
+     134.182,
+     139.634
+    ],
+    "certRange": [
+     175.829,
+     180.437
+    ],
+    "ratio": 1.2994389022834685,
+    "ratioRange": [
+     1.2592133721013508,
+     1.344718367590288
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     10.6,
+     10.6,
+     10.6,
+     10.55,
+     10.55,
+     10.55,
+     10.66,
+     10.66,
+     10.66
+    ],
+    "loadMedian": 10.6,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 1099512938497,
+   "ks": "bv",
+   "d": 5,
+   "tries": [
+    {
+     "N": 16384,
+     "limbs": 6,
+     "log2Q": 360.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 59.76,
+     "at": "body[8] mul",
+     "relinBits": [
+      106.76,
+      174.76,
+      242.76,
+      310.76
+     ],
+     "mulBits": [
+      106.76,
+      174.76,
+      242.76,
+      310.76,
+      378.76
+     ],
+     "j": 0
+    },
+    {
+     "N": 16384,
+     "limbs": 7,
+     "log2Q": 420.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 1.95,
+     "at": "body[8] mul",
+     "relinBits": [
+      108.95,
+      176.95,
+      244.95,
+      312.95
+     ],
+     "mulBits": [
+      108.95,
+      176.95,
+      244.95,
+      312.95,
+      380.95
+     ],
+     "j": 1
+    },
+    {
+     "N": 32768,
+     "limbs": 8,
+     "log2Q": 480.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 48.48,
+     "relinBits": [
+      110.52,
+      180.52,
+      250.52,
+      320.52,
+      390.52
+     ],
+     "mulBits": [
+      110.52,
+      180.52,
+      250.52,
+      320.52,
+      390.52
+     ],
+     "j": 2
+    }
+   ],
+   "cert": {
+    "N": 32768,
+    "limbs": 8,
+    "log2Q": 480.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 48.48,
+    "relinBits": [
+     110.52,
+     180.52,
+     250.52,
+     320.52,
+     390.52
+    ],
+    "mulBits": [
+     110.52,
+     180.52,
+     250.52,
+     320.52,
+     390.52
+    ],
+    "j": 2
+   },
+   "default": {
+    "N": 16384,
+    "limbs": 6,
+    "log2Q": 360.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 59.76,
+    "at": "body[8] mul",
+    "relinBits": [
+     106.76,
+     174.76,
+     242.76,
+     310.76
+    ],
+    "mulBits": [
+     106.76,
+     174.76,
+     242.76,
+     310.76,
+     378.76
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 200.126,
+    "certMs": 649.103,
+    "defaultRange": [
+     199.386,
+     201.737
+    ],
+    "certRange": [
+     647.358,
+     655.336
+    ],
+    "ratio": 3.2434716128838827,
+    "ratioRange": [
+     3.2089205252383053,
+     3.2867703850822023
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     10.61,
+     10.61,
+     10.56,
+     10.52,
+     10.72,
+     10.74,
+     10.74,
+     10.68,
+     10.79
+    ],
+    "loadMedian": 10.68,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 1099512938497,
+   "ks": "hybrid",
+   "d": 1,
+   "tries": [
+    {
+     "N": 16384,
+     "limbs": 2,
+     "log2Q": 120.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 27.03,
+     "at": "body[0] mul",
+     "relinBits": [],
+     "mulBits": [
+      106.03
+     ],
+     "j": 0
+    },
+    {
+     "N": 16384,
+     "limbs": 3,
+     "log2Q": 180.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 30.79,
+     "relinBits": [
+      108.21
+     ],
+     "mulBits": [
+      108.21
+     ],
+     "j": 1
+    }
+   ],
+   "cert": {
+    "N": 16384,
+    "limbs": 3,
+    "log2Q": 180.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 30.79,
+    "relinBits": [
+     108.21
+    ],
+    "mulBits": [
+     108.21
+    ],
+    "j": 1
+   },
+   "default": {
+    "N": 16384,
+    "limbs": 2,
+    "log2Q": 120.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 27.03,
+    "at": "body[0] mul",
+    "relinBits": [],
+    "mulBits": [
+     106.03
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 19.5295,
+    "certMs": 29.0305,
+    "defaultRange": [
+     19.4452,
+     19.7334
+    ],
+    "certRange": [
+     28.8985,
+     29.2856
+    ],
+    "ratio": 1.4864947899331782,
+    "ratioRange": [
+     1.4644460660605876,
+     1.506058050315759
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     10.88,
+     10.88,
+     10.88,
+     10.88,
+     10.88,
+     10.88,
+     10.88,
+     10.88,
+     10.88
+    ],
+    "loadMedian": 10.88,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 1099512938497,
+   "ks": "hybrid",
+   "d": 2,
+   "tries": [
+    {
+     "N": 16384,
+     "limbs": 3,
+     "log2Q": 180.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 37.21,
+     "at": "body[2] mul",
+     "relinBits": [
+      108.21
+     ],
+     "mulBits": [
+      108.21,
+      176.21
+     ],
+     "j": 0
+    },
+    {
+     "N": 16384,
+     "limbs": 4,
+     "log2Q": 240.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 22.48,
+     "relinBits": [
+      108.52,
+      176.52
+     ],
+     "mulBits": [
+      108.52,
+      176.52
+     ],
+     "j": 1
+    }
+   ],
+   "cert": {
+    "N": 16384,
+    "limbs": 4,
+    "log2Q": 240.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 22.48,
+    "relinBits": [
+     108.52,
+     176.52
+    ],
+    "mulBits": [
+     108.52,
+     176.52
+    ],
+    "j": 1
+   },
+   "default": {
+    "N": 16384,
+    "limbs": 3,
+    "log2Q": 180.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 37.21,
+    "at": "body[2] mul",
+    "relinBits": [
+     108.21
+    ],
+    "mulBits": [
+     108.21,
+     176.21
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 52.9122,
+    "certMs": 73.0018,
+    "defaultRange": [
+     52.7402,
+     53.0765
+    ],
+    "certRange": [
+     72.4237,
+     73.3592
+    ],
+    "ratio": 1.3796780326654345,
+    "ratioRange": [
+     1.3645153693254075,
+     1.3909541488276496
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     10.88,
+     10.88,
+     10.81,
+     10.81,
+     10.81,
+     10.81,
+     10.81,
+     10.81,
+     10.81
+    ],
+    "loadMedian": 10.81,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 1099512938497,
+   "ks": "hybrid",
+   "d": 3,
+   "tries": [
+    {
+     "N": 16384,
+     "limbs": 4,
+     "log2Q": 240.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 45.53,
+     "at": "body[4] mul",
+     "relinBits": [
+      108.52,
+      176.52
+     ],
+     "mulBits": [
+      108.52,
+      176.52,
+      244.53
+     ],
+     "j": 0
+    },
+    {
+     "N": 32768,
+     "limbs": 5,
+     "log2Q": 300.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 8.05,
+     "relinBits": [
+      110.95,
+      180.95,
+      250.95
+     ],
+     "mulBits": [
+      110.95,
+      180.95,
+      250.95
+     ],
+     "j": 1
+    }
+   ],
+   "cert": {
+    "N": 32768,
+    "limbs": 5,
+    "log2Q": 300.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 8.05,
+    "relinBits": [
+     110.95,
+     180.95,
+     250.95
+    ],
+    "mulBits": [
+     110.95,
+     180.95,
+     250.95
+    ],
+    "j": 1
+   },
+   "default": {
+    "N": 16384,
+    "limbs": 4,
+    "log2Q": 240.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 45.53,
+    "at": "body[4] mul",
+    "relinBits": [
+     108.52,
+     176.52
+    ],
+    "mulBits": [
+     108.52,
+     176.52,
+     244.53
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 99.5278,
+    "certMs": 277.312,
+    "defaultRange": [
+     99.0031,
+     102.754
+    ],
+    "certRange": [
+     275.066,
+     285.061
+    ],
+    "ratio": 2.786276799045091,
+    "ratioRange": [
+     2.676937150865173,
+     2.8793138800704217
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     10.91,
+     10.91,
+     10.91,
+     10.83,
+     10.83,
+     10.83,
+     10.85,
+     10.85,
+     10.78
+    ],
+    "loadMedian": 10.85,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 1099512938497,
+   "ks": "hybrid",
+   "d": 4,
+   "tries": [
+    {
+     "N": 32768,
+     "limbs": 5,
+     "log2Q": 300.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 61.95,
+     "at": "body[6] mul",
+     "relinBits": [
+      110.95,
+      180.95,
+      250.95
+     ],
+     "mulBits": [
+      110.95,
+      180.95,
+      250.95,
+      320.95
+     ],
+     "j": 0
+    },
+    {
+     "N": 32768,
+     "limbs": 6,
+     "log2Q": 360.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 1.78,
+     "at": "body[6] mul",
+     "relinBits": [
+      110.78,
+      180.78,
+      250.78
+     ],
+     "mulBits": [
+      110.78,
+      180.78,
+      250.78,
+      320.78
+     ],
+     "j": 1
+    },
+    {
+     "N": 32768,
+     "limbs": 7,
+     "log2Q": 420.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 59.6,
+     "relinBits": [
+      109.4,
+      179.4,
+      249.4,
+      319.4
+     ],
+     "mulBits": [
+      109.4,
+      179.4,
+      249.4,
+      319.4
+     ],
+     "j": 2
+    }
+   ],
+   "cert": {
+    "N": 32768,
+    "limbs": 7,
+    "log2Q": 420.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 59.6,
+    "relinBits": [
+     109.4,
+     179.4,
+     249.4,
+     319.4
+    ],
+    "mulBits": [
+     109.4,
+     179.4,
+     249.4,
+     319.4
+    ],
+    "j": 2
+   },
+   "default": {
+    "N": 32768,
+    "limbs": 5,
+    "log2Q": 300.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 61.95,
+    "at": "body[6] mul",
+    "relinBits": [
+     110.95,
+     180.95,
+     250.95
+    ],
+    "mulBits": [
+     110.95,
+     180.95,
+     250.95,
+     320.95
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 334.354,
+    "certMs": 508.443,
+    "defaultRange": [
+     331.69,
+     335.924
+    ],
+    "certRange": [
+     506.108,
+     509.738
+    ],
+    "ratio": 1.5206727001920122,
+    "ratioRange": [
+     1.506614591395673,
+     1.5367903765564233
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     10.78,
+     10.8,
+     10.73,
+     10.73,
+     10.84,
+     10.77,
+     10.71,
+     10.71,
+     10.65
+    ],
+    "loadMedian": 10.73,
+    "remeasure": false
+   }
+  },
+  {
+   "t": 1099512938497,
+   "ks": "hybrid",
+   "d": 5,
+   "tries": [
+    {
+     "N": 32768,
+     "limbs": 6,
+     "log2Q": 360.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 1.78,
+     "at": "body[6] mul",
+     "relinBits": [
+      110.78,
+      180.78,
+      250.78
+     ],
+     "mulBits": [
+      110.78,
+      180.78,
+      250.78,
+      320.78
+     ],
+     "j": 0
+    },
+    {
+     "N": 32768,
+     "limbs": 7,
+     "log2Q": 420.0,
+     "verdict": "NOT CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": null,
+     "libraryDecryption": null,
+     "overflow": 10.4,
+     "at": "body[8] mul",
+     "relinBits": [
+      109.4,
+      179.4,
+      249.4,
+      319.4
+     ],
+     "mulBits": [
+      109.4,
+      179.4,
+      249.4,
+      319.4,
+      389.4
+     ],
+     "j": 1
+    },
+    {
+     "N": 32768,
+     "limbs": 8,
+     "log2Q": 480.0,
+     "verdict": "CERTIFIED",
+     "technique": "HPSPOVERQLEVELED",
+     "floatTol": true,
+     "assumed": [
+      "binary64",
+      "declaredDrops",
+      "binary64Dec"
+     ],
+     "libraryDecryption": "proved",
+     "margin": 48.48,
+     "relinBits": [
+      110.52,
+      180.52,
+      250.52,
+      320.52,
+      390.52
+     ],
+     "mulBits": [
+      110.52,
+      180.52,
+      250.52,
+      320.52,
+      390.52
+     ],
+     "j": 2
+    }
+   ],
+   "cert": {
+    "N": 32768,
+    "limbs": 8,
+    "log2Q": 480.0,
+    "verdict": "CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": [
+     "binary64",
+     "declaredDrops",
+     "binary64Dec"
+    ],
+    "libraryDecryption": "proved",
+    "margin": 48.48,
+    "relinBits": [
+     110.52,
+     180.52,
+     250.52,
+     320.52,
+     390.52
+    ],
+    "mulBits": [
+     110.52,
+     180.52,
+     250.52,
+     320.52,
+     390.52
+    ],
+    "j": 2
+   },
+   "default": {
+    "N": 32768,
+    "limbs": 6,
+    "log2Q": 360.0,
+    "verdict": "NOT CERTIFIED",
+    "technique": "HPSPOVERQLEVELED",
+    "floatTol": true,
+    "assumed": null,
+    "libraryDecryption": null,
+    "overflow": 1.78,
+    "at": "body[6] mul",
+    "relinBits": [
+     110.78,
+     180.78,
+     250.78
+    ],
+    "mulBits": [
+     110.78,
+     180.78,
+     250.78,
+     320.78
+    ],
+    "j": 0
+   },
+   "time": {
+    "defaultMs": 482.707,
+    "certMs": 705.775,
+    "defaultRange": [
+     479.55,
+     486.344
+    ],
+    "certRange": [
+     700.75,
+     709.468
+    ],
+    "ratio": 1.4621188422790636,
+    "ratioRange": [
+     1.440852565262448,
+     1.4794453133145655
+    ],
+    "rounds": 9,
+    "reps": 3,
+    "loads": [
+     10.76,
+     10.78,
+     10.72,
+     10.74,
+     10.84,
+     10.77,
+     10.88,
+     10.97,
+     10.89
+    ],
+    "loadMedian": 10.78,
+    "remeasure": false
+   }
+  }
+ ]
+}

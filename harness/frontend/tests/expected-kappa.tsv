@@ -1,0 +1,40 @@
+# file (relative to harness/frontend)	kappa	exit code	verdict	text that must appear in the human report (fhe_check --kappa K FILE)
+examples/openfhe_depth2_fixedmanual.fhecheck.json	128	0	CERTIFIED	Spec.Decrypt.decBound = 2^37.53, q0/2 = 2^44.00, margin 6.47 bits
+examples/openfhe_depth2_fixedmanual.fhecheck.json	128	0	CERTIFIED	eps = Spec.Encrypt.epsFor V (n*2N) kappa + drift = 100095 (2^16.61)
+examples/openfhe_depth2_fixedmanual.fhecheck.json	128	0	CERTIFIED	drift = Spec.Encrypt.meanDrift (N*Bk + 1 + N*Bs) = 1
+examples/openfhe_depth2_fixedmanual.fhecheck.json	128	0	CERTIFIED	means of the coefficients of (u, e1, e2) at most 3431/18446744073709551616 in absolute value (declared by the input, freshEncryption.mean; an ASSUMPTION about the samplers)
+examples/openfhe_depth2_fixedmanual.fhecheck.json	128	0	CERTIFIED	input noise Bp + t*eps = 6559991551 (2^32.61), Bp = 65536 (declared by the input, freshEncryption.plaintextBound; an ASSUMPTION about the encoder)
+examples/openfhe_depth2_fixedmanual.fhecheck.json	64	0	CERTIFIED	fresh-noise failure probability at most 2^-64; evaluation worst-case
+examples/openfhe_depth2_fixedmanual.fhecheck.json	40	0	CERTIFIED	fresh-noise failure probability at most 2^-40; evaluation worst-case
+examples/openfhe_fixedauto_chain.fhecheck.json	128	1	NOT CERTIFIED	overflow: 2*B >= Q by 10.64 bits
+examples/openfhe_flexibleautoext_plain.fhecheck.json	128	0	CERTIFIED	fresh-noise failure probability at most 2^-128
+examples/openfhe_depth8_q55_fixedmanual.fhecheck.json	1000000	0	CERTIFIED	the worst case was used instead (no probability
+examples/heir_mult_dep_8.worstcase.fhecheck.json	128	2	UNSUPPORTED	has no freshEncryption section
+tests/negative/kappa_input_not_fresh.json	128	2	UNSUPPORTED	Spec.Encrypt.freshOK? = false: input ct_2 is not a fresh encryption
+tests/negative/ok_plain_ops.json	128	0	CERTIFIED	1-part plaintext operand with a declared bound
+# the declared plaintext bound (freshEncryption.plaintextBound; fresh noise Bp + t*eps): the depth-2 example with Bp = 2^33
+# instead of t - 1 = 65536 (margin 6.47 bits above) keeps its certificate at 1.70 bits; with Bp = 2^34 it is NOT CERTIFIED
+tests/negative/fresh_plaintext_bound_2p33.json	128	0	CERTIFIED	input noise Bp + t*eps = 15149860607 (2^33.82), Bp = 8589934592 (declared by the input, freshEncryption.plaintextBound
+tests/negative/fresh_plaintext_bound_2p33.json	128	0	CERTIFIED	Spec.Decrypt.decBound = 2^42.30, q0/2 = 2^44.00, margin 1.70 bits
+tests/negative/fresh_plaintext_bound_2p34.json	128	1	NOT CERTIFIED	input noise Bp + t*eps = 23739795199 (2^34.47), Bp = 17179869184 (declared by the input, freshEncryption.plaintextBound
+tests/negative/fresh_plaintext_bound_2p34.json	128	1	NOT CERTIFIED	overflow: 2*B >= Q by 0.88 bits
+# neither field declared (a hand-written file): t - 1 and mean zero are ASSUMED, and the report says so
+tests/redteam/lowin.json	128	1	NOT CERTIFIED	Bp = 65536 (ASSUMED, not declared by the input: t - 1 = 65536, a representative in [0, t), as a packed encoding stores)
+tests/redteam/lowin.json	128	1	NOT CERTIFIED	drift 0 for sampler means within 0/1 (ASSUMED, not declared by the input: mean zero)
+# a zero denominator of the declared mean bound; an explicit digit table that restricts from the top level; the refusals
+# of tests/expected.tsv are the same with --kappa
+tests/negative/fresh_mean_den_zero.json	128	3	INVALID INPUT	$.freshEncryption.mean.den: must be positive
+tests/negative/explicit_digits_restrict.json	128	0	CERTIFIED	Spec.Decrypt.decBound = 2^37.53, q0/2 = 2^44.00, margin 6.47 bits
+tests/negative/unsupported_digits_not_restricting.json	128	2	UNSUPPORTED	the key-switching digit layout does not restrict from the top level
+tests/negative/unsupported_modswitch_method_no_switch.json	128	2	UNSUPPORTED	modulus-switching method t-corrected-canonical
+tests/negative/special_even.json	128	1	NOT CERTIFIED	the special (key-switching) primes are rejected
+examples/openfhe_bfv_default_dot_d2.fhecheck.json	128	0	CERTIFIED	ct_9: level 3, noise <= 1657551493923868578165415 (2^80.46); largest accepted 2^163.00; margin 82.54 bits
+examples/openfhe_bfv_default_dot_d2.fhecheck.json	128	0	CERTIFIED	fresh inputs [ct_1, ct_2, ct_3]; error bound eps = 70535 (2^16.11), including the mean drift 1; worst case 639015 (2^19.29)
+examples/openfhe_bfv_default_dot_d2.fhecheck.json	128	0	CERTIFIED	Challenge.BFVEncrypt.certifyBFVFresh?_kappa
+examples/openfhe_bfv_default_dot_d2.fhecheck.json	128	0	CERTIFIED	Spec.EncryptBFV.freshInputNoise = eps + max over the fresh inputs' levels of encodeDev = 71747 (2^16.13),
+examples/openfhe_bfv_default_dot_d2.fhecheck.json	20	0	CERTIFIED	--kappa 20 IS BELOW 40
+examples/openfhe_bfv_behz_hybrid_chain_d1.fhecheck.json	128	0	CERTIFIED	ct_5: level 2, noise <= 3771269904977082310 (2^61.71); largest accepted 2^103.00; margin 41.29 bits
+examples/openfhe_bfv_behz_hybrid_chain_d1.fhecheck.json	128	0	CERTIFIED	Library decryption: PROVED
+examples/openfhe_bfv_behz_hybrid_chain_d1.fhecheck.json	20	0	CERTIFIED	--kappa 20 IS BELOW 40
+examples/bfv_tiny_mul_textbook.fhecheck.json	128	2	UNSUPPORTED	this file has no freshEncryption section
+examples/openfhe_bfv_behz_hybrid_coefpk_d2.fhecheck.json	128	0	CERTIFIED	Library decryption: PROVED

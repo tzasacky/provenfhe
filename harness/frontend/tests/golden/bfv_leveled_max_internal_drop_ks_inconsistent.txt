@@ -1,0 +1,2 @@
+fhe_check: tests/negative-bfv/bfv_leveled_max_internal_drop_ks_inconsistent.json
+VERDICT: INVALID INPUT: $.bfv.multiplication.maxInternalDropKS: 0, but internalDrops[1] = 1 (maxInternalDropKS is a cross-check: it must be at least every internal drop at a keySwitch)

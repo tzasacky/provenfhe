@@ -1,0 +1,1 @@
+line 110: plaintext pt_5 has encoding coefpacked: only packed plaintexts are mapped (the bound t-1 and the encoding deviation are derived for PackedEncoding's lift to [0, t))

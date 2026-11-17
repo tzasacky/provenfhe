@@ -1,0 +1,2 @@
+fhe_check: tests/negative/malformed_bigint.json
+VERDICT: INVALID INPUT: $.params.inputNoise: "12e5" is not a decimal natural number

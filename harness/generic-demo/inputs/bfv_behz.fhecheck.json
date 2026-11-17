@@ -1,0 +1,122 @@
+{
+ "format": "fhe-check/v1",
+ "source": {
+  "tool": "hand-written (harness/generic-demo/make_inputs.py)",
+  "note": "(a*b + rot5(a*b)) + p, then two modulus switches; BEHZ multiplication"
+ },
+ "params": {
+  "scheme": "BFV",
+  "N": 8192,
+  "t": 65537,
+  "limbs": [
+   "1125899906826241",
+   "1125899906629633",
+   "1125899905744897"
+  ],
+  "special": [
+   "36028797018652673"
+  ],
+  "secretBound": 1,
+  "inputNoise": "376851",
+  "keyNoise": 19
+ },
+ "keySwitching": {
+  "method": "hybrid",
+  "variant": "canonical",
+  "digits": {
+   "kind": "consecutive",
+   "towersPerDigit": 1
+  }
+ },
+ "modSwitch": {
+  "method": "round"
+ },
+ "bfv": {
+  "multiplication": {
+   "technique": "BEHZ",
+   "auxBasis": [
+    "4503599627370449",
+    "4503599627370353",
+    "4503599627370323",
+    "4503599627370313"
+   ],
+   "mSk": "9007199254740881",
+   "mTilde": "65536",
+   "source": "hand-written: BEHZ with base B (4 primes), m_sk, m~ = 2^16"
+  },
+  "plainAdd": {
+   "method": "delta",
+   "source": "hand-written: textbook floor(Q/t)*p"
+  }
+ },
+ "program": {
+  "inputs": [
+   {
+    "name": "a",
+    "parts": 2,
+    "level": 3,
+    "key": 1
+   },
+   {
+    "name": "b",
+    "parts": 2,
+    "level": 3,
+    "key": 1
+   },
+   {
+    "name": "p",
+    "parts": 1,
+    "level": 3
+   }
+  ],
+  "body": [
+   {
+    "op": "mul",
+    "dst": "x",
+    "a": "a",
+    "b": "b"
+   },
+   {
+    "op": "relin",
+    "dst": "x",
+    "a": "x"
+   },
+   {
+    "op": "automorph",
+    "dst": "y",
+    "a": "x",
+    "g": 5
+   },
+   {
+    "op": "keySwitch",
+    "dst": "y",
+    "a": "y"
+   },
+   {
+    "op": "add",
+    "dst": "z",
+    "a": "x",
+    "b": "y"
+   },
+   {
+    "op": "addPlain",
+    "dst": "z",
+    "a": "z",
+    "p": "p"
+   },
+   {
+    "op": "modSwitch",
+    "dst": "w",
+    "a": "z"
+   },
+   {
+    "op": "modSwitch",
+    "dst": "out",
+    "a": "w"
+   }
+  ],
+  "outputs": [
+   "out"
+  ]
+ }
+}

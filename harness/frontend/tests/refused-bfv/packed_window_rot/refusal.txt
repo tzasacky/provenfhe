@@ -1,0 +1,1 @@
+t = 1179649 with q0 = 1785857: the plaintext modulus is outside the packed-encoding window t - 1 <= floor(q0/2) (and t <= every limb) required by the library's encoder; refused

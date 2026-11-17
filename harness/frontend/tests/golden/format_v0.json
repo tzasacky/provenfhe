@@ -1,0 +1,7 @@
+{"verdictLabel": "INVALID INPUT",
+ "verdict": "INVALID INPUT",
+ "tool": "fhe_check",
+ "summary":
+ "format fhe-check/v0 is the superseded draft; regenerate the file with the v1 extractors in harness/frontend/",
+ "input": "tests/negative/format_v0.json",
+ "format": "fhe-check-report/v1"}

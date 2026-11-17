@@ -1,0 +1,171 @@
+{
+ "format": "fhe-check/v1",
+ "source": {
+  "tool": "heir",
+  "backend": "lattigo",
+  "lattigo": "v6.1.0",
+  "encryptionTechnique": "extended",
+  "heirNoiseBoundLog2": {
+   "%ct_7": 29.57
+  },
+  "note": "heirNoiseBoundLog2 is HEIR's own noise.bound annotation (its model), informational"
+ },
+ "params": {
+  "scheme": "BGV",
+  "N": 16384,
+  "t": 65537,
+  "limbs": [
+   {
+    "q": "4295294977",
+    "psi": "4266048797"
+   },
+   {
+    "q": "35184372121601",
+    "psi": "16823337355849"
+   },
+   {
+    "q": "35184372744193",
+    "psi": "18038108874895"
+   },
+   {
+    "q": "35184373006337",
+    "psi": "14820767804909"
+   }
+  ],
+  "special": [
+   {
+    "q": "35184373989377",
+    "psi": "31430541732506"
+   },
+   {
+    "q": "35184374874113",
+    "psi": "8168782182283"
+   }
+  ],
+  "secretBound": 1,
+  "inputNoise": "536944640",
+  "keyNoise": "1245203"
+ },
+ "noiseDerivation": {
+  "errorBound": 19,
+  "errorBoundSource": "Lattigo v6.1.0 DefaultXe: sigma 3.2, Bound 19.2 (core/rlwe/security.go:10-17), hard rejection v <= 19.2 then rounding, so |e| <= 19 (ring/sampler_gaussian.go:160-166); HEIR emits no Xe/Xs (LattigoEmitter.cpp:1992-2010)",
+  "secret": "ternary, density 2/3 (security.go:19; sampler_ternary.go:32-37): |s_i| <= 1",
+  "msbForm": "Lattigo BGV keeps ct phase = m*t^-1 + e (encoder.go:376-377); all bounds here are for the LSB view Phi = t*phase = m + t*e",
+  "inputNoiseFormula": "(t-1) + t*floor((2*Be*(2N+1) + (N+1)*(p0-1))/(2*p0)) with p0 = 35184373989377: Lattigo public-key encryption mod Q*p0 then centred division by p0 (encryptor.go:172-260); m lifted to [0,t) (encoder.go:218-222,361)",
+  "keyNoiseFormula": "t*Be: Lattigo keys carry plain e in MSB form (keygenerator.go:296-310), i.e. t*e in the LSB view",
+  "keySwitchingVariant": "centred: Lattigo ModUp is exact and centred (|d_j| <= Q_j/2, ring/basis_extension.go:401-435,498-525) and ModDown is an exact centred rounding (|r| <= 1/2, basis_extension.go:222-256); so its LSB-view error, at most t*(N*Be*sum_j Q_j/2 + P*(1+N)/2)/P, is below the centred reference bound ksBoundAt and hence below the canonical one used here (ASSUMED match, argued from source, not proved)",
+  "modSwitch": "Lattigo Rescale = DivRoundByLastModulusNTT, centred (schemes/bgv/evaluator.go:1436-1443, ring/scaling.go:99-107)",
+  "plaintextBound": "t-1 (canonical [0,t) lift)"
+ },
+ "keySwitching": {
+  "method": "hybrid",
+  "variant": "canonical",
+  "digits": {
+   "kind": "consecutive",
+   "towersPerDigit": 2,
+   "dnum": 2
+  }
+ },
+ "modSwitch": {
+  "method": "t-corrected-centred"
+ },
+ "program": {
+  "inputs": [
+   {
+    "name": "%arg0",
+    "parts": 2,
+    "level": 4,
+    "key": 1
+   }
+  ],
+  "body": [
+   {
+    "op": "mul",
+    "dst": "%ct",
+    "a": "%arg0",
+    "b": "%arg0",
+    "expect": {
+     "parts": 3,
+     "level": 4
+    }
+   },
+   {
+    "op": "relin",
+    "dst": "%ct_0",
+    "a": "%ct",
+    "expect": {
+     "parts": 2,
+     "level": 4
+    }
+   },
+   {
+    "op": "modSwitch",
+    "dst": "%ct_1",
+    "a": "%ct_0",
+    "expect": {
+     "parts": 2,
+     "level": 3
+    }
+   },
+   {
+    "op": "mul",
+    "dst": "%ct_2",
+    "a": "%ct_1",
+    "b": "%ct_1",
+    "expect": {
+     "parts": 3,
+     "level": 3
+    }
+   },
+   {
+    "op": "relin",
+    "dst": "%ct_3",
+    "a": "%ct_2",
+    "expect": {
+     "parts": 2,
+     "level": 3
+    }
+   },
+   {
+    "op": "modSwitch",
+    "dst": "%ct_4",
+    "a": "%ct_3",
+    "expect": {
+     "parts": 2,
+     "level": 2
+    }
+   },
+   {
+    "op": "mul",
+    "dst": "%ct_5",
+    "a": "%ct_4",
+    "b": "%ct_4",
+    "expect": {
+     "parts": 3,
+     "level": 2
+    }
+   },
+   {
+    "op": "relin",
+    "dst": "%ct_6",
+    "a": "%ct_5",
+    "expect": {
+     "parts": 2,
+     "level": 2
+    }
+   },
+   {
+    "op": "modSwitch",
+    "dst": "%ct_7",
+    "a": "%ct_6",
+    "expect": {
+     "parts": 2,
+     "level": 1
+    }
+   }
+  ],
+  "outputs": [
+   "%ct_7"
+  ]
+ }
+}

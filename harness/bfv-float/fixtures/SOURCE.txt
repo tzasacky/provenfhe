@@ -1,0 +1,4 @@
+OpenFHE: upstream openfheorg/openfhe-development v1.6.1, commit b59e1f291965f14fbee5172cd83a20f5b856204f
+build: harness/frontend/openfhe/build_openfhe.sh (Release, WITH_REDUCED_NOISE=OFF, NATIVEINT 64; observation-only tracer patch, not on these code paths), c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+library flags: -O3 -DNDEBUG -std=gnu++17 -fopenmp (no -march, no -ffast-math); FLT_EVAL_METHOD 0; no FMA instruction in libOPENFHEcore/pke (harness/openfhe-pin/export/float_facts.sh)
+dumper: harness/bfv-float/dump.cpp (sha256 b571b30facaa97a3128d01fea86e76f48303843019a87d1fb0fd09f2279dde76), 15 contexts: {HPS, HPSPOVERQ, HPSPOVERQLEVELED} x {1024/2/60, 1024/4/60, 1024/2/45, 1024/3/30, 2048/8/60}

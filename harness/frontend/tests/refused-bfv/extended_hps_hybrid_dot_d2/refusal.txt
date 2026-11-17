@@ -1,0 +1,1 @@
+ENCRYPTION_TECHNIQUE = EXTENDED: the trusted encryption model (Spec.EncryptBFV.encryptBFV) describes STANDARD encryption only, and fhe_check computes the input noise from it; refused (use the default STANDARD encryption)

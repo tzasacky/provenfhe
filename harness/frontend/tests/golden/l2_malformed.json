@@ -1,0 +1,7 @@
+{"verdictLabel": "INVALID INPUT",
+ "verdict": "INVALID INPUT",
+ "tool": "fhe_check",
+ "summary":
+ "$.freshEncryption.l2.e1Proxy: \"eleven\" is not a decimal natural number",
+ "input": "tests/negative/l2_malformed.json",
+ "format": "fhe-check-report/v1"}

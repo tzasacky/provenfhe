@@ -1,0 +1,614 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "fhe-check/v1",
+ "title": "fhe_check neutral input (BGV, BFV), v1",
+ "description": "Input of the fhe_check executable. Everything here is UNTRUSTED except the declared ASSUMPTIONS (params.inputNoise, params.keyNoise, params.secretBound, per-input 'bound', keySwitching.variant, keySwitching.digits, modSwitch.method), which the report prints as assumptions. fhe_check re-decides parameter validity with Spec.schemeParamsOK? and Spec.Budget.specialOK?, computes the budget itself (Spec.Budget.certified), re-derives every level and part count with Source.step, and never reads a bound, root of unity, budget or 'expect' value as a fact. Big integers are decimal strings; small integers may be JSON numbers.",
+ "type": "object",
+ "required": [
+  "format",
+  "params",
+  "keySwitching",
+  "modSwitch",
+  "program"
+ ],
+ "$defs": {
+  "nat": {
+   "oneOf": [
+    {
+     "type": "string",
+     "pattern": "^[0-9]+$"
+    },
+    {
+     "type": "integer",
+     "minimum": 0
+    }
+   ]
+  },
+  "int": {
+   "oneOf": [
+    {
+     "type": "string",
+     "pattern": "^-?[0-9]+$"
+    },
+    {
+     "type": "integer"
+    }
+   ]
+  },
+  "var": {
+   "type": "string",
+   "minLength": 1
+  },
+  "limb": {
+   "oneOf": [
+    {
+     "$ref": "#/$defs/nat"
+    },
+    {
+     "type": "object",
+     "required": [
+      "q"
+     ],
+     "properties": {
+      "q": {
+       "$ref": "#/$defs/nat"
+      },
+      "psi": {
+       "$ref": "#/$defs/nat",
+       "description": "optional primitive 2N-th root of unity (a storage-level datum for accelerator kernels); not read by the noise verdict"
+      }
+     }
+    }
+   ]
+  },
+  "instr": {
+   "type": "object",
+   "required": [
+    "op",
+    "dst",
+    "a"
+   ],
+   "properties": {
+    "op": {
+     "enum": [
+      "add",
+      "sub",
+      "mul",
+      "square",
+      "mulConst",
+      "negate",
+      "copy",
+      "toEval",
+      "toCoeff",
+      "relin",
+      "keySwitch",
+      "automorph",
+      "modSwitch",
+      "addPlain",
+      "subPlain",
+      "mulPlain",
+      "dropLimbs",
+      "rescale"
+     ],
+     "description": "all but rescale are Spec.Source operations; rescale (CKKS) and any other name are answered UNSUPPORTED with the name reported"
+    },
+    "dst": {
+     "$ref": "#/$defs/var"
+    },
+    "a": {
+     "$ref": "#/$defs/var"
+    },
+    "b": {
+     "$ref": "#/$defs/var",
+     "description": "second ciphertext operand: add, sub, mul"
+    },
+    "p": {
+     "$ref": "#/$defs/var",
+     "description": "plaintext operand (an input with parts = 1): addPlain, subPlain, mulPlain"
+    },
+    "c": {
+     "$ref": "#/$defs/int",
+     "description": "mulConst only"
+    },
+    "g": {
+     "$ref": "#/$defs/nat",
+     "description": "automorph only: odd Galois element"
+    },
+    "k": {
+     "$ref": "#/$defs/nat",
+     "description": "dropLimbs only: number of limbs dropped"
+    },
+    "expect": {
+     "type": "object",
+     "description": "optional: the frontend's own level/parts for dst. Compared with Source.step; a mismatch withholds the certificate. Never trusted.",
+     "properties": {
+      "level": {
+       "type": "integer"
+      },
+      "parts": {
+       "type": "integer"
+      }
+     },
+     "additionalProperties": false
+    }
+   },
+   "additionalProperties": false
+  }
+ },
+ "properties": {
+  "format": {
+   "const": "fhe-check/v1"
+  },
+  "source": {
+   "type": "object",
+   "description": "provenance only (tool, version, artifact, scaling technique); 'tool' is printed as the supplier of the noise assumptions"
+  },
+  "scaling": {
+   "type": "object",
+   "description": "BGV only, optional: the library's scaling-factor bookkeeping (Spec.Scaling.ScaleData). fhe_check runs Spec.Scaling.scaleOK? on it and reports whether user-level decryption (Challenge.Scaling.certify?_user) is covered; absent: not covered.",
+   "required": [
+    "tracks",
+    "inputFactors"
+   ],
+   "properties": {
+    "tracks": {
+     "type": "boolean",
+     "description": "the technique tracks factors (OpenFHE FLEXIBLEAUTO, FLEXIBLEAUTOEXT)"
+    },
+    "inputFactors": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "name",
+       "factor"
+      ],
+      "properties": {
+       "name": {
+        "type": "string"
+       },
+       "factor": {
+        "type": "integer",
+        "minimum": 0
+       }
+      },
+      "additionalProperties": false
+     }
+    },
+    "adjustments": {
+     "type": "array",
+     "description": "indices into program.body of the mulConst instructions that are the library's scale adjustments (absent: none)",
+     "items": {
+      "type": "integer",
+      "minimum": 0
+     }
+    }
+   },
+   "additionalProperties": false
+  },
+  "params": {
+   "type": "object",
+   "required": [
+    "scheme",
+    "N",
+    "t",
+    "limbs",
+    "special",
+    "secretBound",
+    "inputNoise",
+    "keyNoise"
+   ],
+   "properties": {
+    "scheme": {
+     "enum": [
+      "BGV",
+      "BFV"
+     ],
+     "description": "any other scheme is answered UNSUPPORTED. BFV: see the top-level object bfv; inputNoise, keyNoise, modSwitch.method and decryption.method are read as said in their descriptions"
+    },
+    "N": {
+     "$ref": "#/$defs/nat"
+    },
+    "t": {
+     "$ref": "#/$defs/nat"
+    },
+    "limbs": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/limb"
+     },
+     "description": "q_0 .. q_{L-1}; a ciphertext at level l lives modulo q_0 ... q_{l-1}"
+    },
+    "special": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/limb"
+     },
+     "description": "special primes P of hybrid key switching; each must be odd, and they must be pairwise coprime and coprime to every ciphertext prime and to t (Spec.Budget.specialOK?), else NOT CERTIFIED. BFV: may be empty (hybrid key switching with no special primes and one limb per digit is RNS-digit, 'BV', key switching)"
+    },
+    "secretBound": {
+     "$ref": "#/$defs/nat",
+     "description": "ASSUMPTION: |s_i| <= secretBound (1 for ternary secrets)"
+    },
+    "inputNoise": {
+     "$ref": "#/$defs/nat",
+     "description": "ASSUMPTION: every input ciphertext's centred phase m + t e has infinity norm <= inputNoise (must be >= floor(t/2)). BFV: ASSUMPTION: every input ciphertext's BFV noise e = [phase - floor(Q/t) m]_Q has infinity norm <= inputNoise (no lower bound)"
+    },
+    "keyNoise": {
+     "$ref": "#/$defs/nat",
+     "description": "ASSUMPTION: every key-switching key error is <= keyNoise in infinity norm and divisible by t; it must satisfy 2*floor(keyNoise/t)*t < q0*P (q0 the first ciphertext prime, P the product of the special primes; Spec.Certify.keysRestrict?), else NOT CERTIFIED. BFV: bound on the key-switching key errors (no divisibility by t)"
+    }
+   },
+   "additionalProperties": false
+  },
+  "noiseDerivation": {
+   "type": "object",
+   "description": "how the frontend obtained inputNoise/keyNoise (sampler tail cut, encryption mode, source file:line); printed in the report, never checked"
+  },
+  "keySwitching": {
+   "type": "object",
+   "required": [
+    "method",
+    "variant",
+    "digits"
+   ],
+   "properties": {
+    "method": {
+     "const": "hybrid"
+    },
+    "variant": {
+     "enum": [
+      "centred",
+      "canonical",
+      "openfhe"
+     ],
+     "description": "ASSUMPTION: which representatives the library's hybrid key switching uses: centred (Spec.Budget layout canonical = false; e.g. Lattigo) or canonical (canonical, openfhe: canonical = true, about twice the bound; the conservative default, used for OpenFHE and Lattigo; openfhe additionally names the proved OpenFHE algorithm in the report). The budget is Spec.Budget.ksBudget for that layout. The decoder also accepts one older (legacy) name as an alias of canonical."
+    },
+    "digits": {
+     "oneOf": [
+      {
+       "type": "object",
+       "required": [
+        "kind",
+        "towersPerDigit"
+       ],
+       "properties": {
+        "kind": {
+         "const": "consecutive"
+        },
+        "towersPerDigit": {
+         "type": "integer",
+         "minimum": 1
+        },
+        "dnum": {
+         "type": "integer",
+         "description": "informational"
+        }
+       },
+       "additionalProperties": false
+      },
+      {
+       "type": "object",
+       "required": [
+        "kind",
+        "perLevel"
+       ],
+       "properties": {
+        "kind": {
+         "const": "explicit"
+        },
+        "perLevel": {
+         "type": "object",
+         "description": "level (decimal string) -> list of digits, each a list of limb indices; required for every level 1..L; the digits must be consecutive runs of limbs, in order, partitioning 0..level-1 (Spec.Budget.KSLayout lists digit sizes); and the table must restrict from the top level L: the digits at every level l are the level-L digits cut down to the first l limbs (Spec.Budget.restrictsTo; a consecutive layout always does), else UNSUPPORTED"
+        }
+       },
+       "additionalProperties": false
+      }
+     ]
+    },
+    "source": {
+     "type": "string"
+    },
+    "technique": {
+     "type": "string"
+    }
+   },
+   "additionalProperties": false
+  },
+  "modSwitch": {
+   "type": "object",
+   "required": [
+    "method"
+   ],
+   "properties": {
+    "method": {
+     "enum": [
+      "t-corrected-centred",
+      "round"
+     ],
+     "description": "ASSUMPTION: the library's modulus switch is the t-corrected switch with centred correction (|delta_c| <= t*q/2). For BGV any other value is UNSUPPORTED, whether or not the program contains a modulus switch (Challenge.Certify.certify?_centred). BFV: \"round\" (every component rounded, budget Spec.BudgetBFV.msBudget); any other value makes BFV programs with modSwitch UNSUPPORTED."
+    },
+    "source": {
+     "type": "string"
+    }
+   },
+   "additionalProperties": false
+  },
+  "bfv": {
+   "type": "object",
+   "description": "BFV only (params.scheme = BFV): ASSUMPTIONS about how the library multiplies and adds plaintexts. multiplication is needed iff the program has mul/square; plainAdd iff it has addPlain/subPlain.",
+   "properties": {
+    "multiplication": {
+     "type": "object",
+     "required": [
+      "technique"
+     ],
+     "properties": {
+      "technique": {
+       "enum": [
+        "textbook",
+        "HPS",
+        "HPSPOVERQ",
+        "HPSPOVERQLEVELED",
+        "BEHZ"
+       ],
+       "description": "ASSUMPTION: the multiplication the library runs; decides, for every mul and square, the lift excess e and rounding slack rho at that instruction's own level and internal drop (the locked Challenge.CertifyBFV.slackAt: Spec.BudgetBFV.hpsSlack, poverqSlack, leveledSlack, behzSlack; exact HPS: Challenge.BFVMul.hpsAuxOK?), and for HPSPOVERQLEVELED the key-switching number of a top-level relin or keySwitch with an internal drop (Challenge.CertifyBFV.ksAt: Spec.BudgetBFV.ksLeveled). A false side condition, HPS or BEHZ below the top level, a square under the P-over-Q variants, or an unknown name is answered UNSUPPORTED."
+      },
+      "auxBasis": {
+       "type": "array",
+       "items": {
+        "$ref": "#/$defs/nat"
+       },
+       "description": "HPS: the auxiliary primes P; the P-over-Q variants: P_l; BEHZ: the base B"
+      },
+      "mSk": {
+       "$ref": "#/$defs/nat",
+       "description": "BEHZ only"
+      },
+      "mTilde": {
+       "$ref": "#/$defs/nat",
+       "description": "BEHZ only"
+      },
+      "internalDrops": {
+       "type": "array",
+       "items": {
+        "type": "integer",
+        "minimum": 0
+       },
+       "description": "HPSPOVERQLEVELED: ASSUMPTION: for each instruction of program.body, in order, the number of limbs the library drops internally at it (OpenFHE v1.6.1 FindLevelsToDrop inside EvalMult, EvalSquare, RelinearizeCore; 0 at every other instruction); becomes Spec.CertifyBFV.InputBFV.drops. REQUIRED under HPSPOVERQLEVELED when the program has a mul, square, relin or keySwitch; it must have exactly one entry per instruction, each entry below the number of limbs, and be 0 at every instruction that is not a mul, square, relin or keySwitch of a top-level operand (INVALID INPUT otherwise; Challenge.CertifyBFV.stepChecks rejects such a drop); a program with none of those instructions may omit it (all zero). Under any other technique it must be absent or all zero (INVALID INPUT otherwise). Each mul is charged the slack of its own drop and each top-level relin/keySwitch the key-switching bound of its own drop. fhe_check cannot detect an understated drop from the file: the frontend must establish it (the OpenFHE extractor compares the drop recorded at run time, the library's dumped FindLevelsToDrop table and a replica)."
+      },
+      "maxInternalDrop": {
+       "$ref": "#/$defs/int",
+       "description": "HPSPOVERQLEVELED only, optional CROSS-CHECK (it does not enter the budget): if present it must be >= every entry of internalDrops at a mul, square or relin (and >= 0), else INVALID INPUT"
+      },
+      "maxInternalDropKS": {
+       "$ref": "#/$defs/int",
+       "description": "HPSPOVERQLEVELED only, optional CROSS-CHECK (it does not enter the budget): if present it must be >= every entry of internalDrops at a keySwitch (and >= 0), else INVALID INPUT"
+      },
+      "floatTolerant": {
+       "type": "boolean",
+       "description": "default true: the budget includes the binary64 tolerances Spec.BudgetBFV.doubleSw / doubleSr of the library's float-assisted conversions; false: the idealised exact algorithm"
+      },
+      "source": {
+       "type": "string"
+      },
+      "gamma": {},
+      "mulLimbs": {},
+      "auxBasisRule": {}
+     },
+     "additionalProperties": false
+    },
+    "plainAdd": {
+     "type": "object",
+     "required": [
+      "method"
+     ],
+     "properties": {
+      "method": {
+       "enum": [
+        "delta",
+        "rounded",
+        "ceil",
+        "floor",
+        "scaled"
+       ],
+       "description": "ASSUMPTION: delta: the library adds floor(Q/t)*p exactly (budget 0); rounded: it adds round(Q*p/t) (budget Spec.BudgetBFV.plainAddRoundedAt P l b at the operand's own level l, b the largest plaintext bound of the program, t - 1 for a plaintext input without a declared bound); ceil, floor, scaled: it adds a polynomial within one unit of Q*p/t (budget Spec.BudgetBFV.plainAddScaledAt P l b)"
+      },
+      "source": {
+       "type": "string"
+      },
+      "deviationBound": {}
+     },
+     "additionalProperties": false
+    },
+    "encryption": {
+     "type": "object",
+     "description": "printed in the report, never read"
+    }
+   },
+   "additionalProperties": false
+  },
+  "decryption": {
+   "type": "object",
+   "required": [
+    "method"
+   ],
+   "description": "ASSUMPTION: which decryption the library performs on the outputs. Absent: at-output-level.",
+   "properties": {
+    "method": {
+     "enum": [
+      "at-output-level",
+      "switch-to-one-limb"
+     ],
+     "description": "at-output-level: textbook decryption modulo the output's own level (Spec.Scheme.bgvDecrypt). switch-to-one-limb: the phase is computed at the output's level and modulus-switched (centred t-corrected) down to q0 before it is read (Spec.Decrypt.bgvDecryptSwitched; OpenFHE PKEBGVRNS::Decrypt, EVALUATION branch); fhe_check then also requires Spec.Decrypt.decryptAllOK? for every output. Any other value is UNSUPPORTED. BFV: only at-output-level (Spec.Scheme.bfvDecrypt)."
+    },
+    "source": {
+     "type": "string"
+    }
+   },
+   "additionalProperties": false
+  },
+  "freshEncryption": {
+   "type": "object",
+   "required": [
+    "inputs",
+    "keyError",
+    "u",
+    "e1",
+    "e2"
+   ],
+   "description": "ASSUMPTIONS of the probabilistic mode (fhe_check --kappa K); absent: that mode is unavailable. The named inputs are fresh public-key encryptions (b*u + t*e1 + p, a*u + t*e2) under a public key b = -a*s + t*e_pk (Spec.Encrypt.encrypt), where p is the STORED plaintext polynomial, of infinity norm at most plaintextBound, and the 3N randomness coefficients of (u, e1, e2) are independent, within the bounds u, e1, e2, and each of mean at most `mean` in absolute value (Challenge.FreshNoise.SamplerOK). The input noise the analysis then starts from is Spec.Encrypt.freshNoise = plaintextBound + t*eps, eps = Spec.Encrypt.epsFor + Spec.Encrypt.meanDrift (the frontend's params.inputNoise is not used in that mode).",
+   "properties": {
+    "inputs": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "description": "names of the program inputs that are fresh encryptions (each 2 parts, key 1). In --kappa mode every other input must declare a bound."
+    },
+    "keyError": {
+     "type": "integer",
+     "minimum": 0,
+     "description": "|e_pk|_inf bound"
+    },
+    "u": {
+     "type": "integer",
+     "minimum": 0,
+     "description": "|u_i| bound (1 for ternary)"
+    },
+    "e1": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "e2": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "plaintextBound": {
+     "$ref": "#/$defs/nat",
+     "description": "ASSUMPTION about the encoder: a bound Bp on the infinity norm of the stored plaintext polynomial p of every fresh encryption (a decimal string or a JSON number). The fresh noise is Bp + t*eps. Optional; absent: fhe_check takes t - 1 (a representative in [0, t), as a packed encoding stores) and prints it as ASSUMED, not declared by the input."
+    },
+    "mean": {
+     "type": "object",
+     "required": [
+      "num",
+      "den"
+     ],
+     "description": "ASSUMPTION about the samplers: every coefficient of the encryption randomness (u, e1, e2) has a mean of absolute value at most num/den. It adds the drift Spec.Encrypt.meanDrift to eps (0 for num = 0). Optional; absent: fhe_check takes mean zero (0/1) and prints it as ASSUMED, not declared by the input.",
+     "properties": {
+      "num": {
+       "$ref": "#/$defs/nat",
+       "description": "numerator, a natural number (decimal string or JSON number)"
+      },
+      "den": {
+       "$ref": "#/$defs/nat",
+       "description": "denominator, a positive natural number (decimal string or JSON number); 0 is INVALID INPUT"
+      },
+      "source": {
+       "type": "string",
+       "description": "where the bound comes from (not read by fhe_check)"
+      }
+     },
+     "additionalProperties": false
+    },
+    "source": {
+     "type": "string",
+     "description": "where the bounds come from (printed, not checked)"
+    },
+    "l2": {
+     "type": "object",
+     "properties": {
+      "keyErrorSq": {},
+      "secretSq": {},
+      "uProxy": {},
+      "e1Proxy": {},
+      "e2Proxy": {},
+      "source": {}
+     },
+     "additionalProperties": false
+    }
+   },
+   "additionalProperties": false
+  },
+  "program": {
+   "type": "object",
+   "required": [
+    "inputs",
+    "body",
+    "outputs"
+   ],
+   "properties": {
+    "inputs": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "name",
+       "parts",
+       "level"
+      ],
+      "properties": {
+       "name": {
+        "$ref": "#/$defs/var"
+       },
+       "parts": {
+        "type": "integer",
+        "description": "2 for a fresh ciphertext, 1 for a plaintext operand"
+       },
+       "level": {
+        "type": "integer"
+       },
+       "key": {
+        "type": "integer",
+        "default": 1,
+        "description": "Galois index of the key the input is under"
+       },
+       "bound": {
+        "$ref": "#/$defs/nat",
+        "description": "ASSUMPTION: this input's own noise bound (a plaintext: the norm of its centred encoding, at most t/2). Goes to Source.Program.bounds; refAnalyze uses min(bound, inputNoise). BFV: a ciphertext input's bound is on its BFV noise and REPLACES inputNoise whether smaller or larger; a plaintext input's bound is on |p|inf and replaces t - 1 (Spec.TraceBFV.inputBound)."
+       },
+       "origin": {
+        "type": "object",
+        "description": "where the frontend got this input (OpenFHE: the traced plaintext id it encrypts or is, used by openfhe/value_check.py); ignored by fhe_check"
+       },
+       "scale": {
+        "description": "accepted only as 1"
+       }
+      },
+      "additionalProperties": false
+     }
+    },
+    "body": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/instr"
+     }
+    },
+    "outputs": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "$ref": "#/$defs/var"
+     }
+    }
+   },
+   "additionalProperties": false
+  },
+  "provenance": {
+   "type": "array",
+   "description": "per body index: originating library call and trace line; printed next to a failing instruction, not checked"
+  },
+  "crossCheck": {
+   "type": "object",
+   "description": "the frontend's own consistency checks; informational. OpenFHE: 'mismatches' (scale/level replay, must be empty) and 'decryption' (per output: its level, the level decryption reads it at, and the message scale after the decryption switch)"
+  },
+  "recommendation": {
+   "description": "written by fhe_check recommend --emit; printed only"
+  },
+  "error": {
+   "type": "string"
+  }
+ },
+ "additionalProperties": false,
+ "$comment": "Strict: fhe_check (FHE.Check.onlyKeys) refuses unknown fields in every object it reads values from (additionalProperties false); source, noiseDerivation, crossCheck, provenance, inputs[].origin, bfv.encryption and recommendation are free."
+}

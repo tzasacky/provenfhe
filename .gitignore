@@ -1,0 +1,8 @@
+/.lake/
+/third_party/
+/harness/build/
+/harness/deps/
+/harness/.venv*/
+__pycache__/
+/build/
+/.mathlib-cache/

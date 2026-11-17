@@ -1,0 +1,6 @@
+{"verdict": "INVALID INPUT",
+ "tool": "fhe_check",
+ "summary": "$.bfv.multiplication.internalDrops[3]: -1 is negative",
+ "scheme": "BFV",
+ "input": "tests/negative-bfv/bfv_leveled_internal_drops_negative.json",
+ "format": "fhe-check-report/v1"}

@@ -1,0 +1,62 @@
+name: Soundness or wrong verdict (non-sensitive)
+description: A statement that does not mean what it claims, or an fhe_check verdict you believe is wrong.
+title: "[soundness] "
+labels: ["soundness"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Stop first:** if you have a way to make the gate report an unproved statement as proved,
+        a way around the build sandbox, or a CERTIFIED verdict that is wrong under the assumptions
+        the report lists, do NOT file it here. Report it privately as described in SECURITY.md
+        (Security tab, "Report a vulnerability").
+
+        Use this form for the rest: a locked statement that is weaker or different than its
+        documentation says, a vacuous hypothesis, a NOT CERTIFIED / UNSUPPORTED verdict you think
+        is wrong, or a doubt about an assumption.
+  - type: input
+    id: commit
+    attributes:
+      label: Commit tested
+      description: Output of `git rev-parse HEAD`.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - A locked statement (Challenge/) or trusted definition (Spec/) says less or something other than documented
+        - fhe_check verdict (NOT CERTIFIED / UNSUPPORTED) seems wrong or too conservative
+        - An assumption printed by fhe_check is unclear or seems unjustified
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong
+      description: Name the file and declaration (e.g. `Challenge/Headline/Defs.lean`, `Foo.bar`), or the input file.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: How to reproduce
+      description: Exact commands and output. For fhe_check, attach the `.fhecheck.json` input and the full report (`fhe_check --json` output helps).
+      render: shell
+  - type: textarea
+    id: gate
+    attributes:
+      label: Gate summary (if relevant)
+      description: The final summary of `./verify.sh` or `scripts/check-spec.sh`.
+      render: text
+  - type: dropdown
+    id: ai
+    attributes:
+      label: Was an AI tool used to find or write this report?
+      options:
+        - "No"
+        - "Yes (say which and how below)"
+    validations:
+      required: true

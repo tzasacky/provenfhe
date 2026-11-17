@@ -1,0 +1,28 @@
+# Key-provenance, build-flag, parameter and encoding refusals for openfhe/extract_bfv.py (run.sh
+# section 6b, tests/keyprov/check.py). Same columns as expected.tsv. Source: a real OpenFHE v1.6.1 BFV
+# run (default technique HPSPOVERQLEVELED, BV: EvalMult, EvalAtIndex, EvalRotate, EvalAdd, EvalSub).
+examples/openfhe_bfv_default_rotsum_d2	drop_keygen	-	REFUSE	was not produced by a traced single-party CryptoContext::KeyGen()
+examples/openfhe_bfv_default_rotsum_d2	drop_keygen	--assume-single-party-keys	EXTRACT	ASSUMED (--assume-single-party-keys)
+examples/openfhe_bfv_default_rotsum_d2	drop_multkeygen	-	REFUSE	whose generation is not in the trace
+examples/openfhe_bfv_default_rotsum_d2	swap_rotation_index	-	REFUSE	as a auto key for index
+examples/openfhe_bfv_default_rotsum_d2	second_secret	-	REFUSE	a second secret key
+examples/openfhe_bfv_default_rotsum_d2	thread_error	-	REFUSE	the tracer reported: a traced OpenFHE call ran on another thread
+examples/openfhe_bfv_default_rotsum_d2	drop_eval	-	REFUSE	is used but no traced operation produced it
+examples/openfhe_bfv_default_rotsum_d2	-	-	EXTRACT	checked from the trace: every Encrypt key comes from one traced single-party
+# Build configuration recorded by the tracer (params.json "build"), secret distribution, noise scale,
+# multiparty contexts, sampler:
+examples/openfhe_bfv_default_rotsum_d2	params:build.WITH_REDUCED_NOISE=true	-	REFUSE	OpenFHE built WITH_REDUCED_NOISE
+examples/openfhe_bfv_default_rotsum_d2	params:build.NATIVEINT=128	-	REFUSE	only the default 64-bit native integers are mapped
+examples/openfhe_bfv_default_rotsum_d2	params:build.HAVE_INT128=false	-	REFUSE	OpenFHE built without HAVE_INT128
+examples/openfhe_bfv_default_rotsum_d2	params:build=null	-	REFUSE	has no \"build\" section
+examples/openfhe_bfv_default_rotsum_d2	params:build=null	--assume-default-build	EXTRACT	ASSUMED (--assume-default-build)
+examples/openfhe_bfv_default_rotsum_d2	params:secretKeyDist=SPARSE_TERNARY	-	EXTRACT	SPARSE_TERNARY: s has 192 nonzero coefficients
+examples/openfhe_bfv_default_rotsum_d2	params:secretKeyDist=GAUSSIAN	-	REFUSE	secret distribution GAUSSIAN
+examples/openfhe_bfv_default_rotsum_d2	params:noiseScale=65537	-	REFUSE	BFV noiseScale 65537 != 1
+examples/openfhe_bfv_default_rotsum_d2	params:thresholdParties=3	-	REFUSE	threshold (multiparty) contexts are not mapped
+examples/openfhe_bfv_default_rotsum_d2	params:sigma=400	-	REFUSE	sigma >= 300 uses Karney sampling
+# CoefPacked plaintexts under BFV (accepted since 2026-11-13: BFVRNS stores every coefficient in [0, t),
+# coefpackedencoding.cpp:46-70; run.sh 9g2 has the refusals: scalingFactorInt != 1, unknown encoding).
+# The first is the trace of the former refusal fixture tests/refused-bfv/coefpk_hps, unchanged.
+tests/keyprov/bfv/coefpk_hps_formerly_refused	-	-	EXTRACT	coefPackedPlaintexts
+tests/values-bfv/n16_behz_hybrid_coefpk	-	-	EXTRACT	coefPackedPlaintexts

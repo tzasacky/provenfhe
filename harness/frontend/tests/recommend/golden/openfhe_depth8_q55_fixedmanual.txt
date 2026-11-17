@@ -1,0 +1,62 @@
+fhe_check recommend: examples/openfhe_depth8_q55_fixedmanual.fhecheck.json
+RECOMMENDATION: CERTIFIED: parameters found that fhe_check certifies (minimum margin 5.52 bits)
+
+Target: OpenFHE BGVRNS, FIXEDMANUAL scaling (v1.6.1). Search: 9 ciphertext limbs (fixed by the program's levels), sizes [f, s, ..., s], digits kept from the file; ring dimension policy: smallest N meeting 128-bit classical security.
+Objective: least predicted evaluation time (a MODEL, T ~ N log2 N (a*A + b*B) over the program's multiplications and
+key switches, fitted on measured times with error up to 8.00%; the file's digit count is kept unless another is
+predicted faster by more than that). NOT claimed: optimality (per ring dimension and digit count the search minimises
+log2(Q*P) over a family, by bisection). Claimed: the verdict below, which is fhe_check's plain check of the emitted parameters.
+
+Ring dimension N = 32768; plaintext modulus t = 65537
+Ciphertext primes (9; log2 Q = 460.52):
+  q0 = 98785755137  (37 bits)
+  q1 = 9006954435772417  (53 bits)
+  q2 = 9006890010279937  (53 bits)
+  q3 = 9006812699688961  (53 bits)
+  q4 = 9006658078507009  (53 bits)
+  q5 = 9006267230519297  (53 bits)
+  q6 = 9006232870256641  (53 bits)
+  q7 = 9006189919928321  (53 bits)
+  q8 = 9006125494435841  (53 bits)
+Special primes (3; log2 P = 180.00):
+  p0 = 1152921422732787713  (60 bits)
+  p1 = 1152921409847689217  (60 bits)
+  p2 = 1152921396962590721  (60 bits)
+Key switching: digits of 3 consecutive limbs (dnum = 3)
+Prime rule: OpenFHE FIXEDMANUAL, step M = 4295032832 (q = 1 mod 2N and q = 1 mod t; bgvrns-parametergeneration.cpp:514-545, rns-cryptoparameters.cpp:135-190; v1.6.1), sizes f = 37, s = 53
+
+Security (INPUT ASSUMPTION, not proved here): HomomorphicEncryption.org standard (2018), ternary secret,
+  128-bit classical: log2(Q*P) must stay below 881 at N = 32768; this chain: log2(Q*P) = 640.52.
+  OpenFHE's own estimate (v1.6.1 bgvrns-parametergeneration.cpp:439-472): 641 bits <= 881, so SetRingDim(32768) is accepted.
+
+VERDICT ON THESE EXACT PARAMETERS (fhe_check's plain check of the emitted file): CERTIFIED: every output decrypts correctly, in the worst case, under the assumptions below
+  certificate theorem: Challenge.Certify.worst_certified
+  ct_27: margin 5.52 bits at its level, 5.52 bits after the decryption switch to one limb
+
+Compared with the file's own parameters (openfhe, FIXEDMANUAL): CERTIFIED there.
+  N 32768 -> 32768; log2 Q 495.00 -> 460.52; log2(Q*P) 675.00 -> 640.52
+  fresh ciphertext in memory (2 x N x L words of 64 bits): 4608 KiB -> 4608 KiB (ratio 1.00)
+  ciphertext information size (2 x N x log2 Q bits): ratio 0.93
+  evaluation time, MODELLED (not measured): ratio 1.00 (digits 3 vs the file's 3)
+
+LIBRARY CONFIGURATION
+OpenFHE C++ (v1.6.1). OpenFHE generates its OWN primes of these sizes; the primes above are the ones
+its generator produces as read from its source, so the certificate must be re-established on what it
+actually generates (trace, extract, fhe_check; harness/frontend/recommend/roundtrip.sh does this):
+  CCParams<CryptoContextBGVRNS> parameters;
+  parameters.SetPlaintextModulus(65537);
+  parameters.SetMultiplicativeDepth(8);   // a chain of 9 primes (gen-cryptocontext-bgvrns-internal.h:102)
+  parameters.SetScalingTechnique(FIXEDMANUAL);
+  parameters.SetFirstModSize(37);
+  parameters.SetScalingModSize(53);
+  parameters.SetNumLargeDigits(3);
+  parameters.SetKeySwitchTechnique(HYBRID);
+  parameters.SetSecurityLevel(HEStd_128_classic);   // OpenFHE re-checks N against its own table
+  parameters.SetRingDim(32768);
+  CryptoContext<DCRTPoly> cc = GenCryptoContext(parameters);
+  (bgv_demo: run DIR --scal FIXEDMANUAL --depth 8 --firstbits 37 --qbits 53 --dnum 3 --ringdim 32768)
+
+UNVERIFIED GLUE that affects this verdict (also stated in the emitted file):
+  - input noise: the file's own value (same N)
+  - the search, prime generation and this text; and every assumption of the plain check (run
+    `fhe_check` on the emitted file for the full certificate statement).

@@ -1,0 +1,62 @@
+{
+ "format": "fhe-check/v1",
+ "source": {
+  "tool": "hand-written (Spec.FullParams.exampleBGV31)"
+ },
+ "params": {
+  "scheme": "BGV",
+  "N": 16384,
+  "t": 65537,
+  "limbs": [
+   "1073872897",
+   "1074266113"
+  ],
+  "special": [
+   "1077477377"
+  ],
+  "secretBound": 1,
+  "inputNoise": "2097152",
+  "keyNoise": "2097152"
+ },
+ "keySwitching": {
+  "method": "hybrid",
+  "variant": "centred",
+  "digits": {
+   "kind": "consecutive",
+   "towersPerDigit": 1
+  }
+ },
+ "modSwitch": {
+  "method": "t-corrected-centred"
+ },
+ "program": {
+  "inputs": [
+   {
+    "name": "a",
+    "parts": 2,
+    "level": 2
+   },
+   {
+    "name": "b",
+    "parts": 2,
+    "level": 2
+   }
+  ],
+  "body": [
+   {
+    "op": "mul",
+    "dst": "c",
+    "a": "a",
+    "b": "b"
+   },
+   {
+    "op": "relin",
+    "dst": "c",
+    "a": "c"
+   }
+  ],
+  "outputs": [
+   "c"
+  ]
+ }
+}

@@ -1,0 +1,324 @@
+{
+ "format": "openfhe-pin-realsize-summary/v1",
+ "cases": 2,
+ "finished": 2,
+ "unfinished": [],
+ "totals": {
+  "lines": 636,
+  "ok": 600,
+  "fail": 0,
+  "null": 36,
+  "ops": 100,
+  "coeffs": 2162688,
+  "mism": 0
+ },
+ "sampled": false,
+ "perCheck": {
+  "a.decbound": {
+   "ok": 25
+  },
+  "a.decrypt": {
+   "ok": 14
+  },
+  "a.switched": {
+   "ok": 25
+  },
+  "a.switchedQ0": {
+   "ok": 25
+  },
+  "a.textbook": {
+   "ok": 25
+  },
+  "algo.add": {
+   "ok": 8
+  },
+  "algo.addPlain": {
+   "ok": 1
+  },
+  "algo.automorph": {
+   "ok": 3
+  },
+  "algo.coverage": {
+   "ok": 2
+  },
+  "algo.decrypt": {
+   "ok": 14
+  },
+  "algo.decrypt.exact": {
+   "ok": 14
+  },
+  "algo.decrypt.phase": {
+   "ok": 14
+  },
+  "algo.encrypt": {
+   "ok": 9
+  },
+  "algo.info": {
+   "null": 1
+  },
+  "algo.layout": {
+   "ok": 2
+  },
+  "algo.levelReduce": {
+   "ok": 1
+  },
+  "algo.modReduce": {
+   "ok": 4
+  },
+  "algo.mul": {
+   "ok": 2
+  },
+  "algo.mul.forced-vs-staged": {
+   "ok": 1
+  },
+  "algo.mul.spot": {
+   "ok": 1
+  },
+  "algo.mulPlain": {
+   "ok": 1
+  },
+  "algo.negate": {
+   "ok": 1
+  },
+  "algo.observe.relin": {
+   "null": 1
+  },
+  "algo.relin": {
+   "ok": 6
+  },
+  "algo.rotate": {
+   "ok": 8
+  },
+  "algo.runLibrary": {
+   "ok": 1
+  },
+  "algo.runLibrary.var": {
+   "ok": 8
+  },
+  "algo.sub": {
+   "ok": 3
+  },
+  "algo.subPlain": {
+   "ok": 1
+  },
+  "algo.tensor": {
+   "ok": 2
+  },
+  "algo.variant.encrypt": {
+   "null": 6
+  },
+  "algo.variant.modReduce": {
+   "null": 2
+  },
+  "b.decls": {
+   "ok": 2
+  },
+  "b.msg": {
+   "ok": 46
+  },
+  "b.negate": {
+   "ok": 1
+  },
+  "b.output": {
+   "ok": 1
+  },
+  "b.outputs": {
+   "ok": 2
+  },
+  "b.raw": {
+   "ok": 36
+  },
+  "b.sf": {
+   "ok": 24,
+   "null": 1
+  },
+  "b.shape": {
+   "ok": 39
+  },
+  "b.user.decode": {
+   "ok": 1
+  },
+  "b.user.decrypt": {
+   "ok": 1
+  },
+  "b.user.factors": {
+   "ok": 1
+  },
+  "b.user.scaleOK": {
+   "ok": 1
+  },
+  "c.encrypt": {
+   "ok": 3
+  },
+  "c.encryptBFV": {
+   "ok": 3
+  },
+  "c.fresh": {
+   "ok": 3
+  },
+  "c.input": {
+   "ok": 3
+  },
+  "c.inputs": {
+   "ok": 1
+  },
+  "c.phase": {
+   "ok": 3
+  },
+  "c.predict": {
+   "ok": 3
+  },
+  "c.ptbound": {
+   "ok": 6
+  },
+  "c.pubkey": {
+   "ok": 1
+  },
+  "c.pubkey.shape": {
+   "ok": 1
+  },
+  "c.pubkeyBFV": {
+   "ok": 1
+  },
+  "c.stored": {
+   "ok": 6
+  },
+  "c.support": {
+   "ok": 9
+  },
+  "c.tail": {
+   "null": 3
+  },
+  "c.timesQovert": {
+   "ok": 3
+  },
+  "c.worst": {
+   "ok": 3
+  },
+  "d.key": {
+   "ok": 20
+  },
+  "d.layout": {
+   "ok": 10
+  },
+  "d.limbs": {
+   "ok": 10
+  },
+  "d.pubkey": {
+   "ok": 1
+  },
+  "d.reading": {
+   "null": 8
+  },
+  "d.reading.summary": {
+   "null": 9
+  },
+  "e.modswitch-parts": {
+   "ok": 2
+  },
+  "e.step": {
+   "ok": 37
+  },
+  "f.bound": {
+   "ok": 46
+  },
+  "f.budget": {
+   "ok": 1,
+   "null": 1
+  },
+  "f.certified-consistent": {
+   "ok": 1
+  },
+  "f.decok": {
+   "ok": 14
+  },
+  "f.decrypt": {
+   "ok": 25
+  },
+  "f.refAnalyze": {
+   "ok": 1,
+   "null": 1
+  },
+  "f.verdict": {
+   "null": 1
+  },
+  "info.build": {
+   "null": 2
+  },
+  "load.declared": {
+   "ok": 1
+  },
+  "load.params": {
+   "ok": 2
+  },
+  "load.prog": {
+   "ok": 2
+  },
+  "load.secret": {
+   "ok": 2
+  }
+ },
+ "failures": [],
+ "rows": [
+  {
+   "case": "rs_bfv_behz_bv_d1_rotsum",
+   "scheme": "BFV",
+   "technique": "BEHZ/BV",
+   "depth": 1,
+   "t": 65537,
+   "N": 8192,
+   "limbs": 2,
+   "limbBits": [
+    60
+   ],
+   "special": 0,
+   "dnum": 2,
+   "finished": true,
+   "lines": 221,
+   "ok": 211,
+   "fail": 0,
+   "null": 10,
+   "bitExactOps": 68,
+   "coeffsCompared": 1359872,
+   "coeffsDiffering": 0,
+   "coeffsByTier": {
+    "proved": 294912,
+    "trusted": 819200,
+    "mirror": 245760
+   },
+   "program": true,
+   "wallSeconds": 31.14,
+   "peakRSSMB": 222
+  },
+  {
+   "case": "rs_bgv_fm_d1_ops",
+   "scheme": "BGV",
+   "technique": "FIXEDMANUAL/HYBRID",
+   "depth": 1,
+   "t": 65537,
+   "N": 8192,
+   "limbs": 2,
+   "limbBits": [
+    45
+   ],
+   "special": 1,
+   "dnum": 2,
+   "finished": true,
+   "lines": 415,
+   "ok": 389,
+   "fail": 0,
+   "null": 26,
+   "bitExactOps": 32,
+   "coeffsCompared": 802816,
+   "coeffsDiffering": 0,
+   "coeffsByTier": {
+    "trusted": 573440,
+    "other": 32768,
+    "proved": 196608
+   },
+   "program": true,
+   "wallSeconds": 30.71,
+   "peakRSSMB": 296
+  }
+ ]
+}

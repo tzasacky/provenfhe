@@ -1,0 +1,6 @@
+{"verdictLabel": "INVALID INPUT",
+ "verdict": "INVALID INPUT",
+ "tool": "fhe_check",
+ "summary": "$.params: missing field \"keyNoise\"",
+ "input": "tests/negative/malformed_missing_field.json",
+ "format": "fhe-check-report/v1"}

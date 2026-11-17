@@ -1,0 +1,71 @@
+# Release executables for provenfhe: on a tag, build `fhe_check` from the tagged commit with the
+# pinned toolchain, pack it (harness/quickstart/make_dist.sh), write SHA-256 sums, create a build
+# provenance attestation, and attach the archives to the release.
+#
+# Untested until the repository is public: GitHub offers build attestations only on public
+# repositories, so the attestation step runs only there (it is skipped on a private one).
+#
+# Nothing here is committed as a binary: the executable exists only as a release asset, built from
+# the tag. Verify a download with its checksum and with
+#   gh attestation verify fhe_check-linux-x86_64.tar.gz --repo <owner>/<repo>
+# No secret is used beyond the default GITHUB_TOKEN.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write        # create the release and upload its assets
+  id-token: write        # sign the attestation
+  attestations: write    # store the attestation
+
+jobs:
+  build:
+    name: Build fhe_check from the tagged commit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install elan (the pinned toolchain is read from lean-toolchain)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Cache dependencies (.lake/packages only)
+        uses: actions/cache@v4
+        with:
+          path: .lake/packages
+          key: lake-packages-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+
+      - name: Mathlib's prebuilt modules, then fhe_check
+        run: |
+          lake exe cache get
+          lake build fhe_check
+
+      - name: Pack (make_dist.sh checks the dynamic dependencies) and write checksums
+        run: |
+          FHE_CHECK="$PWD/.lake/build/bin/fhe_check" harness/quickstart/make_dist.sh "$PWD/dist"
+          cd dist
+          sha256sum fhe_check-linux-x86_64.tar.gz fhe_check-linux-x86_64.tar.xz > SHA256SUMS
+          cat SHA256SUMS
+
+      - name: Build provenance attestation
+        if: ${{ !github.event.repository.private }}
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            dist/fhe_check-linux-x86_64.tar.gz
+            dist/fhe_check-linux-x86_64.tar.xz
+
+      - name: Attach the archives to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "$TAG" --notes "fhe_check built by CI from tag $TAG (see the attestation)."
+          gh release upload "$TAG" --clobber \
+            dist/fhe_check-linux-x86_64.tar.gz dist/fhe_check-linux-x86_64.tar.xz dist/SHA256SUMS

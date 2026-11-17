@@ -1,0 +1,150 @@
+{
+ "format": "fhe-check/v1",
+ "source": {
+  "tool": "hand-written (harness/generic-demo/make_inputs.py)",
+  "note": "the chain above with two further squarings and no modulus left to switch"
+ },
+ "params": {
+  "scheme": "BGV",
+  "N": 16384,
+  "t": 65537,
+  "limbs": [
+   "1152921504606748673",
+   "1125899904679937",
+   "1125899903991809",
+   "1125899903827969"
+  ],
+  "special": [
+   "2305843009211662337"
+  ],
+  "secretBound": 1,
+  "inputNoise": "40804122643",
+  "keyNoise": "1245203"
+ },
+ "noiseDerivation": {
+  "errorBound": 19,
+  "errorBoundSource": "DECLARED textbook bound 6*sigma, sigma = 3.2 (no library)",
+  "inputNoiseFormula": "(t-1) + t*Be*(2N+1): textbook LSB-form BGV public-key encryption",
+  "keyNoiseFormula": "t*Be: key-switching keys b = -a*s' + t*e + g*target"
+ },
+ "keySwitching": {
+  "method": "hybrid",
+  "variant": "centred",
+  "digits": {
+   "kind": "consecutive",
+   "towersPerDigit": 1
+  }
+ },
+ "modSwitch": {
+  "method": "t-corrected-centred"
+ },
+ "program": {
+  "inputs": [
+   {
+    "name": "a",
+    "parts": 2,
+    "level": 4,
+    "key": 1
+   },
+   {
+    "name": "b",
+    "parts": 2,
+    "level": 4,
+    "key": 1
+   },
+   {
+    "name": "c",
+    "parts": 2,
+    "level": 4,
+    "key": 1
+   },
+   {
+    "name": "p",
+    "parts": 1,
+    "level": 2
+   }
+  ],
+  "body": [
+   {
+    "op": "mul",
+    "dst": "x",
+    "a": "a",
+    "b": "b"
+   },
+   {
+    "op": "relin",
+    "dst": "x",
+    "a": "x"
+   },
+   {
+    "op": "modSwitch",
+    "dst": "x",
+    "a": "x"
+   },
+   {
+    "op": "automorph",
+    "dst": "y",
+    "a": "x",
+    "g": 5
+   },
+   {
+    "op": "keySwitch",
+    "dst": "y",
+    "a": "y"
+   },
+   {
+    "op": "add",
+    "dst": "z",
+    "a": "x",
+    "b": "y"
+   },
+   {
+    "op": "dropLimbs",
+    "dst": "c1",
+    "a": "c",
+    "k": 1
+   },
+   {
+    "op": "mul",
+    "dst": "w",
+    "a": "z",
+    "b": "c1"
+   },
+   {
+    "op": "relin",
+    "dst": "w",
+    "a": "w"
+   },
+   {
+    "op": "modSwitch",
+    "dst": "w",
+    "a": "w"
+   },
+   {
+    "op": "mul",
+    "dst": "v",
+    "a": "w",
+    "b": "w"
+   },
+   {
+    "op": "relin",
+    "dst": "v",
+    "a": "v"
+   },
+   {
+    "op": "mul",
+    "dst": "out",
+    "a": "v",
+    "b": "v"
+   },
+   {
+    "op": "relin",
+    "dst": "out",
+    "a": "out"
+   }
+  ],
+  "outputs": [
+   "out"
+  ]
+ }
+}

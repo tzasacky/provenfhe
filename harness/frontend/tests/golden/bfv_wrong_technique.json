@@ -1,0 +1,7 @@
+{"verdict": "UNSUPPORTED",
+ "tool": "fhe_check",
+ "summary":
+ "multiplication technique HPSQOVERP: unknown BFV multiplication technique (textbook | HPS | HPSPOVERQ | HPSPOVERQLEVELED | BEHZ)",
+ "scheme": "BFV",
+ "input": "tests/negative-bfv/bfv_wrong_technique.json",
+ "format": "fhe-check-report/v1"}

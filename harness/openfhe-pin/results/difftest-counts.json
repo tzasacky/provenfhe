@@ -1,0 +1,1345 @@
+{
+ "format": "openfhe-pin-counts/v1",
+ "source": "harness/openfhe-pin/difftest.sh (run.sh GATE=1)",
+ "bgv": {
+  "cases": 263,
+  "lines": 93443,
+  "ok": 78409,
+  "fail": 0,
+  "null": 15034,
+  "programs": 151,
+  "refused": 112,
+  "perCheck": {
+   "a.decbound": {
+    "ok": 3470,
+    "fail": 0,
+    "null": 0
+   },
+   "a.phase.literal-vs-forced": {
+    "ok": 2913,
+    "fail": 0,
+    "null": 0
+   },
+   "a.switched": {
+    "ok": 6383,
+    "fail": 0,
+    "null": 0
+   },
+   "a.switched.literal-vs-forced": {
+    "ok": 2913,
+    "fail": 0,
+    "null": 0
+   },
+   "a.switchedQ0": {
+    "ok": 3470,
+    "fail": 0,
+    "null": 0
+   },
+   "a.textbook": {
+    "ok": 6383,
+    "fail": 0,
+    "null": 0
+   },
+   "a.textbook.literal-vs-forced": {
+    "ok": 2913,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.add": {
+    "ok": 566,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.addPlain": {
+    "ok": 230,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.copy": {
+    "ok": 52,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.coverage": {
+    "ok": 252,
+    "fail": 0,
+    "null": 11
+   },
+   "algo.encrypt": {
+    "ok": 790,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.layout": {
+    "ok": 350,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.levelReduce": {
+    "ok": 128,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.modReduce": {
+    "ok": 1242,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.morph": {
+    "ok": 98,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.mulConst": {
+    "ok": 428,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.mulPlain": {
+    "ok": 200,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.negate": {
+    "ok": 72,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.relin": {
+    "ok": 1510,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.rotate": {
+    "ok": 720,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.sub": {
+    "ok": 250,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.subPlain": {
+    "ok": 135,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.tensor": {
+    "ok": 845,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.tensorN": {
+    "ok": 45,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.variant.modReduce": {
+    "ok": 0,
+    "fail": 0,
+    "null": 621
+   },
+   "algo.variant.relin": {
+    "ok": 0,
+    "fail": 0,
+    "null": 818
+   },
+   "algo.variant.rotate": {
+    "ok": 0,
+    "fail": 0,
+    "null": 582
+   },
+   "b.decls": {
+    "ok": 151,
+    "fail": 0,
+    "null": 0
+   },
+   "b.eval": {
+    "ok": 127,
+    "fail": 0,
+    "null": 0
+   },
+   "b.literal-vs-forced": {
+    "ok": 2248,
+    "fail": 0,
+    "null": 9
+   },
+   "b.msg": {
+    "ok": 2666,
+    "fail": 0,
+    "null": 0
+   },
+   "b.negate": {
+    "ok": 39,
+    "fail": 0,
+    "null": 0
+   },
+   "b.outputs": {
+    "ok": 151,
+    "fail": 0,
+    "null": 0
+   },
+   "b.raw": {
+    "ok": 2251,
+    "fail": 0,
+    "null": 0
+   },
+   "b.sf": {
+    "ok": 2306,
+    "fail": 0,
+    "null": 70
+   },
+   "b.shape": {
+    "ok": 2520,
+    "fail": 0,
+    "null": 0
+   },
+   "b.user.decode": {
+    "ok": 390,
+    "fail": 0,
+    "null": 0
+   },
+   "b.user.decrypt": {
+    "ok": 390,
+    "fail": 0,
+    "null": 0
+   },
+   "b.user.factors": {
+    "ok": 151,
+    "fail": 0,
+    "null": 0
+   },
+   "b.user.literal-vs-forced": {
+    "ok": 706,
+    "fail": 0,
+    "null": 0
+   },
+   "b.user.scaleOK": {
+    "ok": 151,
+    "fail": 0,
+    "null": 0
+   },
+   "c.encrypt": {
+    "ok": 1452,
+    "fail": 0,
+    "null": 0
+   },
+   "c.encrypt.literal-vs-forced": {
+    "ok": 662,
+    "fail": 0,
+    "null": 0
+   },
+   "c.phase": {
+    "ok": 790,
+    "fail": 0,
+    "null": 0
+   },
+   "c.ptbound": {
+    "ok": 511,
+    "fail": 0,
+    "null": 238
+   },
+   "c.pubkey": {
+    "ok": 483,
+    "fail": 0,
+    "null": 0
+   },
+   "c.pubkey.literal-vs-forced": {
+    "ok": 220,
+    "fail": 0,
+    "null": 0
+   },
+   "c.pubkey.shape": {
+    "ok": 263,
+    "fail": 0,
+    "null": 0
+   },
+   "c.stored": {
+    "ok": 672,
+    "fail": 0,
+    "null": 118
+   },
+   "c.stored.exceeds": {
+    "ok": 108,
+    "fail": 0,
+    "null": 0
+   },
+   "c.support": {
+    "ok": 1316,
+    "fail": 0,
+    "null": 0
+   },
+   "c.tail": {
+    "ok": 0,
+    "fail": 0,
+    "null": 790
+   },
+   "c.worst": {
+    "ok": 790,
+    "fail": 0,
+    "null": 0
+   },
+   "d.key": {
+    "ok": 4562,
+    "fail": 0,
+    "null": 0
+   },
+   "d.key.literal-vs-forced": {
+    "ok": 2091,
+    "fail": 0,
+    "null": 0
+   },
+   "d.key.power": {
+    "ok": 0,
+    "fail": 0,
+    "null": 68
+   },
+   "d.layout": {
+    "ok": 2471,
+    "fail": 0,
+    "null": 0
+   },
+   "d.limbs": {
+    "ok": 763,
+    "fail": 0,
+    "null": 0
+   },
+   "d.reading": {
+    "ok": 0,
+    "fail": 0,
+    "null": 7865
+   },
+   "d.reading.summary": {
+    "ok": 0,
+    "fail": 0,
+    "null": 3167
+   },
+   "e.modswitch-parts": {
+    "ok": 621,
+    "fail": 0,
+    "null": 0
+   },
+   "e.phase.literal-vs-forced": {
+    "ok": 2256,
+    "fail": 0,
+    "null": 0
+   },
+   "e.step": {
+    "ok": 2067,
+    "fail": 0,
+    "null": 0
+   },
+   "f.bound": {
+    "ok": 2666,
+    "fail": 0,
+    "null": 0
+   },
+   "f.budget": {
+    "ok": 0,
+    "fail": 0,
+    "null": 151
+   },
+   "f.decrypt": {
+    "ok": 2251,
+    "fail": 0,
+    "null": 0
+   },
+   "f.refAnalyze": {
+    "ok": 0,
+    "fail": 0,
+    "null": 151
+   },
+   "info.build": {
+    "ok": 0,
+    "fail": 0,
+    "null": 263
+   },
+   "load.params": {
+    "ok": 263,
+    "fail": 0,
+    "null": 0
+   },
+   "load.prog": {
+    "ok": 151,
+    "fail": 0,
+    "null": 112
+   },
+   "load.secret": {
+    "ok": 263,
+    "fail": 0,
+    "null": 0
+   },
+   "x.refusal": {
+    "ok": 112,
+    "fail": 0,
+    "null": 0
+   }
+  },
+  "algo": {
+   "comparisons": 7311,
+   "distinctOperations": 3774,
+   "limbs": 45389,
+   "coeffs": 963104,
+   "differing": 0,
+   "byCheck": {
+    "algo.add": {
+     "comparisons": 566,
+     "distinctOperations": 300,
+     "limbs": 3432,
+     "coeffs": 72000,
+     "differing": 0,
+     "byImpl": {
+      "crt": 255,
+      "limb": 311
+     }
+    },
+    "algo.addPlain": {
+     "comparisons": 230,
+     "distinctOperations": 123,
+     "limbs": 1375,
+     "coeffs": 26464,
+     "differing": 0,
+     "byImpl": {
+      "crt": 107,
+      "limb": 123
+     }
+    },
+    "algo.copy": {
+     "comparisons": 52,
+     "distinctOperations": 52,
+     "limbs": 284,
+     "coeffs": 6368,
+     "differing": 0,
+     "byImpl": {
+      "limb": 52
+     }
+    },
+    "algo.encrypt": {
+     "comparisons": 790,
+     "distinctOperations": 790,
+     "limbs": 5402,
+     "coeffs": 130880,
+     "differing": 0,
+     "byImpl": {
+      "limb": 790
+     }
+    },
+    "algo.layout": {
+     "comparisons": 350,
+     "distinctOperations": 350,
+     "limbs": 0,
+     "coeffs": 0,
+     "differing": 0,
+     "byImpl": {
+      "glue": 350
+     }
+    },
+    "algo.levelReduce": {
+     "comparisons": 128,
+     "distinctOperations": 128,
+     "limbs": 513,
+     "coeffs": 13344,
+     "differing": 0,
+     "byImpl": {
+      "limb": 128
+     }
+    },
+    "algo.modReduce": {
+     "comparisons": 1242,
+     "distinctOperations": 621,
+     "limbs": 6288,
+     "coeffs": 152448,
+     "differing": 0,
+     "byImpl": {
+      "int:bgvModSwitchComp": 621,
+      "rns:bgvModSwitchPoly": 621
+     }
+    },
+    "algo.morph": {
+     "comparisons": 98,
+     "distinctOperations": 98,
+     "limbs": 343,
+     "coeffs": 8320,
+     "differing": 0,
+     "byImpl": {
+      "limb": 98
+     }
+    },
+    "algo.mulConst": {
+     "comparisons": 428,
+     "distinctOperations": 234,
+     "limbs": 2770,
+     "coeffs": 57472,
+     "differing": 0,
+     "byImpl": {
+      "crt": 194,
+      "limb": 234
+     }
+    },
+    "algo.mulPlain": {
+     "comparisons": 200,
+     "distinctOperations": 108,
+     "limbs": 1104,
+     "coeffs": 21984,
+     "differing": 0,
+     "byImpl": {
+      "crt": 92,
+      "limb": 108
+     }
+    },
+    "algo.negate": {
+     "comparisons": 72,
+     "distinctOperations": 39,
+     "limbs": 440,
+     "coeffs": 8576,
+     "differing": 0,
+     "byImpl": {
+      "crt": 33,
+      "limb": 39
+     }
+    },
+    "algo.relin": {
+     "comparisons": 1510,
+     "distinctOperations": 409,
+     "limbs": 8724,
+     "coeffs": 174144,
+     "differing": 0,
+     "byImpl": {
+      "literal:Challenge.Realize.relinOpenFHE": 346,
+      "literal:keySwitchBGVOpenFHE": 350,
+      "staged:keySwitchBGVOpenFHE": 409,
+      "staged=locked:Challenge.Realize.relinOpenFHE": 405
+     }
+    },
+    "algo.rotate": {
+     "comparisons": 720,
+     "distinctOperations": 194,
+     "limbs": 4428,
+     "coeffs": 88320,
+     "differing": 0,
+     "byImpl": {
+      "literal:Challenge.Realize.rotateOpenFHE161": 166,
+      "literal:keySwitchBGVOpenFHE": 166,
+      "staged:keySwitchBGVOpenFHE": 194,
+      "staged=locked:Challenge.Realize.rotateOpenFHE161": 194
+     }
+    },
+    "algo.sub": {
+     "comparisons": 250,
+     "distinctOperations": 133,
+     "limbs": 1554,
+     "coeffs": 30144,
+     "differing": 0,
+     "byImpl": {
+      "crt": 116,
+      "limb": 134
+     }
+    },
+    "algo.subPlain": {
+     "comparisons": 135,
+     "distinctOperations": 73,
+     "limbs": 710,
+     "coeffs": 14048,
+     "differing": 0,
+     "byImpl": {
+      "crt": 62,
+      "limb": 73
+     }
+    },
+    "algo.tensor": {
+     "comparisons": 845,
+     "distinctOperations": 448,
+     "limbs": 7479,
+     "coeffs": 148320,
+     "differing": 0,
+     "byImpl": {
+      "crt": 391,
+      "limb": 454
+     }
+    },
+    "algo.tensorN": {
+     "comparisons": 45,
+     "distinctOperations": 24,
+     "limbs": 543,
+     "coeffs": 10272,
+     "differing": 0,
+     "byImpl": {
+      "crt": 21,
+      "limb": 24
+     }
+    }
+   },
+   "gateLine": {
+    "ops": 7311,
+    "limbs": 45389,
+    "coeffs": 963104
+   }
+  },
+  "casesByN": {
+   "16": 220,
+   "64": 43
+  }
+ },
+ "bfv": {
+  "cases": 241,
+  "lines": 91243,
+  "ok": 78291,
+  "fail": 0,
+  "null": 12952,
+  "programs": 189,
+  "refused": 52,
+  "perCheck": {
+   "a.decrypt": {
+    "ok": 5594,
+    "fail": 0,
+    "null": 33
+   },
+   "a.decrypt.literal-vs-forced": {
+    "ok": 2701,
+    "fail": 0,
+    "null": 0
+   },
+   "a.decryptLib": {
+    "ok": 4177,
+    "fail": 0,
+    "null": 0
+   },
+   "a.decryptLib.literal-vs-forced": {
+    "ok": 2012,
+    "fail": 0,
+    "null": 0
+   },
+   "a.decryptLib.phase": {
+    "ok": 2165,
+    "fail": 0,
+    "null": 0
+   },
+   "a.decryptLib.tables": {
+    "ok": 190,
+    "fail": 0,
+    "null": 0
+   },
+   "a.decryptLib.textbook": {
+    "ok": 2146,
+    "fail": 0,
+    "null": 19
+   },
+   "algo.add": {
+    "ok": 630,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.addPlain": {
+    "ok": 104,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.automorph": {
+    "ok": 663,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.compress": {
+    "ok": 102,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.coverage": {
+    "ok": 238,
+    "fail": 0,
+    "null": 3
+   },
+   "algo.decrypt": {
+    "ok": 7100,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.decrypt.exact": {
+    "ok": 2904,
+    "fail": 0,
+    "null": 19
+   },
+   "algo.decrypt.literal-vs-staged": {
+    "ok": 2701,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.decrypt.phase": {
+    "ok": 2923,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.encrypt": {
+    "ok": 1306,
+    "fail": 0,
+    "null": 2
+   },
+   "algo.info": {
+    "ok": 0,
+    "fail": 0,
+    "null": 241
+   },
+   "algo.mul": {
+    "ok": 1466,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.mul.forced-vs-staged": {
+    "ok": 510,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.mul.literal-vs-staged": {
+    "ok": 443,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.mul.spot": {
+    "ok": 510,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.mulPlain": {
+    "ok": 129,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.negate": {
+    "ok": 137,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.observe.relin": {
+    "ok": 0,
+    "fail": 0,
+    "null": 466
+   },
+   "algo.relin": {
+    "ok": 1303,
+    "fail": 0,
+    "null": 10
+   },
+   "algo.relin.fast-vs-staged": {
+    "ok": 246,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.relin.leveled": {
+    "ok": 96,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.rotate": {
+    "ok": 234,
+    "fail": 0,
+    "null": 2
+   },
+   "algo.rotate.leveled": {
+    "ok": 23,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.runLibrary": {
+    "ok": 176,
+    "fail": 0,
+    "null": 65
+   },
+   "algo.runLibrary.var": {
+    "ok": 1323,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.sub": {
+    "ok": 251,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.subPlain": {
+    "ok": 69,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.tensor": {
+    "ok": 4,
+    "fail": 0,
+    "null": 0
+   },
+   "algo.variant.add": {
+    "ok": 0,
+    "fail": 0,
+    "null": 6
+   },
+   "algo.variant.addPlain": {
+    "ok": 0,
+    "fail": 0,
+    "null": 676
+   },
+   "algo.variant.decrypt": {
+    "ok": 0,
+    "fail": 0,
+    "null": 6857
+   },
+   "algo.variant.encrypt": {
+    "ok": 0,
+    "fail": 0,
+    "null": 1276
+   },
+   "algo.variant.mul": {
+    "ok": 0,
+    "fail": 0,
+    "null": 1652
+   },
+   "algo.variant.relin": {
+    "ok": 0,
+    "fail": 0,
+    "null": 779
+   },
+   "algo.variant.rotate": {
+    "ok": 0,
+    "fail": 0,
+    "null": 62
+   },
+   "algo.variant.sub": {
+    "ok": 0,
+    "fail": 0,
+    "null": 19
+   },
+   "algo.variant.subPlain": {
+    "ok": 0,
+    "fail": 0,
+    "null": 1
+   },
+   "b.decls": {
+    "ok": 189,
+    "fail": 0,
+    "null": 0
+   },
+   "b.eval": {
+    "ok": 163,
+    "fail": 0,
+    "null": 0
+   },
+   "b.literal-vs-forced": {
+    "ok": 1957,
+    "fail": 0,
+    "null": 151
+   },
+   "b.msg": {
+    "ok": 2177,
+    "fail": 0,
+    "null": 6
+   },
+   "b.output": {
+    "ok": 318,
+    "fail": 0,
+    "null": 5
+   },
+   "b.outputs": {
+    "ok": 189,
+    "fail": 0,
+    "null": 0
+   },
+   "b.raw": {
+    "ok": 2008,
+    "fail": 0,
+    "null": 6
+   },
+   "b.shape": {
+    "ok": 2130,
+    "fail": 0,
+    "null": 0
+   },
+   "c.encryptBFV": {
+    "ok": 1242,
+    "fail": 0,
+    "null": 32
+   },
+   "c.encryptBFV.literal-vs-forced": {
+    "ok": 604,
+    "fail": 0,
+    "null": 0
+   },
+   "c.fresh": {
+    "ok": 1303,
+    "fail": 0,
+    "null": 0
+   },
+   "c.fresh.literal-vs-forced": {
+    "ok": 633,
+    "fail": 0,
+    "null": 0
+   },
+   "c.input": {
+    "ok": 1249,
+    "fail": 0,
+    "null": 0
+   },
+   "c.input.literal-vs-forced": {
+    "ok": 594,
+    "fail": 0,
+    "null": 0
+   },
+   "c.inputs": {
+    "ok": 189,
+    "fail": 0,
+    "null": 0
+   },
+   "c.predict": {
+    "ok": 638,
+    "fail": 0,
+    "null": 32
+   },
+   "c.pubkeyBFV": {
+    "ok": 454,
+    "fail": 0,
+    "null": 0
+   },
+   "c.pubkeyBFV.literal-vs-forced": {
+    "ok": 213,
+    "fail": 0,
+    "null": 0
+   },
+   "c.stored": {
+    "ok": 670,
+    "fail": 0,
+    "null": 0
+   },
+   "c.support": {
+    "ok": 909,
+    "fail": 0,
+    "null": 0
+   },
+   "c.timesQovert": {
+    "ok": 640,
+    "fail": 0,
+    "null": 0
+   },
+   "d.key": {
+    "ok": 3230,
+    "fail": 0,
+    "null": 18
+   },
+   "d.key.literal-vs-forced": {
+    "ok": 1543,
+    "fail": 0,
+    "null": 0
+   },
+   "d.limbs": {
+    "ok": 661,
+    "fail": 0,
+    "null": 0
+   },
+   "d.pubkey": {
+    "ok": 241,
+    "fail": 0,
+    "null": 0
+   },
+   "e.phase.literal-vs-forced": {
+    "ok": 1998,
+    "fail": 0,
+    "null": 0
+   },
+   "e.step": {
+    "ok": 1644,
+    "fail": 0,
+    "null": 0
+   },
+   "f.bound": {
+    "ok": 2299,
+    "fail": 0,
+    "null": 0
+   },
+   "f.budget": {
+    "ok": 176,
+    "fail": 0,
+    "null": 13
+   },
+   "f.certified-consistent": {
+    "ok": 176,
+    "fail": 0,
+    "null": 13
+   },
+   "f.decok": {
+    "ok": 2177,
+    "fail": 0,
+    "null": 6
+   },
+   "f.refAnalyze": {
+    "ok": 189,
+    "fail": 0,
+    "null": 0
+   },
+   "f.verdict": {
+    "ok": 0,
+    "fail": 0,
+    "null": 189
+   },
+   "info.build": {
+    "ok": 0,
+    "fail": 0,
+    "null": 241
+   },
+   "load.declared": {
+    "ok": 189,
+    "fail": 0,
+    "null": 0
+   },
+   "load.params": {
+    "ok": 241,
+    "fail": 0,
+    "null": 0
+   },
+   "load.prog": {
+    "ok": 189,
+    "fail": 0,
+    "null": 52
+   },
+   "load.secret": {
+    "ok": 241,
+    "fail": 0,
+    "null": 0
+   },
+   "x.refusal": {
+    "ok": 52,
+    "fail": 0,
+    "null": 0
+   }
+  },
+  "algo": {
+   "comparisons": 23854,
+   "distinctOperations": 16192,
+   "limbs": 56688,
+   "coeffs": 1062144,
+   "differing": 0,
+   "byCheck": {
+    "algo.add": {
+     "comparisons": 630,
+     "distinctOperations": 320,
+     "limbs": 3687,
+     "coeffs": 67248,
+     "differing": 0,
+     "byImpl": {
+      "crt": 300,
+      "limb": 324,
+      "mirror-only": 6
+     }
+    },
+    "algo.addPlain": {
+     "comparisons": 104,
+     "distinctOperations": 104,
+     "limbs": 491,
+     "coeffs": 8528,
+     "differing": 0,
+     "byImpl": {
+      "mirror-only": 100,
+      "mirror-only:mixed": 4
+     }
+    },
+    "algo.automorph": {
+     "comparisons": 663,
+     "distinctOperations": 227,
+     "limbs": 3898,
+     "coeffs": 75232,
+     "differing": 0,
+     "byImpl": {
+      "crt": 209,
+      "limb": 227,
+      "staged": 227
+     }
+    },
+    "algo.compress": {
+     "comparisons": 102,
+     "distinctOperations": 51,
+     "limbs": 384,
+     "coeffs": 7296,
+     "differing": 0,
+     "byImpl": {
+      "int:bfvModSwitchComp": 51,
+      "staged": 51
+     }
+    },
+    "algo.decrypt": {
+     "comparisons": 7100,
+     "distinctOperations": 2923,
+     "limbs": 7100,
+     "coeffs": 131600,
+     "differing": 0,
+     "byImpl": {
+      "literal:Spec.DecryptBFV.bfvDecryptLib": 2012,
+      "literal:Spec.DecryptBFV.decrypt1": 2165,
+      "mirror-only": 2923
+     }
+    },
+    "algo.decrypt.exact": {
+     "comparisons": 2904,
+     "distinctOperations": 2904,
+     "limbs": 2904,
+     "coeffs": 56736,
+     "differing": 0,
+     "byImpl": {
+      "exact": 2904
+     }
+    },
+    "algo.decrypt.literal-vs-staged": {
+     "comparisons": 2701,
+     "distinctOperations": 2701,
+     "limbs": 0,
+     "coeffs": 0,
+     "differing": 0,
+     "byImpl": {
+      "literal": 2701
+     }
+    },
+    "algo.decrypt.phase": {
+     "comparisons": 2923,
+     "distinctOperations": 2923,
+     "limbs": 7757,
+     "coeffs": 154784,
+     "differing": 0,
+     "byImpl": {
+      "limb": 2923
+     }
+    },
+    "algo.encrypt": {
+     "comparisons": 1306,
+     "distinctOperations": 668,
+     "limbs": 6540,
+     "coeffs": 123072,
+     "differing": 0,
+     "byImpl": {
+      "literal:Spec.EncryptBFV.encryptBFV": 638,
+      "mirror-only": 30,
+      "staged": 638
+     }
+    },
+    "algo.mul": {
+     "comparisons": 1466,
+     "distinctOperations": 510,
+     "limbs": 11892,
+     "coeffs": 223392,
+     "differing": 0,
+     "byImpl": {
+      "forced": 510,
+      "literal": 443,
+      "mirror-only": 3,
+      "staged": 510
+     }
+    },
+    "algo.mul.forced-vs-staged": {
+     "comparisons": 510,
+     "distinctOperations": 507,
+     "limbs": 0,
+     "coeffs": 0,
+     "differing": 0,
+     "byImpl": {
+      "forced": 510
+     }
+    },
+    "algo.mul.literal-vs-staged": {
+     "comparisons": 443,
+     "distinctOperations": 441,
+     "limbs": 0,
+     "coeffs": 0,
+     "differing": 0,
+     "byImpl": {
+      "literal": 443
+     }
+    },
+    "algo.mul.spot": {
+     "comparisons": 510,
+     "distinctOperations": 507,
+     "limbs": 0,
+     "coeffs": 0,
+     "differing": 0,
+     "byImpl": {
+      "staged": 510
+     }
+    },
+    "algo.mulPlain": {
+     "comparisons": 129,
+     "distinctOperations": 68,
+     "limbs": 662,
+     "coeffs": 12032,
+     "differing": 0,
+     "byImpl": {
+      "crt": 61,
+      "limb": 68
+     }
+    },
+    "algo.negate": {
+     "comparisons": 137,
+     "distinctOperations": 69,
+     "limbs": 658,
+     "coeffs": 10720,
+     "differing": 0,
+     "byImpl": {
+      "crt": 68,
+      "limb": 69
+     }
+    },
+    "algo.relin": {
+     "comparisons": 1303,
+     "distinctOperations": 631,
+     "limbs": 6924,
+     "coeffs": 123936,
+     "differing": 0,
+     "byImpl": {
+      "literal": 163,
+      "literal:Challenge.RealizeBFV.keySwitchBFV": 196,
+      "literal:Challenge.RealizeBFV.relinBFV": 313,
+      "mirror-only": 416,
+      "staged": 215
+     }
+    },
+    "algo.relin.fast-vs-staged": {
+     "comparisons": 246,
+     "distinctOperations": 246,
+     "limbs": 0,
+     "coeffs": 0,
+     "differing": 0,
+     "byImpl": {
+      "staged": 246
+     }
+    },
+    "algo.relin.leveled": {
+     "comparisons": 96,
+     "distinctOperations": 51,
+     "limbs": 728,
+     "coeffs": 14528,
+     "differing": 0,
+     "byImpl": {
+      "literal:Challenge.BFVMul.Fl.leveledKS (Fl.floatSums A64) with core Challenge.RealizeBFV.ksBFV at L - drop": 45,
+      "literal:Fl.leveledKS": 51
+     }
+    },
+    "algo.rotate": {
+     "comparisons": 234,
+     "distinctOperations": 120,
+     "limbs": 1160,
+     "coeffs": 19616,
+     "differing": 0,
+     "byImpl": {
+      "literal": 57,
+      "literal:Challenge.RealizeBFV.rotateBFV": 115,
+      "staged": 62
+     }
+    },
+    "algo.rotate.leveled": {
+     "comparisons": 23,
+     "distinctOperations": 13,
+     "limbs": 202,
+     "coeffs": 4672,
+     "differing": 0,
+     "byImpl": {
+      "literal:Challenge.BFVMul.Fl.leveledKS (Fl.floatSums A64) with core Challenge.RealizeBFV.ksBFV at L - drop": 10,
+      "literal:Fl.leveledKS": 13
+     }
+    },
+    "algo.sub": {
+     "comparisons": 251,
+     "distinctOperations": 137,
+     "limbs": 1344,
+     "coeffs": 22656,
+     "differing": 0,
+     "byImpl": {
+      "crt": 114,
+      "limb": 118,
+      "mirror-only": 19
+     }
+    },
+    "algo.subPlain": {
+     "comparisons": 69,
+     "distinctOperations": 69,
+     "limbs": 333,
+     "coeffs": 5712,
+     "differing": 0,
+     "byImpl": {
+      "mirror-only": 68,
+      "mirror-only:mixed": 1
+     }
+    },
+    "algo.tensor": {
+     "comparisons": 4,
+     "distinctOperations": 2,
+     "limbs": 24,
+     "coeffs": 384,
+     "differing": 0,
+     "byImpl": {
+      "crt": 2,
+      "limb": 2
+     }
+    }
+   }
+  },
+  "casesByN": {
+   "16": 213,
+   "64": 28
+  },
+  "certified": 176,
+  "notCertified": 13,
+  "certifiedByN": {
+   "16": 151,
+   "64": 25
+  },
+  "certifiedByAssumed": {
+   "binary64,binary64Dec": 72,
+   "binary64,declaredDrops,binary64Dec": 51,
+   "binary64Dec": 51,
+   "declaredDrops,binary64Dec": 2
+  },
+  "certifiedIdealised": 0,
+  "certifiedIdealisedByN": {},
+  "runLibrary": {
+   "lines": 241,
+   "programsRun": 176,
+   "programsDiffering": 0,
+   "programsRunByN": {
+    "16": 151,
+    "64": 25
+   },
+   "instructions": 1472,
+   "instructionsByN": {
+    "16": 1368,
+    "64": 104
+   },
+   "ciphertexts": 1323,
+   "coeffs": 159424,
+   "ciphertextsDiffering": 0,
+   "notRun": [
+    {
+     "reason": "no program",
+     "N": 16,
+     "programs": 50
+    },
+    {
+     "reason": "no program",
+     "N": 64,
+     "programs": 2
+    },
+    {
+     "reason": "not certified",
+     "N": 16,
+     "programs": 12
+    },
+    {
+     "reason": "not certified",
+     "N": 64,
+     "programs": 1
+    }
+   ],
+   "certifiedNotRun": [],
+   "certifiedNotRunIdealised": 0
+  },
+  "idealMul": {
+   "products": 413,
+   "coeffs": 68544,
+   "coeffsDiffering": 29449,
+   "fmaProducts": 413,
+   "fmaCoeffs": 68544,
+   "fmaCoeffsDiffering": 6598,
+   "percentDiffering": 43.0,
+   "fmaPercentDiffering": 9.6
+  }
+ }
+}

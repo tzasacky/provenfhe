@@ -1,0 +1,23 @@
+name: Question
+description: How something works, how to run it, or what a result means.
+title: "[question] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before asking: `README.md` (overview and limitations), `docs/SPEC.md` section 2 (what a human
+        must read), `harness/frontend/README.md` (fhe_check) and `harness/*/README.md` (vendor
+        comparisons). Build problems: please paste the summary printed by `./verify.sh`.
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Commit (`git rev-parse HEAD`), operating system, and any command output.
+      render: text

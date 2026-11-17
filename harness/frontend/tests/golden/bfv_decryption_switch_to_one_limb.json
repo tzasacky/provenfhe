@@ -1,0 +1,7 @@
+{"verdict": "UNSUPPORTED",
+ "tool": "fhe_check",
+ "summary":
+ "decryption method switch-to-one-limb: for BFV only decryption at the output's own level (\"at-output-level\", Spec.Scheme.bfvDecrypt) has a proved statement",
+ "scheme": "BFV",
+ "input": "tests/negative-bfv/bfv_decryption_switch_to_one_limb.json",
+ "format": "fhe-check-report/v1"}

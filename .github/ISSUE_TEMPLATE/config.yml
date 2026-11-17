@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a soundness or security problem privately
+    url: https://github.com/tzasacky/provenfhe/security/advisories/new
+    about: Gate bypasses and wrong CERTIFIED verdicts go through the repository's Security tab ("Report a vulnerability"), not a public issue. See SECURITY.md.

@@ -1,0 +1,123 @@
+fhe_check: examples/bfv_tiny_subplain_rounded.fhecheck.json
+VERDICT: UNSUPPORTED: the noise bound is certified for textbook decryption, but the library's decryption of some output is by a routine with no proved statement, so the certificate is withheld
+
+Parameters (BFV, from hand-written (Challenge.BFV.tinyBFV)): N = 4, t = 17, 2 ciphertext primes (log2 Q = 35.58), 0 special primes (log2 P = 0.00)
+  limb bits: [16.00, 19.58]
+  Spec.schemeParamsOK? (chain): passed
+  Spec.Budget.specialOK? (special primes): passed
+
+Mode: worst case (input noise 2^6.00, supplied by the frontend; the file declares no fresh encryptions, so there is no --kappa mode for it)
+
+Multiplication technique: none declared
+Plaintext addition (declared by the frontend): rounded
+
+Budget (the locked Challenge.CertifyBFV.budgetBFV, computed by fhe_check, not read from the input): ONE BUDGET PER
+INSTRUCTION, E_k = Spec.BudgetBFV.budgetOf of five numbers for body[k]. Largest value of each over the instructions that use it:
+  keySwitch (relin, keySwitch) <= 0 (0): Spec.BudgetBFV.ksBoundAt at the operand's own level, centred representatives, variant "centred"
+    (the program does not key-switch)
+  modSwitch = Spec.BudgetBFV.msBudget = ceil((1+N*secretBound)/2) = 3 (2^1.58) (the program does not modulus-switch; unused)
+  mulLift (mul, square) <= 3 (2^1.58): max(mulLift, Spec.BudgetBFV.mulLiftNormAt P l e), mulLiftNormAt = floor(((Q_l + e)*(1+N*secretBound) + Q_l)/(2*Q_l)); textbook (e = 0): 3 (the program does not multiply; unused)
+  mulRound (mul, square) <= 21 (2^4.39): Spec.BudgetBFV.mulRoundApprox P rho = rho*(1+N*secretBound+(N*secretBound)^2), largest rho = 1; textbook (rho = 1): 21 (unused)
+  plainAdd (addPlain, subPlain) <= 8: Spec.BudgetBFV.plainAddRoundedAt P l b at the operand's level l, b = 16 (the largest plaintext bound of the program), for adding round(Q_l*p/t)
+  Per instruction (mul, square, relin, keySwitch, addPlain, subPlain; level = that of the first operand):
+    body[0] subPlain: level 2: plainAdd = 8
+
+Outputs (bound B = Challenge.BFV.refAnalyzeBFVAt on the program with this output alone; decryption needs
+2*(t*B + (Q mod t)*(t-1)) < Q, Challenge.BFV.decOK; margin = log2 of the largest B it accepts over B):
+  c: level 2, noise <= 81 (2^6.34); largest accepted 2^30.50; margin 24.16 bits
+
+Reason: no library multiplication technique is declared, so no library decryption routine is identified and none is proved; so the certificate, which is about textbook decryption, is withheld (fhe_check certifies an OpenFHE program only when the library's own decryption of every output is proved: the locked Challenge.BFVDecryptLib.decryptLibExtOK?)
+
+Steps (diagnostic replay with the locked Source.step, refBoundBFV, bndOK):
+  [0] c = subPlain a p: level 2, parts 2, B = 2^6.34, margin 24.16 bits
+
+WHAT "NOT CERTIFIED" / "UNSUPPORTED" MEANS
+No theorem is claimed. This is not a proof that decryption fails: the analysis could not show
+it always succeeds (or the input is outside what is certified). Worst-case bounds are usually
+far above what is observed in practice.
+
+HOW THE VERDICT WAS COMPUTED: by FHE.Holes.certifyBFVFast (FHE.Holes.certifyBFVFreshFast in the
+fresh-encryption modes), which makes the checks of Challenge.CertifyBFV.certifyBFV?
+(Challenge.BFVEncrypt.certifyBFVFresh?) with the environments in search trees and one pass over
+the program for each replay (FHE/Noise/FastBFV.lean; near-linear instead of quadratic in the
+program length). The locked statements Challenge.Fast.certifyBFVFast_eq and
+certifyBFVFreshFast_eq, proved and kernel-checked in this repository, say that they return
+exactly what certifyBFV? (certifyBFVFresh?) returns, on every input; so a certificate printed
+here is the value of the locked decision, and the theorems cited are about it. The bounds shown
+without a certificate are those of Challenge.BFV.refAnalyzeBFVAt, computed by
+FHE.Holes.analyzeBFVFast (Challenge.Fast.analyzeBFVFast_eq: equal on every input).
+
+Where the budget E_k of instruction k comes from (Spec.BudgetBFV; Challenge.CertifyBFV.stepBudget;
+locked pins in Challenge.BFV and Challenge.BFVMul):
+  key switching (relin, keySwitch; 0 elsewhere): ksBoundAt at the operand's OWN level (the BGV
+    hybrid key-switching bound at plaintext modulus 1; with no special primes, one limb per digit
+    and centred digits it is OpenFHE's BV key switching with digitSize 0). Challenge.BFV.relin_realizable
+    and keySwitch_realizable: at every level, hybrid key switching with keys of noise at most keyNoise
+    meets the relin/keySwitch contract within ksBoundAt, given SpecialOK (checked by
+    Spec.Budget.specialOK?) and a usable digit layout (Spec.Budget.KSLayout.okAt; keys generated once
+    at the top level serve every level, Challenge.Budget.gadgetKeys_restrict). Under HPSPOVERQLEVELED,
+    at a top-level operand with a declared internal drop of dr >= 1 limbs, the number is the larger of
+    that and Spec.BudgetBFV.ksLeveled N (Q_L/Q_(L-dr)) (ksBoundAt at level L-dr) btgt r1 (btgt = N*B_s^2
+    for relin, B_s for keySwitch; r1 the binary64 tolerance of the scaling): PROVED,
+    Challenge.BFVMul.stepOK_relin_leveled_tol, stepOK_keySwitch_leveled_tol, ksCore_realizable
+    (Challenge.CertifyBFV.certifyBFV?_leveled_relin, certifyBFV?_leveled_keySwitch), for every
+    arithmetic conforming to Spec.Float.Conforms.
+  modulus switching: msBudget = ceil((1+N*secretBound)/2) at every instruction, for rounding every
+    component of a two-component ciphertext (Challenge.BFV.stepOK_modSwitch_textbook).
+  multiplication: the program does not multiply.
+  plaintext addition, at the operand's own level l: 0 for adding floor(Q/t)*p
+    (Challenge.BFV.stepOK_addPlain_textbook, Challenge.BFVMul.stepOK_subPlain_textbook);
+    Spec.BudgetBFV.plainAddRoundedAt P l b for adding round(Q_l*p/t) to a plaintext with |p| <= b
+    (Challenge.BFVMul.stepOK_addPlain_rounded, stepOK_subPlain_rounded);
+    Spec.BudgetBFV.plainAddScaledAt P l b = floor((Q_l mod t)*b/t) + 1 for adding any polynomial
+    within one unit of Q_l*p/t, i.e. ceil, floor or nearest (Challenge.BFVMul.stepOK_addPlain_scaled,
+    stepOK_subPlain_scaled).
+
+DECRYPTION COVERED: textbook BFV decryption WITH THE SECRET KEY s modulo the output's own level,
+  round(t*[<ct, s>]_Q / Q) mod t (Spec.Scheme.bfvDecrypt). fhe_check evaluated
+  Spec.Encrypt.outputsUnderS?: every output is under s itself (Galois element 1; an output left
+  under a rotated key is refused). The decryption condition 2*(t*B + (Q mod t)*(t-1)) < Q
+  (Challenge.BFV.decOK) is part of refAnalyzeBFVAt at every step. NOT covered: a decryption that
+  first switches the ciphertext to another modulus, or any RNS shortcut of the rounding.
+
+ASSUMPTIONS (inputs to the theorem, not proved by it):
+  (a) The library's operations meet the per-operation phase contracts of Spec.TraceBFV, each within
+      the budget of its own instruction printed above, and its key switching uses the declared digit
+      layout and representatives. That the contracts are achievable within those budgets is the
+      content of locked statements of this repository (proofs in Validation/, kernel-checked by its
+      gate), about IDEALISED algorithms: componentwise add/sub, plaintext operations, constants and
+      automorphisms (Challenge.BFV.stepOK_*, Challenge.BFVMul.stepOK_*), hybrid key switching
+      (Challenge.BFV.relin_realizable, keySwitch_realizable), rounding modulus switching, and
+      multiplication as said above. It is NOT
+      proved for the library's code, whose agreement with the limb-level algorithms is assumed
+      (machine words, NTT). For the HPS family with floatTolerant = true the limb-level algorithm
+      includes the library's binary64 sums, and the hypothesis is that the platform's arithmetic
+      conforms to the standard model Spec.Float.Conforms (Spec/Float.lean); with floatTolerant =
+      false the budget is that of the idealised algorithm, which the library does not compute.
+      The frontend's translation of the program
+      into the operations listed, and its statement of the technique, are untrusted.
+  (b) Noise of the inputs: every input ciphertext has BFV noise e = [phase - floor(Q/t)*m]_Q with
+      |e|inf <= inputNoise = 64 (2^6.00) (fhe_check checked Challenge.BFV.decOK
+      for the bound of every input ciphertext at its level, so the noise bound alone gives the input
+      hypothesis, including that the input decrypts: Challenge.BFV.bfv_decrypt_of_noise); every
+      plaintext operand has |p|inf <= t - 1; every key-switching key has error <= keyNoise =
+      64 (2^6.00); every secret-key coefficient has |s_i| <= secretBound = 1.
+      No input declares a bound of its own.
+      These values were supplied by the frontend (hand-written (Challenge.BFV.tinyBFV));
+      fhe_check did not derive or check them.
+  (c) Shapes: the multiplication and modulus-switching pins are for two-component operands
+      (fhe_check refuses a program that multiplies or modulus-switches anything else), relin takes
+      a three-component ciphertext, keySwitch a two-component one. The certificate theorem itself
+      covers every run that meets the contracts, whatever the shapes.
+  (d) Worst-case analysis (infinity norm, every coefficient at its extreme); no probabilistic or
+      average-case statement.
+  (e) No security claim: the parameters are not checked for a security level.
+  (f) Scheme-level parameters only: N a power of two, distinct primes coprime to t. Nothing is
+      claimed about NTT roots, word sizes or the storage of the limbs.
+  (g) Plaintext operands are modelled as one-component values [p], p the unscaled plaintext
+      polynomial with p = m (mod t) and |p|inf within its bound (Spec.TraceBFV.PlainOK); an encoding
+      that stores something else is outside the model.
+  (h) Each output is decrypted with the secret key s the inputs were encrypted under.
+  (i) The executable is compiled by the Lean compiler from the verified definitions; the Lean
+      compiler and runtime, and this tool's (untrusted) JSON decoding and printing, are trusted.
+No library (OpenFHE, HEIR) has been verified.

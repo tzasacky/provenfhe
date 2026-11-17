@@ -1,0 +1,7 @@
+{"verdict": "INVALID INPUT",
+ "tool": "fhe_check",
+ "summary":
+ "$.bfv.multiplication.internalDrops[0]: 1, but body[0] is not a mul, square, relin or keySwitch: the library drops limbs only inside those (0 at every other instruction)",
+ "scheme": "BFV",
+ "input": "tests/negative-bfv/bfv_leveled_internal_drop_at_add.json",
+ "format": "fhe-check-report/v1"}

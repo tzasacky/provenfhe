@@ -1,0 +1,2413 @@
+{
+ "loads": [
+  21.4248046875,
+  20.84326171875
+ ],
+ "rounds": 2,
+ "reps": 3,
+ "fits": {
+  "bfv/BEHZ/BV": {
+   "a": 2.5955237544637116e-05,
+   "b": 1.7250253582163844e-06,
+   "n": 13,
+   "maxRelErr": 0.1262432058087537,
+   "geoMeanAbsLogErr": 1.0386616214889446
+  },
+  "bfv/BEHZ/HYBRID": {
+   "a": 3.299077200658624e-05,
+   "b": 1.6866265840287114e-06,
+   "n": 15,
+   "maxRelErr": 0.0988453341982205,
+   "geoMeanAbsLogErr": 1.0395138046874182
+  },
+  "bfv/HPSPOVERQ/BV": {
+   "a": 2.3341791054733747e-05,
+   "b": 2.098255193742494e-06,
+   "n": 13,
+   "maxRelErr": 0.2341402956187626,
+   "geoMeanAbsLogErr": 1.0436398646470648
+  },
+  "bfv/HPSPOVERQ/HYBRID": {
+   "a": 3.073172888205153e-05,
+   "b": 2.3372334640936404e-06,
+   "n": 15,
+   "maxRelErr": 0.24114528572716054,
+   "geoMeanAbsLogErr": 1.04495255126667
+  },
+  "bfv/HPSPOVERQLEVELED/BV": {
+   "a": 2.4341949619057084e-05,
+   "b": 1.0516144120804217e-06,
+   "n": 13,
+   "maxRelErr": 0.19046880050202786,
+   "geoMeanAbsLogErr": 1.0847613993346619
+  },
+  "bfv/HPSPOVERQLEVELED/HYBRID": {
+   "a": 3.567200150247972e-05,
+   "b": 0.0,
+   "n": 15,
+   "maxRelErr": 0.1625981252369313,
+   "geoMeanAbsLogErr": 1.0657398791260304
+  },
+  "bgv-auto/HYBRID": {
+   "a": 3.3396406714453975e-06,
+   "b": 1.7574105166894735e-06,
+   "n": 3,
+   "maxRelErr": 0.019626138516751546,
+   "geoMeanAbsLogErr": 1.013370270868655
+  },
+  "bgv/HYBRID": {
+   "a": 5.001890220995782e-06,
+   "b": 1.4675204932048886e-06,
+   "n": 28,
+   "maxRelErr": 0.07602450517690029,
+   "geoMeanAbsLogErr": 1.0376257746367097
+  }
+ },
+ "rows": [
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 2,
+    "prog": "chain",
+    "dnum": 0
+   },
+   "group": "bgv/HYBRID",
+   "N": 16384,
+   "L": 3,
+   "K": 2,
+   "alpha": 2,
+   "A": 10,
+   "B": 14,
+   "ms": 16.225,
+   "y": 7.073538643973215e-05,
+   "modelOverMeasured": 0.9975797499169423
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 2,
+    "prog": "chain",
+    "dnum": 1
+   },
+   "group": "bgv/HYBRID",
+   "N": 16384,
+   "L": 3,
+   "K": 3,
+   "alpha": 3,
+   "A": 10,
+   "B": 11,
+   "ms": 16.0791,
+   "y": 7.009931291852679e-05,
+   "modelOverMeasured": 0.9438270488058593
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 2,
+    "prog": "chain",
+    "dnum": 2
+   },
+   "group": "bgv/HYBRID",
+   "N": 16384,
+   "L": 3,
+   "K": 2,
+   "alpha": 2,
+   "A": 10,
+   "B": 14,
+   "ms": 16.1938,
+   "y": 7.0599365234375e-05,
+   "modelOverMeasured": 0.9995017502008416
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 2,
+    "prog": "chain",
+    "dnum": 3
+   },
+   "group": "bgv/HYBRID",
+   "N": 8192,
+   "L": 3,
+   "K": 1,
+   "alpha": 1,
+   "A": 10,
+   "B": 18,
+   "ms": 8.26495,
+   "y": 7.76080791766827e-05,
+   "modelOverMeasured": 0.9848751817917747
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 4,
+    "prog": "chain",
+    "dnum": 0
+   },
+   "group": "bgv/HYBRID",
+   "N": 16384,
+   "L": 5,
+   "K": 2,
+   "alpha": 2,
+   "A": 28,
+   "B": 47,
+   "ms": 46.7277,
+   "y": 0.00020371660505022322,
+   "modelOverMeasured": 1.026064563156152
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 4,
+    "prog": "chain",
+    "dnum": 1
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 5,
+   "K": 4,
+   "alpha": 5,
+   "A": 28,
+   "B": 30,
+   "ms": 93.2303,
+   "y": 0.00018967753092447918,
+   "modelOverMeasured": 0.9704815329830506
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 4,
+    "prog": "chain",
+    "dnum": 2
+   },
+   "group": "bgv/HYBRID",
+   "N": 16384,
+   "L": 5,
+   "K": 3,
+   "alpha": 3,
+   "A": 28,
+   "B": 41,
+   "ms": 46.5241,
+   "y": 0.00020282897949218748,
+   "modelOverMeasured": 0.9871432914101627
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 4,
+    "prog": "chain",
+    "dnum": 5
+   },
+   "group": "bgv/HYBRID",
+   "N": 16384,
+   "L": 5,
+   "K": 1,
+   "alpha": 1,
+   "A": 28,
+   "B": 68,
+   "ms": 54.4372,
+   "y": 0.00023732735770089284,
+   "modelOverMeasured": 1.0106054440975727
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 6,
+    "prog": "chain",
+    "dnum": 0
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 7,
+   "K": 3,
+   "alpha": 3,
+   "A": 54,
+   "B": 89,
+   "ms": 189.383,
+   "y": 0.00038530069986979166,
+   "modelOverMeasured": 1.039996542867489
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 6,
+    "prog": "chain",
+    "dnum": 1
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 7,
+   "K": 6,
+   "alpha": 7,
+   "A": 54,
+   "B": 63,
+   "ms": 192.866,
+   "y": 0.0003923868815104167,
+   "modelOverMeasured": 0.9239754948230997
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 6,
+    "prog": "chain",
+    "dnum": 2
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 7,
+   "K": 4,
+   "alpha": 4,
+   "A": 54,
+   "B": 81,
+   "ms": 188.275,
+   "y": 0.00038304646809895836,
+   "modelOverMeasured": 1.0154674805221784
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 6,
+    "prog": "chain",
+    "dnum": 7
+   },
+   "group": "bgv/HYBRID",
+   "N": 16384,
+   "L": 7,
+   "K": 1,
+   "alpha": 1,
+   "A": 54,
+   "B": 166,
+   "ms": 115.244,
+   "y": 0.0005024239676339286,
+   "modelOverMeasured": 1.0224641078032302
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 8,
+    "prog": "chain",
+    "dnum": 0
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 9,
+   "K": 3,
+   "alpha": 3,
+   "A": 88,
+   "B": 158,
+   "ms": 312.58,
+   "y": 0.0006359456380208333,
+   "modelOverMeasured": 1.0567484658995108
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 8,
+    "prog": "chain",
+    "dnum": 1
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 9,
+   "K": 7,
+   "alpha": 9,
+   "A": 88,
+   "B": 100,
+   "ms": 311.786,
+   "y": 0.0006343302408854167,
+   "modelOverMeasured": 0.9252568314398505
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 8,
+    "prog": "chain",
+    "dnum": 2
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 9,
+   "K": 4,
+   "alpha": 5,
+   "A": 88,
+   "B": 122,
+   "ms": 292.27,
+   "y": 0.0005946248372395833,
+   "modelOverMeasured": 1.041335310669404
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 8,
+    "prog": "chain",
+    "dnum": 9
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 9,
+   "K": 1,
+   "alpha": 1,
+   "A": 88,
+   "B": 328,
+   "ms": 439.003,
+   "y": 0.0008931538899739583,
+   "modelOverMeasured": 1.0317517188954983
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 10,
+    "prog": "chain",
+    "dnum": 0
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 11,
+   "K": 4,
+   "alpha": 4,
+   "A": 130,
+   "B": 231,
+   "ms": 467.349,
+   "y": 0.000950823974609375,
+   "modelOverMeasured": 1.0404059942495554
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 10,
+    "prog": "chain",
+    "dnum": 2
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 11,
+   "K": 5,
+   "alpha": 6,
+   "A": 130,
+   "B": 185,
+   "ms": 442.304,
+   "y": 0.0008998697916666667,
+   "modelOverMeasured": 1.0243004360277377
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 10,
+    "prog": "chain",
+    "dnum": 11
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 11,
+   "K": 1,
+   "alpha": 1,
+   "A": 130,
+   "B": 570,
+   "ms": 712.61,
+   "y": 0.0014498087565104167,
+   "modelOverMeasured": 1.0254679475344692
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 12,
+    "prog": "chain",
+    "dnum": 0
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 13,
+   "K": 4,
+   "alpha": 5,
+   "A": 180,
+   "B": 294,
+   "ms": 615.711,
+   "y": 0.001252667236328125,
+   "modelOverMeasured": 1.0631644431647187
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 12,
+    "prog": "chain",
+    "dnum": 13
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 13,
+   "K": 1,
+   "alpha": 1,
+   "A": 180,
+   "B": 908,
+   "ms": 1076.23,
+   "y": 0.0021895955403645833,
+   "modelOverMeasured": 1.0197540168708483
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 4,
+    "prog": "chain",
+    "ringdim": 32768
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 5,
+   "K": 2,
+   "alpha": 2,
+   "A": 28,
+   "B": 47,
+   "ms": 95.8889,
+   "y": 0.0001950864664713542,
+   "modelOverMeasured": 1.0714550996247827
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 3,
+    "prog": "poly",
+    "dnum": 0
+   },
+   "group": "bgv/HYBRID",
+   "N": 16384,
+   "L": 4,
+   "K": 2,
+   "alpha": 2,
+   "A": 27,
+   "B": 56,
+   "ms": 53.0523,
+   "y": 0.0002312896728515625,
+   "modelOverMeasured": 0.9392212843232977
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 3,
+    "prog": "poly",
+    "dnum": 4
+   },
+   "group": "bgv/HYBRID",
+   "N": 16384,
+   "L": 4,
+   "K": 1,
+   "alpha": 1,
+   "A": 27,
+   "B": 74,
+   "ms": 58.8623,
+   "y": 0.0002566192626953125,
+   "modelOverMeasured": 0.9494515333922298
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 6,
+    "prog": "poly",
+    "dnum": 0
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 7,
+   "K": 3,
+   "alpha": 3,
+   "A": 72,
+   "B": 143,
+   "ms": 287.938,
+   "y": 0.0005858113606770834,
+   "modelOverMeasured": 0.9729950026595535
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 6,
+    "prog": "poly",
+    "dnum": 7
+   },
+   "group": "bgv/HYBRID",
+   "N": 16384,
+   "L": 7,
+   "K": 1,
+   "alpha": 1,
+   "A": 72,
+   "B": 292,
+   "ms": 189.908,
+   "y": 0.0008279331752232142,
+   "modelOverMeasured": 0.952555234563345
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 10,
+    "prog": "poly",
+    "dnum": 0
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 11,
+   "K": 4,
+   "alpha": 4,
+   "A": 160,
+   "B": 357,
+   "ms": 665.909,
+   "y": 0.0013547953287760415,
+   "modelOverMeasured": 0.9774223628522507
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FIXEDMANUAL",
+    "depth": 10,
+    "prog": "poly",
+    "dnum": 11
+   },
+   "group": "bgv/HYBRID",
+   "N": 32768,
+   "L": 11,
+   "K": 1,
+   "alpha": 1,
+   "A": 160,
+   "B": 900,
+   "ms": 1114.28,
+   "y": 0.0022670084635416665,
+   "modelOverMeasured": 0.9356254788436261
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FLEXIBLEAUTOEXT",
+    "depth": 3,
+    "prog": "chain"
+   },
+   "group": "bgv-auto/HYBRID",
+   "N": 16384,
+   "L": 5,
+   "K": 2,
+   "alpha": 3,
+   "A": 24,
+   "B": 31,
+   "ms": 31.0276,
+   "y": 0.00013526960100446428,
+   "modelOverMeasured": 0.9952798051619891
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FLEXIBLEAUTOEXT",
+    "depth": 6,
+    "prog": "chain"
+   },
+   "group": "bgv-auto/HYBRID",
+   "N": 16384,
+   "L": 8,
+   "K": 2,
+   "alpha": 3,
+   "A": 66,
+   "B": 104,
+   "ms": 90.7013,
+   "y": 0.0003954262869698661,
+   "modelOverMeasured": 1.0196261385167515
+  },
+  {
+   "scheme": "bgv",
+   "cfg": {
+    "scal": "FLEXIBLEAUTOEXT",
+    "depth": 10,
+    "prog": "chain"
+   },
+   "group": "bgv-auto/HYBRID",
+   "N": 32768,
+   "L": 12,
+   "K": 3,
+   "alpha": 4,
+   "A": 150,
+   "B": 251,
+   "ms": 470.356,
+   "y": 0.0009569417317708333,
+   "modelOverMeasured": 0.98444462095156
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "BV",
+    "depth": 3,
+    "qbits": 60,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/BV",
+   "N": 8192,
+   "L": 3,
+   "K": 0,
+   "alpha": 1,
+   "A": 9,
+   "B": 27,
+   "ms": 28.8844,
+   "y": 0.00027122521033653844,
+   "modelOverMeasured": 0.912419370568912
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "BV",
+    "depth": 5,
+    "qbits": 60,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/BV",
+   "N": 16384,
+   "L": 4,
+   "K": 0,
+   "alpha": 1,
+   "A": 12,
+   "B": 48,
+   "ms": 86.666,
+   "y": 0.0003778337751116071,
+   "modelOverMeasured": 0.9066973621067924
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "BV",
+    "depth": 5,
+    "qbits": 45,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/BV",
+   "N": 16384,
+   "L": 5,
+   "K": 0,
+   "alpha": 1,
+   "A": 15,
+   "B": 75,
+   "ms": 113.299,
+   "y": 0.0004939444405691964,
+   "modelOverMeasured": 0.8988871798622625
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "BV",
+    "depth": 7,
+    "qbits": 36,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/BV",
+   "N": 16384,
+   "L": 8,
+   "K": 0,
+   "alpha": 1,
+   "A": 24,
+   "B": 192,
+   "ms": 218.328,
+   "y": 0.0009518345424107143,
+   "modelOverMeasured": 0.8258964378260645
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "BV",
+    "depth": 6,
+    "qbits": 60,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/BV",
+   "N": 16384,
+   "L": 5,
+   "K": 0,
+   "alpha": 1,
+   "A": 30,
+   "B": 150,
+   "ms": 199.462,
+   "y": 0.0008695853097098214,
+   "modelOverMeasured": 1.0211771524522415
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "BV",
+    "depth": 8,
+    "qbits": 60,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/BV",
+   "N": 16384,
+   "L": 6,
+   "K": 0,
+   "alpha": 1,
+   "A": 36,
+   "B": 216,
+   "ms": 261.262,
+   "y": 0.0011390119280133928,
+   "modelOverMeasured": 0.9687860786673442
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "BV",
+    "depth": 8,
+    "qbits": 45,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/BV",
+   "N": 16384,
+   "L": 7,
+   "K": 0,
+   "alpha": 1,
+   "A": 42,
+   "B": 294,
+   "ms": 307.984,
+   "y": 0.0013427036830357141,
+   "modelOverMeasured": 0.9916830779383693
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "BV",
+    "depth": 10,
+    "qbits": 36,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/BV",
+   "N": 16384,
+   "L": 11,
+   "K": 0,
+   "alpha": 1,
+   "A": 66,
+   "B": 726,
+   "ms": 594.778,
+   "y": 0.0025930262974330357,
+   "modelOverMeasured": 0.9140056698901873
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "BV",
+    "depth": 9,
+    "qbits": 60,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/BV",
+   "N": 16384,
+   "L": 6,
+   "K": 0,
+   "alpha": 1,
+   "A": 54,
+   "B": 324,
+   "ms": 335.937,
+   "y": 0.001464569091796875,
+   "modelOverMeasured": 1.1301538167191512
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "BV",
+    "depth": 11,
+    "qbits": 60,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/BV",
+   "N": 32768,
+   "L": 8,
+   "K": 0,
+   "alpha": 1,
+   "A": 72,
+   "B": 576,
+   "ms": 1107.4,
+   "y": 0.0022530110677083334,
+   "modelOverMeasured": 1.046754855194407
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "BV",
+    "depth": 11,
+    "qbits": 45,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/BV",
+   "N": 32768,
+   "L": 10,
+   "K": 0,
+   "alpha": 1,
+   "A": 90,
+   "B": 900,
+   "ms": 1437.18,
+   "y": 0.0029239501953125,
+   "modelOverMeasured": 1.0729418174143088
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "BV",
+    "depth": 13,
+    "qbits": 36,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/BV",
+   "N": 32768,
+   "L": 14,
+   "K": 0,
+   "alpha": 1,
+   "A": 126,
+   "B": 1764,
+   "ms": 2435,
+   "y": 0.004954020182291667,
+   "modelOverMeasured": 0.993563468414079
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "BV",
+    "depth": 6,
+    "progdepth": 6,
+    "prog": "poly"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/BV",
+   "N": 16384,
+   "L": 5,
+   "K": 0,
+   "alpha": 1,
+   "A": 45,
+   "B": 225,
+   "ms": 256.646,
+   "y": 0.0011188877650669643,
+   "modelOverMeasured": 1.1904688005020279
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 3,
+    "qbits": 60,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 16384,
+   "L": 3,
+   "K": 3,
+   "alpha": 2,
+   "A": 9,
+   "B": 36,
+   "ms": 82.877,
+   "y": 0.0003613150460379464,
+   "modelOverMeasured": 0.8885542327750171
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 5,
+    "qbits": 60,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 16384,
+   "L": 4,
+   "K": 3,
+   "alpha": 2,
+   "A": 12,
+   "B": 42,
+   "ms": 108.46,
+   "y": 0.00047284807477678567,
+   "modelOverMeasured": 0.9052886981338141
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 5,
+    "qbits": 45,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 16384,
+   "L": 5,
+   "K": 2,
+   "alpha": 2,
+   "A": 15,
+   "B": 63,
+   "ms": 127.581,
+   "y": 0.0005562090192522322,
+   "modelOverMeasured": 0.9620124881408032
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 7,
+    "qbits": 36,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 16384,
+   "L": 8,
+   "K": 2,
+   "alpha": 3,
+   "A": 24,
+   "B": 90,
+   "ms": 212.912,
+   "y": 0.00092822265625,
+   "modelOverMeasured": 0.9223304670435998
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 6,
+    "qbits": 60,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 16384,
+   "L": 4,
+   "K": 3,
+   "alpha": 2,
+   "A": 24,
+   "B": 84,
+   "ms": 186.374,
+   "y": 0.0008125261579241071,
+   "modelOverMeasured": 1.0536621223946845
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 8,
+    "qbits": 60,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 32768,
+   "L": 6,
+   "K": 3,
+   "alpha": 2,
+   "A": 36,
+   "B": 162,
+   "ms": 665.35,
+   "y": 0.0013536580403645834,
+   "modelOverMeasured": 0.9486827661019883
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 8,
+    "qbits": 45,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 32768,
+   "L": 7,
+   "K": 3,
+   "alpha": 3,
+   "A": 42,
+   "B": 180,
+   "ms": 688.987,
+   "y": 0.0014017476399739582,
+   "modelOverMeasured": 1.0688258145610163
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 10,
+    "qbits": 36,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 32768,
+   "L": 11,
+   "K": 3,
+   "alpha": 4,
+   "A": 66,
+   "B": 252,
+   "ms": 1162.65,
+   "y": 0.00236541748046875,
+   "modelOverMeasured": 0.995322017615725
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 9,
+    "qbits": 60,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 32768,
+   "L": 6,
+   "K": 3,
+   "alpha": 2,
+   "A": 54,
+   "B": 243,
+   "ms": 865.166,
+   "y": 0.0017601847330729167,
+   "modelOverMeasured": 1.0943669973611272
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 11,
+    "qbits": 60,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 32768,
+   "L": 7,
+   "K": 4,
+   "alpha": 3,
+   "A": 63,
+   "B": 297,
+   "ms": 1079.12,
+   "y": 0.0021954752604166666,
+   "modelOverMeasured": 1.0236216891962215
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 11,
+    "qbits": 45,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 32768,
+   "L": 10,
+   "K": 4,
+   "alpha": 4,
+   "A": 90,
+   "B": 378,
+   "ms": 1527.92,
+   "y": 0.0031085611979166667,
+   "modelOverMeasured": 1.0327865307508868
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 13,
+    "qbits": 36,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 32768,
+   "L": 14,
+   "K": 4,
+   "alpha": 5,
+   "A": 126,
+   "B": 486,
+   "ms": 2306.1,
+   "y": 0.004691772460937499,
+   "modelOverMeasured": 0.9579902322062587
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 6,
+    "progdepth": 6,
+    "prog": "poly"
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 16384,
+   "L": 4,
+   "K": 3,
+   "alpha": 2,
+   "A": 36,
+   "B": 126,
+   "ms": 253.366,
+   "y": 0.001104588099888393,
+   "modelOverMeasured": 1.1625981252369313
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 8,
+    "progdepth": 6,
+    "prog": "chain",
+    "dnum": 1
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 32768,
+   "L": 6,
+   "K": 7,
+   "alpha": 6,
+   "A": 36,
+   "B": 78,
+   "ms": 653.032,
+   "y": 0.0013285970052083335,
+   "modelOverMeasured": 0.9665775619356446
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQLEVELED",
+    "ks": "HYBRID",
+    "depth": 8,
+    "progdepth": 6,
+    "prog": "chain",
+    "dnum": 2
+   },
+   "group": "bfv/HPSPOVERQLEVELED/HYBRID",
+   "N": 32768,
+   "L": 6,
+   "K": 4,
+   "alpha": 3,
+   "A": 36,
+   "B": 120,
+   "ms": 675.786,
+   "y": 0.00137489013671875,
+   "modelOverMeasured": 0.9340324872459003
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "BV",
+    "depth": 3,
+    "qbits": 60,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/BV",
+   "N": 8192,
+   "L": 3,
+   "K": 0,
+   "alpha": 1,
+   "A": 9,
+   "B": 27,
+   "ms": 32.3757,
+   "y": 0.00030400860126201927,
+   "modelOverMeasured": 0.9215950516219138
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "BV",
+    "depth": 5,
+    "qbits": 60,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/BV",
+   "N": 16384,
+   "L": 4,
+   "K": 0,
+   "alpha": 1,
+   "A": 12,
+   "B": 48,
+   "ms": 93.5746,
+   "y": 0.000407952880859375,
+   "modelOverMeasured": 0.9664451122381904
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "BV",
+    "depth": 5,
+    "qbits": 45,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/BV",
+   "N": 16384,
+   "L": 5,
+   "K": 0,
+   "alpha": 1,
+   "A": 15,
+   "B": 75,
+   "ms": 123.133,
+   "y": 0.0005368172781808036,
+   "modelOverMeasured": 0.9662607485243466
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "BV",
+    "depth": 7,
+    "qbits": 36,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/BV",
+   "N": 16384,
+   "L": 8,
+   "K": 0,
+   "alpha": 1,
+   "A": 24,
+   "B": 192,
+   "ms": 230.596,
+   "y": 0.0010053187779017858,
+   "modelOverMeasured": 0.9490826102345519
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "BV",
+    "depth": 6,
+    "qbits": 60,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/BV",
+   "N": 16384,
+   "L": 5,
+   "K": 0,
+   "alpha": 1,
+   "A": 30,
+   "B": 150,
+   "ms": 237,
+   "y": 0.0010332380022321428,
+   "modelOverMeasured": 1.0040386898569484
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "BV",
+    "depth": 8,
+    "qbits": 60,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/BV",
+   "N": 16384,
+   "L": 6,
+   "K": 0,
+   "alpha": 1,
+   "A": 36,
+   "B": 216,
+   "ms": 298.505,
+   "y": 0.0013013785226004464,
+   "modelOverMeasured": 1.0043150446113156
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "BV",
+    "depth": 8,
+    "qbits": 45,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/BV",
+   "N": 16384,
+   "L": 7,
+   "K": 0,
+   "alpha": 1,
+   "A": 42,
+   "B": 294,
+   "ms": 362.078,
+   "y": 0.0015785348074776784,
+   "modelOverMeasured": 1.01187343137694
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "BV",
+    "depth": 10,
+    "qbits": 36,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/BV",
+   "N": 16384,
+   "L": 11,
+   "K": 0,
+   "alpha": 1,
+   "A": 66,
+   "B": 726,
+   "ms": 714.949,
+   "y": 0.0031169302804129463,
+   "modelOverMeasured": 0.9513892904971465
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "BV",
+    "depth": 9,
+    "qbits": 60,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/BV",
+   "N": 16384,
+   "L": 6,
+   "K": 0,
+   "alpha": 1,
+   "A": 54,
+   "B": 324,
+   "ms": 440.694,
+   "y": 0.0019212733677455359,
+   "modelOverMeasured": 1.0204123350614056
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "BV",
+    "depth": 11,
+    "qbits": 60,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/BV",
+   "N": 32768,
+   "L": 8,
+   "K": 0,
+   "alpha": 1,
+   "A": 72,
+   "B": 576,
+   "ms": 1355.35,
+   "y": 0.002757466634114583,
+   "modelOverMeasured": 1.0380512584028485
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "BV",
+    "depth": 11,
+    "qbits": 45,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/BV",
+   "N": 32768,
+   "L": 10,
+   "K": 0,
+   "alpha": 1,
+   "A": 90,
+   "B": 900,
+   "ms": 1862.43,
+   "y": 0.00378912353515625,
+   "modelOverMeasured": 1.0262252379300532
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "BV",
+    "depth": 13,
+    "qbits": 36,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/BV",
+   "N": 32768,
+   "L": 14,
+   "K": 0,
+   "alpha": 1,
+   "A": 126,
+   "B": 1764,
+   "ms": 3160.96,
+   "y": 0.006430989583333334,
+   "modelOverMeasured": 0.9817003403145995
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "BV",
+    "depth": 6,
+    "progdepth": 6,
+    "prog": "poly"
+   },
+   "group": "bfv/BEHZ/BV",
+   "N": 16384,
+   "L": 5,
+   "K": 0,
+   "alpha": 1,
+   "A": 45,
+   "B": 225,
+   "ms": 316.926,
+   "y": 0.0013816877092633927,
+   "modelOverMeasured": 1.1262432058087537
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 3,
+    "qbits": 60,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 16384,
+   "L": 3,
+   "K": 3,
+   "alpha": 2,
+   "A": 9,
+   "B": 36,
+   "ms": 84.4692,
+   "y": 0.00036825648716517855,
+   "modelOverMeasured": 0.9711587373174915
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 5,
+    "qbits": 60,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 16384,
+   "L": 4,
+   "K": 3,
+   "alpha": 2,
+   "A": 12,
+   "B": 42,
+   "ms": 108.799,
+   "y": 0.0004743259974888393,
+   "modelOverMeasured": 0.98398060211579
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 5,
+    "qbits": 45,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 16384,
+   "L": 5,
+   "K": 2,
+   "alpha": 2,
+   "A": 15,
+   "B": 63,
+   "ms": 137.232,
+   "y": 0.0005982840401785714,
+   "modelOverMeasured": 1.0047385765349595
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 7,
+    "qbits": 36,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 16384,
+   "L": 8,
+   "K": 2,
+   "alpha": 3,
+   "A": 24,
+   "B": 90,
+   "ms": 221.641,
+   "y": 0.000966278076171875,
+   "modelOverMeasured": 0.9765045321723901
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 6,
+    "qbits": 60,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 16384,
+   "L": 4,
+   "K": 3,
+   "alpha": 2,
+   "A": 24,
+   "B": 84,
+   "ms": 209.019,
+   "y": 0.0009112505231584822,
+   "modelOverMeasured": 1.0243672157037957
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 8,
+    "qbits": 60,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 32768,
+   "L": 6,
+   "K": 3,
+   "alpha": 2,
+   "A": 36,
+   "B": 162,
+   "ms": 686.011,
+   "y": 0.0013956929524739582,
+   "modelOverMeasured": 1.0467211260615823
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 8,
+    "qbits": 45,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 32768,
+   "L": 7,
+   "K": 3,
+   "alpha": 3,
+   "A": 42,
+   "B": 180,
+   "ms": 795.161,
+   "y": 0.0016177591959635415,
+   "modelOverMeasured": 1.044163565020377
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 10,
+    "qbits": 36,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 32768,
+   "L": 11,
+   "K": 3,
+   "alpha": 4,
+   "A": 66,
+   "B": 252,
+   "ms": 1325.17,
+   "y": 0.0026960652669270834,
+   "modelOverMeasured": 0.9652662654476869
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 9,
+    "qbits": 60,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 32768,
+   "L": 6,
+   "K": 3,
+   "alpha": 2,
+   "A": 54,
+   "B": 243,
+   "ms": 1043.13,
+   "y": 0.00212225341796875,
+   "modelOverMeasured": 1.0325590382943144
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 11,
+    "qbits": 60,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 32768,
+   "L": 7,
+   "K": 4,
+   "alpha": 3,
+   "A": 63,
+   "B": 297,
+   "ms": 1302.91,
+   "y": 0.0026507771809895836,
+   "modelOverMeasured": 0.9730530164397082
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 11,
+    "qbits": 45,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 32768,
+   "L": 10,
+   "K": 4,
+   "alpha": 4,
+   "A": 90,
+   "B": 378,
+   "ms": 1919.1,
+   "y": 0.0039044189453125,
+   "modelOverMeasured": 0.9237518770073846
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 13,
+    "qbits": 36,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 32768,
+   "L": 14,
+   "K": 4,
+   "alpha": 5,
+   "A": 126,
+   "B": 486,
+   "ms": 2672.26,
+   "y": 0.005436726888020834,
+   "modelOverMeasured": 0.9153554878088533
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 6,
+    "progdepth": 6,
+    "prog": "poly"
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 16384,
+   "L": 4,
+   "K": 3,
+   "alpha": 2,
+   "A": 36,
+   "B": 126,
+   "ms": 292.278,
+   "y": 0.0012742309570312501,
+   "modelOverMeasured": 1.0988453341982205
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 8,
+    "progdepth": 6,
+    "prog": "chain",
+    "dnum": 1
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 32768,
+   "L": 6,
+   "K": 7,
+   "alpha": 6,
+   "A": 36,
+   "B": 78,
+   "ms": 658.687,
+   "y": 0.0013401021321614583,
+   "modelOverMeasured": 0.9844209886179043
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "BEHZ",
+    "ks": "HYBRID",
+    "depth": 8,
+    "progdepth": 6,
+    "prog": "chain",
+    "dnum": 2
+   },
+   "group": "bfv/BEHZ/HYBRID",
+   "N": 32768,
+   "L": 6,
+   "K": 4,
+   "alpha": 3,
+   "A": 36,
+   "B": 120,
+   "ms": 668.376,
+   "y": 0.001359814453125,
+   "modelOverMeasured": 1.022244600449742
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "BV",
+    "depth": 3,
+    "qbits": 60,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/BV",
+   "N": 8192,
+   "L": 3,
+   "K": 0,
+   "alpha": 1,
+   "A": 9,
+   "B": 27,
+   "ms": 30.835,
+   "y": 0.00028954139122596155,
+   "modelOverMeasured": 0.9212120194431634
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "BV",
+    "depth": 5,
+    "qbits": 60,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/BV",
+   "N": 16384,
+   "L": 4,
+   "K": 0,
+   "alpha": 1,
+   "A": 12,
+   "B": 48,
+   "ms": 89.6847,
+   "y": 0.00039099426269531253,
+   "modelOverMeasured": 0.9739727108302916
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "BV",
+    "depth": 5,
+    "qbits": 45,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/BV",
+   "N": 16384,
+   "L": 5,
+   "K": 0,
+   "alpha": 1,
+   "A": 15,
+   "B": 75,
+   "ms": 120.805,
+   "y": 0.0005266680036272322,
+   "modelOverMeasured": 0.9635975640374984
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "BV",
+    "depth": 7,
+    "qbits": 36,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/BV",
+   "N": 16384,
+   "L": 8,
+   "K": 0,
+   "alpha": 1,
+   "A": 24,
+   "B": 192,
+   "ms": 225.496,
+   "y": 0.0009830845424107144,
+   "modelOverMeasured": 0.9796390248905134
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "BV",
+    "depth": 6,
+    "qbits": 60,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/BV",
+   "N": 16384,
+   "L": 5,
+   "K": 0,
+   "alpha": 1,
+   "A": 30,
+   "B": 150,
+   "ms": 243.159,
+   "y": 0.001060089111328125,
+   "modelOverMeasured": 0.957459141743057
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "BV",
+    "depth": 8,
+    "qbits": 60,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/BV",
+   "N": 16384,
+   "L": 6,
+   "K": 0,
+   "alpha": 1,
+   "A": 36,
+   "B": 216,
+   "ms": 309.496,
+   "y": 0.0013492954799107142,
+   "modelOverMeasured": 0.958668889859758
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "BV",
+    "depth": 8,
+    "qbits": 45,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/BV",
+   "N": 16384,
+   "L": 7,
+   "K": 0,
+   "alpha": 1,
+   "A": 42,
+   "B": 294,
+   "ms": 371.69,
+   "y": 0.0016204398018973213,
+   "modelOverMeasured": 0.98568441073155
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "BV",
+    "depth": 10,
+    "qbits": 36,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/BV",
+   "N": 16384,
+   "L": 11,
+   "K": 0,
+   "alpha": 1,
+   "A": 66,
+   "B": 726,
+   "ms": 719.32,
+   "y": 0.003135986328125,
+   "modelOverMeasured": 0.9770104712482507
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "BV",
+    "depth": 9,
+    "qbits": 60,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/BV",
+   "N": 16384,
+   "L": 6,
+   "K": 0,
+   "alpha": 1,
+   "A": 54,
+   "B": 324,
+   "ms": 461.578,
+   "y": 0.0020123203822544644,
+   "modelOverMeasured": 0.9642060065775522
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "BV",
+    "depth": 11,
+    "qbits": 60,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/BV",
+   "N": 32768,
+   "L": 8,
+   "K": 0,
+   "alpha": 1,
+   "A": 72,
+   "B": 576,
+   "ms": 1415.45,
+   "y": 0.0028797403971354166,
+   "modelOverMeasured": 1.003286251222681
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "BV",
+    "depth": 11,
+    "qbits": 45,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/BV",
+   "N": 32768,
+   "L": 10,
+   "K": 0,
+   "alpha": 1,
+   "A": 90,
+   "B": 900,
+   "ms": 1933.92,
+   "y": 0.0039345703125,
+   "modelOverMeasured": 1.013882216469929
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "BV",
+    "depth": 13,
+    "qbits": 36,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/BV",
+   "N": 32768,
+   "L": 14,
+   "K": 0,
+   "alpha": 1,
+   "A": 126,
+   "B": 1764,
+   "ms": 3271.23,
+   "y": 0.00665533447265625,
+   "modelOverMeasured": 0.9980546976186953
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "BV",
+    "depth": 6,
+    "progdepth": 6,
+    "prog": "poly"
+   },
+   "group": "bfv/HPSPOVERQ/BV",
+   "N": 16384,
+   "L": 5,
+   "K": 0,
+   "alpha": 1,
+   "A": 45,
+   "B": 225,
+   "ms": 282.968,
+   "y": 0.001233642578125,
+   "modelOverMeasured": 1.2341402956187626
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 3,
+    "qbits": 60,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 16384,
+   "L": 3,
+   "K": 3,
+   "alpha": 2,
+   "A": 9,
+   "B": 36,
+   "ms": 84.2076,
+   "y": 0.00036711600167410716,
+   "modelOverMeasured": 0.9825939566809054
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 5,
+    "qbits": 60,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 16384,
+   "L": 4,
+   "K": 3,
+   "alpha": 2,
+   "A": 12,
+   "B": 42,
+   "ms": 106.886,
+   "y": 0.0004659859793526786,
+   "modelOverMeasured": 1.0020570849045807
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 5,
+    "qbits": 45,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 16384,
+   "L": 5,
+   "K": 2,
+   "alpha": 2,
+   "A": 15,
+   "B": 63,
+   "ms": 136.756,
+   "y": 0.0005962088448660714,
+   "modelOverMeasured": 1.0201486386960585
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 7,
+    "qbits": 36,
+    "progdepth": 3,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 16384,
+   "L": 8,
+   "K": 2,
+   "alpha": 3,
+   "A": 24,
+   "B": 90,
+   "ms": 228.995,
+   "y": 0.0009983389718191964,
+   "modelOverMeasured": 0.9494896339770812
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 6,
+    "qbits": 60,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 16384,
+   "L": 4,
+   "K": 3,
+   "alpha": 2,
+   "A": 24,
+   "B": 84,
+   "ms": 213.458,
+   "y": 0.00093060302734375,
+   "modelOverMeasured": 1.0035311262834938
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 8,
+    "qbits": 60,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 32768,
+   "L": 6,
+   "K": 3,
+   "alpha": 2,
+   "A": 36,
+   "B": 162,
+   "ms": 719.827,
+   "y": 0.0014644917805989584,
+   "modelOverMeasured": 1.0139859305524335
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 8,
+    "qbits": 45,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 32768,
+   "L": 7,
+   "K": 3,
+   "alpha": 3,
+   "A": 42,
+   "B": 180,
+   "ms": 828.739,
+   "y": 0.0016860738118489585,
+   "modelOverMeasured": 1.0150413490535448
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 10,
+    "qbits": 36,
+    "progdepth": 6,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 32768,
+   "L": 11,
+   "K": 3,
+   "alpha": 4,
+   "A": 66,
+   "B": 252,
+   "ms": 1345.27,
+   "y": 0.0027369588216145835,
+   "modelOverMeasured": 0.9562719462556684
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 9,
+    "qbits": 60,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 32768,
+   "L": 6,
+   "K": 3,
+   "alpha": 2,
+   "A": 54,
+   "B": 243,
+   "ms": 1111.74,
+   "y": 0.0022618408203125,
+   "modelOverMeasured": 0.9848001112199343
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 11,
+    "qbits": 60,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 32768,
+   "L": 7,
+   "K": 4,
+   "alpha": 3,
+   "A": 63,
+   "B": 297,
+   "ms": 1323.19,
+   "y": 0.0026920369466145832,
+   "modelOverMeasured": 0.9770509508470091
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 11,
+    "qbits": 45,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 32768,
+   "L": 10,
+   "K": 4,
+   "alpha": 4,
+   "A": 90,
+   "B": 378,
+   "ms": 1879.6,
+   "y": 0.003824055989583333,
+   "modelOverMeasured": 0.9543086865759155
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 13,
+    "qbits": 36,
+    "progdepth": 9,
+    "prog": "chain"
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 32768,
+   "L": 14,
+   "K": 4,
+   "alpha": 5,
+   "A": 126,
+   "B": 486,
+   "ms": 2734.74,
+   "y": 0.005563842773437499,
+   "modelOverMeasured": 0.9001140949915557
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 6,
+    "progdepth": 6,
+    "prog": "poly"
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 16384,
+   "L": 4,
+   "K": 3,
+   "alpha": 2,
+   "A": 36,
+   "B": 126,
+   "ms": 258.888,
+   "y": 0.0011286621093749998,
+   "modelOverMeasured": 1.2411452857271605
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 8,
+    "progdepth": 6,
+    "prog": "chain",
+    "dnum": 1
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 32768,
+   "L": 6,
+   "K": 7,
+   "alpha": 6,
+   "A": 36,
+   "B": 78,
+   "ms": 679.992,
+   "y": 0.001383447265625,
+   "modelOverMeasured": 0.9314749336477147
+  },
+  {
+   "scheme": "bfv",
+   "cfg": {
+    "mult": "HPSPOVERQ",
+    "ks": "HYBRID",
+    "depth": 8,
+    "progdepth": 6,
+    "prog": "chain",
+    "dnum": 2
+   },
+   "group": "bfv/HPSPOVERQ/HYBRID",
+   "N": 32768,
+   "L": 6,
+   "K": 4,
+   "alpha": 3,
+   "A": 36,
+   "B": 120,
+   "ms": 690.956,
+   "y": 0.0014057535807291666,
+   "modelOverMeasured": 0.9865244339094987
+  }
+ ],
+ "model": "T/(N log2 N) = a*A + b*B (costmodel.py)"
+}

@@ -1,0 +1,51 @@
+fhe_check recommend: examples/heir_mult_dep_8.default.fhecheck.json
+RECOMMENDATION: CERTIFIED: parameters found that fhe_check certifies (minimum margin 0.29 bits)
+
+Target: HEIR (Lattigo backend, bgv.schemeParam). Search: 4 ciphertext limbs (fixed by the program's levels), sizes [f, s, ..., s] then each limb and the special-prime size lowered one at a time, digits kept from the file; ring dimension policy: smallest N meeting 128-bit classical security.
+Objective: least predicted evaluation time (a MODEL, T ~ N log2 N (a*A + b*B) over the program's multiplications and
+key switches, fitted on measured times with error up to 8.00%; the file's digit count is kept unless another is
+predicted faster by more than that). NOT claimed: optimality (per ring dimension and digit count the search minimises
+log2(Q*P) over a family, by bisection). Claimed: the verdict below, which is fhe_check's plain check of the emitted parameters.
+
+Ring dimension N = 8192; plaintext modulus t = 65537
+Ciphertext primes (4; log2 Q = 159.00):
+  q0 = 549756026881  (40 bits)
+  q1 = 1099511922689  (41 bits)
+  q2 = 1099512004609  (41 bits)
+  q3 = 1099512266753  (41 bits)
+Special primes (2; log2 P = 50.03):
+  p0 = 33832961  (26 bits)
+  p1 = 34062337  (26 bits)
+Key switching: digits of 2 consecutive limbs
+Prime rule: HEIR findPrime: smallest prime = 1 mod 2N above 2^b (RLWEParams.cpp:57-83), sizes b = [39, 40, 40, 40], special b = 25
+
+Security (INPUT ASSUMPTION, not proved here): HomomorphicEncryption.org standard (2018), ternary secret,
+  128-bit classical: log2(Q*P) must stay below 218 at N = 8192; this chain: log2(Q*P) = 209.03.
+  HEIR's own 128-bit table (RLWESecurityParams.cpp:11-14, informational): 214 bits at N = 8192: met.
+
+VERDICT ON THESE EXACT PARAMETERS (fhe_check's plain check of the emitted file): CERTIFIED AT PHASE LEVEL: the raw (phase-level) decryption of every output is correct, in the worst case, under the assumptions below; user-level decryption depends on the backend and is NOT covered
+  certificate theorem: Challenge.Certify.worst_certified
+  %ct_7: margin 0.29 bits at its level
+
+Compared with the file's own parameters (heir): NOT CERTIFIED there.
+  N 8192 -> 8192; log2 Q 129.00 -> 159.00; log2(Q*P) 197.00 -> 209.03
+  fresh ciphertext in memory (2 x N x L words of 64 bits): 512 KiB -> 512 KiB (ratio 1.00)
+  ciphertext information size (2 x N x log2 Q bits): ratio 1.23
+  evaluation time, MODELLED (not measured): ratio 1.00 (digits 2 vs the file's 2)
+
+LIBRARY CONFIGURATION
+HEIR: give the program module these exact primes; HEIR then skips its own parameter generation
+(GenerateParamBGV.cpp:146-149) and the Lattigo backend uses them (ConfigureCryptoContext.cpp:136-142):
+  module attributes {bgv.schemeParam = #bgv.scheme_param<logN = 13, Q = [549756026881, 1099511922689, 1099512004609, 1099512266753], P = [33832961, 34062337], plaintextModulus = 65537, encryptionTechnique = extended>} {
+    ... the program's func.func, unchanged ...
+  }
+  heir-opt --annotate-module="backend=lattigo scheme=bgv" --mlir-to-bgv="noise-model=bgv-noise-by-bound-coeff-worst-case" prog.mlir
+Lattigo (Go) directly, if you write the program by hand (LattigoEmitter.cpp:1992-2005 emits the same literal):
+  bgv.NewParametersFromLiteral(bgv.ParametersLiteral{
+    LogN: 13, Q: []uint64{549756026881, 1099511922689, 1099512004609, 1099512266753}, P: []uint64{33832961, 34062337}, PlaintextModulus: 65537,
+  })
+
+UNVERIFIED GLUE that affects this verdict (also stated in the emitted file):
+  - input noise: Lattigo formula of extract_bgv.py at N = 8192, p0 = 33832961
+  - the search, prime generation and this text; and every assumption of the plain check (run
+    `fhe_check` on the emitted file for the full certificate statement).

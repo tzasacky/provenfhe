@@ -1,0 +1,113 @@
+{
+ "about": "check_patch_observation.py: every difference of openfhe-v1.6.1-tracer.patch that is not an observation hook, with the reason it changes no computed value. 'residue': hunks whose two sides differ after deleting the hook macros (their ENABLE_TRACER=OFF expansion), comments and whitespace (sha256 of the two masked sides); 'hookStatements': IF_TRACE statements that are neither a tracer variable nor a register call. A new difference fails the check until it is reviewed and listed here.",
+ "residue": [
+  {
+   "file": "src/pke/include/cryptocontext.h",
+   "hunk": "-2722,8 +2962,12",
+   "sha256": "3ce6dafc16bacaa45d750e562ff47c2394a125150f047d69c12c7fe1c2faa331",
+   "reason": "rewrite with identical behaviour: 'if (levels > 0) f();' becomes 'if (levels == 0) return; f();' at the end of a void function (so the hook can follow)"
+  },
+  {
+   "file": "src/pke/include/cryptocontext.h",
+   "hunk": "-2772,7 +3020,11",
+   "sha256": "af6ef8a707f2ef6bc27ab4440a781287814d81e8838e11020dff22b5835ffc9c",
+   "reason": "rewrite with identical behaviour: 'return f();' becomes 'auto result = f(); return result;' (so the result can be registered)"
+  },
+  {
+   "file": "src/pke/include/encoding/ckkspackedencoding.h",
+   "hunk": "-402,6 +402,42",
+   "sha256": "b46b94bbfeb0454170b532dadfdaa404b5952fc25d113d249d5f08a5569f11bc",
+   "reason": "plaintext serialization: cereal save/load member templates and SerializedVersion() added at the end of the class (used only if a plaintext is serialized, e.g. by the tracer's plaintext-ser.h); no existing member changed"
+  },
+  {
+   "file": "src/pke/include/encoding/coefpackedencoding.h",
+   "hunk": "-104,6 +104,9",
+   "sha256": "dd1e265cd9989de49f1fe51611ff0cdf8e05a117604019484598e2e9a18a0f7b",
+   "reason": "a default constructor of CoefPackedEncoding (cereal registration of plaintexts needs it); not called by the library's computations"
+  },
+  {
+   "file": "src/pke/include/encoding/coefpackedencoding.h",
+   "hunk": "-173,6 +176,40",
+   "sha256": "ff644f3af7cdb0bafdd3f66d494b7ef38bdd2d35b8b9a81a02704d2fc4fa3726",
+   "reason": "plaintext serialization: cereal save/load member templates and SerializedVersion() added at the end of the class (used only if a plaintext is serialized, e.g. by the tracer's plaintext-ser.h); no existing member changed"
+  },
+  {
+   "file": "src/pke/include/encoding/packedencoding.h",
+   "hunk": "-280,6 +280,40",
+   "sha256": "c52d89505ff0c9d715da7749241d90d5693162dca6a26216478158e329ff2840",
+   "reason": "plaintext serialization: cereal save/load member templates and SerializedVersion() added at the end of the class (used only if a plaintext is serialized, e.g. by the tracer's plaintext-ser.h); no existing member changed"
+  },
+  {
+   "file": "src/pke/include/encoding/plaintext.h",
+   "hunk": "-527,6 +527,93",
+   "sha256": "1a598d07e634d0f51a3b9d3d7777a9ace6a0653d32f65db22d48533c7b1bcc05",
+   "reason": "plaintext serialization: cereal save/load member templates and SerializedVersion() added at the end of the class (used only if a plaintext is serialized, e.g. by the tracer's plaintext-ser.h); no existing member changed"
+  },
+  {
+   "file": "src/pke/include/encoding/stringencoding.h",
+   "hunk": "-54,6 +54,11",
+   "sha256": "c45dcd75c400288925ddd3d4faa2ff315d95713f68a6a5eaad55b995e7d3b93a",
+   "reason": "a default constructor of StringEncoding (cereal registration of plaintexts needs it); not called by the library's computations"
+  },
+  {
+   "file": "src/pke/include/encoding/stringencoding.h",
+   "hunk": "-144,6 +149,40",
+   "sha256": "0dc02fc1f14e5851331eea491d21301c6c5499363d261988859c765c7a6a6f29",
+   "reason": "plaintext serialization: cereal save/load member templates and SerializedVersion() added at the end of the class (used only if a plaintext is serialized, e.g. by the tracer's plaintext-ser.h); no existing member changed"
+  },
+  {
+   "file": "src/pke/lib/scheme/bfvrns/bfvrns-leveledshe.cpp",
+   "hunk": "-784,15 +822,21",
+   "sha256": "8bb0f081ca9d6570adb01270ccf7b806ef00b2ef7e76834de4947eb68e9990f4",
+   "reason": "rewrite with identical behaviour: 'return f();' becomes 'auto result = f(); return result;' (so the result can be registered)"
+  },
+  {
+   "file": "src/pke/lib/scheme/bgvrns/bgvrns-leveledshe.cpp",
+   "hunk": "-41,10 +41,16",
+   "sha256": "86c664ff9f6150980edd8da79a9bb39acc7bb9ba6ebabcf24d2e75f7932dfb9c",
+   "reason": "an added #include \"cryptocontext.h\" (the hooks reach the CryptoContext's tracer); declarations only"
+  }
+ ],
+ "hookStatements": [
+  {
+   "statement": "std::shared_ptr<Tracer<Element>> m_tracer",
+   "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+  },
+  {
+   "statement": "void setTracer(std::shared_ptr<Tracer<Element>>&& tracer) { m_tracer = tracer; }",
+   "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+  },
+  {
+   "statement": "std::shared_ptr<Tracer<Element>> getTracer() const { return m_tracer; }",
+   "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+  },
+  {
+   "statement": ", Tracer<Element>* tracer = nullptr",
+   "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+  },
+  {
+   "statement": "m_tracer = tracer ? std::shared_ptr<Tracer<Element>>(tracer) : std::make_shared<NullTracer<Element>>()",
+   "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+  },
+  {
+   "statement": ", std::shared_ptr<Tracer<Element>> tracer = nullptr",
+   "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+  },
+  {
+   "statement": "m_tracer = tracer ? tracer : std::make_shared<NullTracer<Element>>()",
+   "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+  },
+  {
+   "statement": "m_tracer = other.m_tracer",
+   "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+  },
+  {
+   "statement": "m_tracer = rhs.m_tracer",
+   "reason": "the CryptoContext's tracer member, its setter/getter and constructor plumbing (default: OpenFHE's NullTracer); it holds the tracer and takes part in no computation"
+  },
+  {
+   "statement": "fhecheck::MaybeAutoTrace<Element>(cc)",
+   "reason": "with FHECHECK_TRACE_DIR set, CryptoContextFactory gives every new BGV/BFV context a JsonTracer (fhecheck-tracer.h); otherwise nothing"
+  }
+ ]
+}

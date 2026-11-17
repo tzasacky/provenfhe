@@ -1,0 +1,2 @@
+fhe_check: tests/negative-bfv/bfv_leveled_internal_drops_negative.json
+VERDICT: INVALID INPUT: $.bfv.multiplication.internalDrops[3]: -1 is negative

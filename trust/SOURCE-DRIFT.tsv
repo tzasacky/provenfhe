@@ -1,0 +1,2 @@
+# SOURCE*.txt hashes that differ from the files in the tree: path<TAB>recorded sha256<TAB>current sha256<TAB>status<TAB>note
+# status: unreviewed (warning; failure under STRICT=1) | reviewed. Maintained with scripts/source_hashes.py --rebase.
